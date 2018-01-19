@@ -93,7 +93,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! profileImageCell //searches for identifier labeled "cell" from storyboard
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! recipeImageCell //searches for identifier labeled "cell" from storyboard
         let profile = profileRecords[indexPath.row]
         if let profileName = profile["Name"] as? String {
             cell.nameLabel?.text = profileName //automatically increments the indexPath like ++i
@@ -119,7 +119,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let indexPaths = self.collectionView!.indexPathsForSelectedItems! //get the number of selected items in our collectionView
             let indexPath = indexPaths[0] as IndexPath //start at first i
             
-            let vc = segue.destination as! profileViewController
+            let vc = segue.destination as! recipeViewController
             
             //set the profile view up
             let profile = profileRecords[indexPath.row]

@@ -1,5 +1,5 @@
 //
-//  profileViewController.swift
+//  recipeViewController.swift
 //  CookPad
 //
 //  Created by Justin Mac on 1/8/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class profileViewController: UIViewController {
+class recipeViewController: UIViewController {
     @IBOutlet weak var imageView = UIImageView()
     @IBOutlet weak var nameLabel = UILabel()
     @IBOutlet weak var bioView = UITextView()

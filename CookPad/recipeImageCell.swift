@@ -1,5 +1,5 @@
 //
-//  profileImageCell.swift
+//  recipeImageCell.swift
 //  CookPad
 //
 //  Created by Justin Mac on 1/8/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class profileImageCell: UICollectionViewCell {
+class recipeImageCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
