@@ -1,4 +1,4 @@
-CS179K Senior Design Project: CookPad
+# CS179K Senior Design Project - CookPad
 Developed by: Justin Mac, Junhao Liang, Jamie Alaniz, Brent Badhwar, Satkaran Tamber
 
 Before pulling:
