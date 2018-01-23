@@ -30,7 +30,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
         
         
-        navigationController!.navigationBar.barTintColor = UIColor(colorLiteralRed: 197/255, green: 42/255, blue: 53/255, alpha: 0.1) //changes the navigation bar color to light blue, divide by 255 to convert RGB
+        navigationController!.navigationBar.barTintColor = UIColor(red: 197/255, green: 42/255, blue: 53/255, alpha: 0.1) //changes the navigation bar color to light blue, divide by 255 to convert RGB
         //Status Bar White Font
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -39,7 +39,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     }
     
-    func loadProfiles() -> Void { //parameter: index
+    @objc func loadProfiles() -> Void { //parameter: index
         //populate Profile name, images, bios, age
         profileRecords = [CKRecord]()
         let publicData = CKContainer.default().publicCloudDatabase
