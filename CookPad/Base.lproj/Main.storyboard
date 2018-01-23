@@ -103,7 +103,7 @@
         <!--Recipe View Controller-->
         <scene sceneID="4QW-Ng-z8u">
             <objects>
-                <viewController id="rvF-Xt-rLX" customClass="recipeViewController" sceneMemberID="viewController">
+                <viewController id="rvF-Xt-rLX" customClass="recipeViewController" customModule="CookPad" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5o8-cZ-72y"/>
                         <viewControllerLayoutGuide type="bottom" id="r6S-qM-bTo"/>
@@ -187,15 +187,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="0io-zW-bWL"/>
                     <connections>
-                        <outlet property="bioView" destination="S46-zl-mgN" id="Cwo-3I-QqS"/>
                         <outlet property="imageView" destination="9vg-vf-fxi" id="976-J1-Ww2"/>
+                        <outlet property="ingredientsList" destination="S46-zl-mgN" id="KBO-lV-nbb"/>
                         <outlet property="nameLabel" destination="T1b-T7-HzD" id="jDx-46-DCN"/>
                         <outlet property="overlayImageView" destination="y1n-JR-Q6s" id="MHP-wV-WyT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhL-DT-wYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1212" y="275"/>
+            <point key="canvasLocation" x="1349" y="275"/>
         </scene>
         <!--Home-->
         <scene sceneID="mt5-vc-hnN">
@@ -290,13 +290,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meo-q7-Cgi">
-                                <rect key="frame" x="290" y="613" width="54" height="34"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="Sign In">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cook Pad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rr-Zl-8H4">
                                 <rect key="frame" x="67" y="108" width="241" height="160"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="63"/>
@@ -307,9 +300,7 @@
                         <color key="backgroundColor" red="0.77089533730000004" green="0.16590094720000001" blue="0.20817387430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9Rr-Zl-8H4" firstAttribute="centerX" secondItem="1hj-Ee-dHV" secondAttribute="centerX" id="PAQ-LH-4le"/>
-                            <constraint firstItem="XIG-wZ-dmh" firstAttribute="top" secondItem="meo-q7-Cgi" secondAttribute="bottom" constant="20" id="azP-7E-O8a"/>
                             <constraint firstItem="9Rr-Zl-8H4" firstAttribute="top" secondItem="Yrd-6o-aWS" secondAttribute="bottom" constant="40" id="dWs-wd-Ege"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="meo-q7-Cgi" secondAttribute="trailing" constant="15" id="fKs-ai-Tmq"/>
                             <constraint firstItem="XIG-wZ-dmh" firstAttribute="top" secondItem="9Rr-Zl-8H4" secondAttribute="bottom" constant="469" id="n1D-I1-ytR"/>
                         </constraints>
                     </view>

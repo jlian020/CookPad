@@ -140,9 +140,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let indexPath = indexPaths[0] as IndexPath //start at first i
             
             let vc = segue.destination as! recipeViewController
-            /*
+            
             //set the profile view up
-            let recipe = recipes[indexPath.row]
+            //let recipe = recipes[indexPath.row]
+            
+            vc.image = testImage
+            
+            /*
             if let profileImage = recipe["Image"] as? CKAsset, //find the profile Image for the profileView
                 let data = try? Data(contentsOf: profileImage.fileURL),
                 let image = UIImage(data: data) { //cannot directly convert Asset to UIImage
