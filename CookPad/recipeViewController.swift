@@ -2,21 +2,18 @@
 //  recipeViewController.swift
 //  CookPad
 //
-//  Created by Justin Mac on 1/8/18.
-//  Copyright © 2016 Justin Mac. All rights reserved.
-//
 
 import UIKit
 
 class recipeViewController: UIViewController {
     @IBOutlet weak var imageView = UIImageView()
     @IBOutlet weak var nameLabel = UILabel()
-    @IBOutlet weak var bioView = UITextView()
+    @IBOutlet weak var ingredientsList = UITextView() //lists steps to follow for recipe
     @IBOutlet weak var overlayImageView = UIImageView()
     
     var image = UIImage()
     var name = String()
-    var bio = String()
+    var ingredientString = String()
     let likeOverlay = UIImage(named: "like button")
     
     override func viewDidLoad() {
@@ -24,9 +21,8 @@ class recipeViewController: UIViewController {
         
         self.imageView?.image = self.image
         self.nameLabel?.text = self.name
-        self.bioView?.text = self.bio
+        self.ingredientsList?.text = self.ingredientString
         //overlayImageView?.hidden = true
-        //if(personA likes personB) { overlayImageView?.image = likeOverlay }
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,13 +33,11 @@ class recipeViewController: UIViewController {
         //stamp like, hide buttons
         overlayImageView?.isHidden = false
         overlayImageView?.image = likeOverlay
-        //add Person to crush list
     }
     @IBAction func dislikeButtonPressed(_ sender: AnyObject) {
         print("Dislike button pressed")
         if(overlayImageView?.image == likeOverlay) {
             overlayImageView?.isHidden = true
         }
-        //if (personA likes personB) remove Person from crush list //accidentally liked them
     }
 }

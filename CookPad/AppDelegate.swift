@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  CookPad
 //
-//  Created by Justin Mac on 1/8/18.
-//  Copyright © 2016 Justin Mac. All rights reserved.
-//
 
 import UIKit
 import FBSDKCoreKit
