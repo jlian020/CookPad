@@ -8,7 +8,7 @@
 
 import UIKit
 import CloudKit
-
+import FirebaseStorage
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -16,17 +16,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var refresh : UIRefreshControl!
     
     
-    //var profiles = [Person]()
     var profileRecords = [CKRecord]()
-    var currentProfile = Person()
+    var recipes = [Recipe]() //array of recipes
     
+    let storage = Storage.storage() //get reference to Google Firebase Storage
+    
+    var testImage = UIImage()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load profiles")
-        refresh.addTarget(self, action: #selector(ViewController.loadProfiles), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(ViewController.loadRecipes), for: .valueChanged)
         self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
         
         
@@ -35,16 +37,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.tintColor = UIColor.white
         
-        loadProfiles()
+        loadRecipes()
         
     }
     
-    @objc func loadProfiles() -> Void { //parameter: index
+    @objc func loadRecipes() -> Void { //parameter: index
         //populate Profile name, images, bios, age
-        profileRecords = [CKRecord]()
+        /*profileRecords = [CKRecord]()
         let publicData = CKContainer.default().publicCloudDatabase
         let query = CKQuery(recordType: "Person", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
         //sort query here later
+        
         publicData.perform(query, inZoneWith: nil, completionHandler: { results,error -> Void in //perform a database query to cloud kit to load
             if let profiles = results {
                 self.profileRecords = profiles //load them one at a time
@@ -57,7 +60,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 print("error in populating profiles")
                 print(error)
             }
-        })
+        })*/
+        
         var name: String = "Default"
         var email: String = "Default"
         var ID : String = ""
@@ -76,6 +80,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             ID = result
             print("ID is: \(ID)")
         })
+        
+        let storageRef = storage.reference() //create storage reference from Firebase Storage
+        let imageRef = storageRef.child("Images/IMG_0005.JPG")
+        imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("test image is now populated")
+                self.testImage = UIImage(data: data!)!
+                DispatchQueue.main.async(execute: { //push the current info into the main thread
+                    self.collectionView.reloadData()
+                    //self.refresh.endRefreshing()
+                })
+            }
+            })
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { //corrects auto layout, using 2 rows
@@ -88,13 +108,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { //required function for UICollectionView
-         return profileRecords.count //limit a specific profile amount
+         //return profileRecords.count //limit a specific profile amount
+        return 1
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! recipeImageCell //searches for identifier labeled "cell" from storyboard
-        let profile = profileRecords[indexPath.row]
+        /*let profile = profileRecords[indexPath.row]
         if let profileName = profile["Name"] as? String {
             cell.nameLabel?.text = profileName //automatically increments the indexPath like ++i
         }
@@ -102,17 +123,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let data = try? Data(contentsOf: profileImage.fileURL),
             let image = UIImage(data: data) { //cannot directly convert Asset to UIImage
             cell.imageView?.image = image//populate the imageViews from the collectionView cells with the profileImages in database
-        }
+        }*/
+        cell.nameLabel?.text = "Hi testing"
+        cell.imageView?.image = testImage
         return cell
     } //reuses cell for all cells in UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showProfile", sender: self)
+        self.performSegue(withIdentifier: "showRecipe", sender: self)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showProfile" {
+        if segue.identifier == "showRecipe" {
             let backButton = UIBarButtonItem()
             backButton.title = "" //want an empty title, rather than app name near back button
             navigationItem.backBarButtonItem = backButton //recreates bar button with empty title
@@ -120,10 +143,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let indexPath = indexPaths[0] as IndexPath //start at first i
             
             let vc = segue.destination as! recipeViewController
-            
+            /*
             //set the profile view up
-            let profile = profileRecords[indexPath.row]
-            if let profileImage = profile["Image"] as? CKAsset, //find the profile Image for the profileView
+            let recipe = recipes[indexPath.row]
+            if let profileImage = recipe["Image"] as? CKAsset, //find the profile Image for the profileView
                 let data = try? Data(contentsOf: profileImage.fileURL),
                 let image = UIImage(data: data) { //cannot directly convert Asset to UIImage
                 vc.image = image
@@ -133,7 +156,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
             if let profileBio = profile["Bio"] as? String {
                 vc.bio = profileBio
-            }
+            }*/
             //print(profileNames[indexPath.row])
             //vc.title = self.profileNames[indexPath.row]
         }

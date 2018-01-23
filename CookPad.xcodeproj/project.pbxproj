@@ -22,7 +22,7 @@
 		D1C8FDE81CDBE4EE006D7D60 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */; };
 		D1C8FDEA1CDBF016006D7D60 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */; };
 		D1E994ED1CDAA1B0002FBF9D /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */; };
-		D1F59B841CDAE1FB00D890E0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F59B831CDAE1FB00D890E0 /* Person.swift */; };
+		D1F59B841CDAE1FB00D890E0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F59B831CDAE1FB00D890E0 /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +46,7 @@
 		D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
-		D1F59B831CDAE1FB00D890E0 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D1F59B831CDAE1FB00D890E0 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +117,7 @@
 				D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */,
 				D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */,
 				D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */,
-				D1F59B831CDAE1FB00D890E0 /* Person.swift */,
+				D1F59B831CDAE1FB00D890E0 /* Recipe.swift */,
 				D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */,
 				D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */,
 			);
@@ -272,7 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1C8FDEA1CDBF016006D7D60 /* loginViewController.swift in Sources */,
-				D1F59B841CDAE1FB00D890E0 /* Person.swift in Sources */,
+				D1F59B841CDAE1FB00D890E0 /* Recipe.swift in Sources */,
 				D1E994ED1CDAA1B0002FBF9D /* MyProfileView.swift in Sources */,
 				D1B420AC1CD573A400EDF6A0 /* recipeImageCell.swift in Sources */,
 				D1B4207E1CD571E600EDF6A0 /* ViewController.swift in Sources */,

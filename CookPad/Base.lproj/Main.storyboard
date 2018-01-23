@@ -93,7 +93,7 @@
                     <navigationItem key="navigationItem" title="CookPad" id="39y-N7-dAt"/>
                     <connections>
                         <outlet property="collectionView" destination="8T6-QH-hE8" id="LtZ-dD-M4A"/>
-                        <segue destination="rvF-Xt-rLX" kind="push" identifier="showProfile" id="jew-1D-0kM"/>
+                        <segue destination="rvF-Xt-rLX" kind="push" identifier="showRecipe" id="jew-1D-0kM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
