@@ -18,7 +18,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     let storage = Storage.storage() //get reference to Google Firebase Storage
     
-    var testImage = UIImage()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,19 +78,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         })
         
         let storageRef = storage.reference() //create storage reference from Firebase Storage
-        let imageRef = storageRef.child("Images/IMG_0005.JPG")
-        imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
-            if let error = error {
-                print(error)
-            } else {
-                print("test image is now populated")
-                self.testImage = UIImage(data: data!)!
-                DispatchQueue.main.async(execute: { //push the current info into the main thread
-                    self.collectionView.reloadData()
-                    //self.refresh.endRefreshing()
+        for index in 1...20 {
+            let imageRef = storageRef.child("Images/a\(index).JPG")
+            imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
+                if let error = error {
+                    print("couldn't find image")
+                    //print(error)
+                } else {
+                    print("image is being populated")
+                    var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"]);
+                    self.recipes.append(newRecipe)
+                    DispatchQueue.main.async(execute: {
+                        //push the current info into the main thread, otherwise for loop would be asynchronous
+                        self.collectionView.reloadData() //add new recipe to collectionView
+                        //self.refresh.endRefreshing()
+                    })
+                }
                 })
-            }
-            })
+        }
+        
+        
         
     }
     
@@ -104,9 +110,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Dispose of any resources that can be recreated.
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { //required function for UICollectionView
-         //return profileRecords.count //limit a specific profile amount
-        return 1
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { //required function for UICollectionView, counts how many cells are in the collection view
+        return recipes.count
     }
     
     
@@ -121,8 +126,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let image = UIImage(data: data) { //cannot directly convert Asset to UIImage
             cell.imageView?.image = image//populate the imageViews from the collectionView cells with the profileImages in database
         }*/
-        cell.nameLabel?.text = "Hi testing"
-        cell.imageView?.image = testImage
+        cell.nameLabel?.text = recipes[indexPath.row].name
+        cell.imageView?.image = recipes[indexPath.row].image
         return cell
     } //reuses cell for all cells in UICollectionView
     
@@ -132,7 +137,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRecipe" {
+        if segue.identifier == "showRecipe" { //show the recipe that the user selected
             let backButton = UIBarButtonItem()
             backButton.title = "" //want an empty title, rather than app name near back button
             navigationItem.backBarButtonItem = backButton //recreates bar button with empty title
@@ -142,9 +147,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let vc = segue.destination as! recipeViewController
             
             //set the profile view up
-            //let recipe = recipes[indexPath.row]
+            let recipe = recipes[indexPath.row]
             
-            vc.image = testImage
+            vc.image = recipe.image
             
             /*
             if let profileImage = recipe["Image"] as? CKAsset, //find the profile Image for the profileView

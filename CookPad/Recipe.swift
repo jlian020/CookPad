@@ -8,6 +8,7 @@ import UIKit
 class Recipe {
     
     var name = String()
+    var image = UIImage()
     var id = Int()
     var ingredients = [String]()
     var directions = [String]()
@@ -23,8 +24,9 @@ class Recipe {
         id = -1
     }
     
-    init(name: String, id: Int, ingredients : [String], directions : [String]) {
+    init(name: String, image: UIImage, ingredients : [String], directions : [String]) {
         self.name = name
+        self.image = image
         self.id = Recipe.generateUID()
         self.ingredients = ingredients
         self.directions = directions
