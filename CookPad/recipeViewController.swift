@@ -13,7 +13,7 @@ class recipeViewController: UIViewController {
     
     var image = UIImage()
     var name = String()
-    var ingredientString = String()
+    var ingredients = String()
     let likeOverlay = UIImage(named: "like button")
     
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class recipeViewController: UIViewController {
         
         self.imageView?.image = self.image
         self.nameLabel?.text = self.name
-        self.ingredientsList?.text = self.ingredientString
+        self.ingredientsList?.text = self.ingredients
         //overlayImageView?.hidden = true
     }
     
