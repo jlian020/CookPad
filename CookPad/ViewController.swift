@@ -23,7 +23,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         
         refresh = UIRefreshControl()
-        refresh.attributedTitle = NSAttributedString(string: "Pull to load profiles")
+        refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
         refresh.addTarget(self, action: #selector(ViewController.loadRecipes), for: .valueChanged)
         self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
         
@@ -37,26 +37,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     }
     
-    @objc func loadRecipes() -> Void { //parameter: index
-        //populate Profile name, images, bios, age
-        /*profileRecords = [CKRecord]()
-        let publicData = CKContainer.default().publicCloudDatabase
-        let query = CKQuery(recordType: "Person", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
-        //sort query here later
-        
-        publicData.perform(query, inZoneWith: nil, completionHandler: { results,error -> Void in //perform a database query to cloud kit to load
-            if let profiles = results {
-                self.profileRecords = profiles //load them one at a time
-                DispatchQueue.main.async(execute: { //push the current info into the main thread
-                    self.collectionView.reloadData()
-                    //self.refresh.endRefreshing()
-                })
-            }
-            else {
-                print("error in populating profiles")
-                print(error)
-            }
-        })*/
+    @objc func loadRecipes() -> Void {
         
         var name: String = "Default"
         var email: String = "Default"
@@ -144,27 +125,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let indexPaths = self.collectionView!.indexPathsForSelectedItems! //get the number of selected items in our collectionView
             let indexPath = indexPaths[0] as IndexPath //start at first i
             
-            let vc = segue.destination as! recipeViewController
+            let recipeVC = segue.destination as! recipeViewController
             
             //set the profile view up
             let recipe = recipes[indexPath.row]
             
-            vc.image = recipe.image
+            recipeVC.name = recipe.name
+            recipeVC.image = recipe.image
+            recipeVC.ingredients = recipe.ingredients.first!
             
-            /*
-            if let profileImage = recipe["Image"] as? CKAsset, //find the profile Image for the profileView
-                let data = try? Data(contentsOf: profileImage.fileURL),
-                let image = UIImage(data: data) { //cannot directly convert Asset to UIImage
-                vc.image = image
-            }
-            if let profileName = profile["Name"] as? String {
-                vc.name = profileName
-            }
-            if let profileBio = profile["Bio"] as? String {
-                vc.bio = profileBio
-            }*/
-            //print(profileNames[indexPath.row])
-            //vc.title = self.profileNames[indexPath.row]
+            //vc.title = self.recipes[indexPath.row]
         }
     }
 
