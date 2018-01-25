@@ -33,6 +33,7 @@ class recipeViewController: UIViewController {
         //stamp like, hide buttons
         overlayImageView?.isHidden = false
         overlayImageView?.image = likeOverlay
+        //When pressed, save the recipe to the user's 'Saved Recipes' folder
     }
     @IBAction func dislikeButtonPressed(_ sender: AnyObject) {
         print("Dislike button pressed")

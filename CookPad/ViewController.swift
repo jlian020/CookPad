@@ -98,15 +98,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! recipeImageCell //searches for identifier labeled "cell" from storyboard
-        /*let profile = profileRecords[indexPath.row]
-        if let profileName = profile["Name"] as? String {
-            cell.nameLabel?.text = profileName //automatically increments the indexPath like ++i
-        }
-        if let profileImage = profile["Image"] as? CKAsset,
-            let data = try? Data(contentsOf: profileImage.fileURL),
-            let image = UIImage(data: data) { //cannot directly convert Asset to UIImage
-            cell.imageView?.image = image//populate the imageViews from the collectionView cells with the profileImages in database
-        }*/
         cell.nameLabel?.text = recipes[indexPath.row].name
         cell.imageView?.image = recipes[indexPath.row].image
         return cell

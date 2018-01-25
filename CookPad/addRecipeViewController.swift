@@ -13,14 +13,15 @@ import FirebaseStorage
 
 class addRecipeViewController: UIViewController {
     
-    
-    @IBOutlet weak var submitRecipeButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func submitRecipeTapped(_ sender: Any) {
+        //Submit the recipe to the database and append the user id to the recipe created
     }
 }
