@@ -30,7 +30,7 @@ class recipeViewController: UIViewController {
     }
     @IBAction func likeButtonPressed(_ sender: AnyObject) {
         print("like Button pressed")
-        //stamp like, hide buttons
+        //stamp like, hide buttons, save the recipe to saved
         overlayImageView?.isHidden = false
         overlayImageView?.image = likeOverlay
     }
