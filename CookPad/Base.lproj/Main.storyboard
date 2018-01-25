@@ -90,7 +90,13 @@
                             <constraint firstItem="8T6-QH-hE8" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="xsg-R0-a4S"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CookPad" id="39y-N7-dAt"/>
+                    <navigationItem key="navigationItem" title="CookPad" id="39y-N7-dAt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UbI-yz-Ek0">
+                            <connections>
+                                <segue destination="AIl-wT-Gse" kind="push" id="qY8-Nc-a1t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="8T6-QH-hE8" id="LtZ-dD-M4A"/>
                         <segue destination="rvF-Xt-rLX" kind="push" identifier="showRecipe" id="jew-1D-0kM"/>
@@ -99,6 +105,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="881" y="288"/>
+        </scene>
+        <!--Add Recipe View Controller-->
+        <scene sceneID="PCS-ea-bFm">
+            <objects>
+                <viewController id="AIl-wT-Gse" customClass="addRecipeViewController" customModule="CookPad" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="buG-dv-dcy"/>
+                        <viewControllerLayoutGuide type="bottom" id="MPI-qQ-E7e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qLB-9A-eOY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmp-CI-H4Y">
+                                <rect key="frame" x="58" y="225" width="34" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voD-FZ-a8T">
+                                <rect key="frame" x="58" y="267" width="44" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Directions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ao-Os-lzY">
+                                <rect key="frame" x="58" y="323" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpz-nT-AzO">
+                                <rect key="frame" x="163" y="557" width="49" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ivg-yf-NmD"/>
+                    <connections>
+                        <outlet property="submitRecipeButton" destination="cpz-nT-AzO" id="x68-Z9-P86"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g7w-5t-OXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1405.5" y="-165.5"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="4QW-Ng-z8u">
@@ -195,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhL-DT-wYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1349" y="275"/>
+            <point key="canvasLocation" x="1503" y="579"/>
         </scene>
         <!--Home-->
         <scene sceneID="mt5-vc-hnN">
