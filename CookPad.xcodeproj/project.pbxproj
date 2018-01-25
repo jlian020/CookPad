@@ -17,6 +17,8 @@
 		D1B420AC1CD573A400EDF6A0 /* recipeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */; };
 		D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */; };
 		D1B714BA201A724B00C0E0CE /* addRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */; };
+		D1B714BC201A7FD200C0E0CE /* savedRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714BB201A7FD200C0E0CE /* savedRecipeViewController.swift */; };
+		D1B714BE201A860600C0E0CE /* myRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */; };
 		D1C8FDE61CDBE4EE006D7D60 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */; };
 		D1C8FDE71CDBE4EE006D7D60 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */; };
 		D1C8FDE81CDBE4EE006D7D60 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */; };
@@ -41,6 +43,8 @@
 		D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeImageCell.swift; sourceTree = "<group>"; };
 		D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeViewController.swift; sourceTree = "<group>"; };
 		D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRecipeViewController.swift; sourceTree = "<group>"; };
+		D1B714BB201A7FD200C0E0CE /* savedRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedRecipeViewController.swift; sourceTree = "<group>"; };
+		D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myRecipeViewController.swift; sourceTree = "<group>"; };
 		D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 				D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */,
 				D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */,
 				D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */,
+				D1B714BB201A7FD200C0E0CE /* savedRecipeViewController.swift */,
+				D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */,
 			);
 			path = CookPad;
 			sourceTree = "<group>";
@@ -271,11 +277,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B714BE201A860600C0E0CE /* myRecipeViewController.swift in Sources */,
 				D1B714BA201A724B00C0E0CE /* addRecipeViewController.swift in Sources */,
 				D1C8FDEA1CDBF016006D7D60 /* loginViewController.swift in Sources */,
 				D1F59B841CDAE1FB00D890E0 /* Recipe.swift in Sources */,
 				D1E994ED1CDAA1B0002FBF9D /* MyProfileView.swift in Sources */,
 				D1B420AC1CD573A400EDF6A0 /* recipeImageCell.swift in Sources */,
+				D1B714BC201A7FD200C0E0CE /* savedRecipeViewController.swift in Sources */,
 				D1B4207E1CD571E600EDF6A0 /* ViewController.swift in Sources */,
 				D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */,
 				D1B4207C1CD571E600EDF6A0 /* AppDelegate.swift in Sources */,
