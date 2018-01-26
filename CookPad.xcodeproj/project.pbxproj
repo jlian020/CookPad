@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25656FFD6E9D7EF4717842BF /* Pods_CookPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */; };
+		D11A08F6201AAB64008A7EA7 /* food.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D11A08F5201AAB54008A7EA7 /* food.mp4 */; };
 		D13F7EF32016A7A400D0A61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */; };
 		D171D3BA201144F800734B48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D171D3B8201144F800734B48 /* Main.storyboard */; };
 		D1B4207C1CD571E600EDF6A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B4207B1CD571E600EDF6A0 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 		D1C8FDE81CDBE4EE006D7D60 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */; };
 		D1C8FDEA1CDBF016006D7D60 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */; };
 		D1E994ED1CDAA1B0002FBF9D /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */; };
+		D1EE1D4A201A98FF00184B64 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EE1D49201A98FE00184B64 /* Toast.swift */; };
 		D1F59B841CDAE1FB00D890E0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F59B831CDAE1FB00D890E0 /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,7 @@
 		21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94666D85FC680BBAF4229F3E /* Pods-CookPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.release.xcconfig"; sourceTree = "<group>"; };
 		9902771DC4F0DD1FAFEF5C71 /* Pods-CookPad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.debug.xcconfig"; sourceTree = "<group>"; };
+		D11A08F5201AAB54008A7EA7 /* food.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = food.mp4; sourceTree = "<group>"; };
 		D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D171D3B9201144F800734B48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D171D3BD201154C500734B48 /* CookPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CookPad.entitlements; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		D1EE1D49201A98FE00184B64 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		D1F59B831CDAE1FB00D890E0 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,11 +119,13 @@
 				D1B420821CD571E600EDF6A0 /* Assets.xcassets */,
 				D1B420841CD571E600EDF6A0 /* LaunchScreen.storyboard */,
 				D171D3B8201144F800734B48 /* Main.storyboard */,
+				D11A08F5201AAB54008A7EA7 /* food.mp4 */,
 				D1B420871CD571E600EDF6A0 /* Info.plist */,
 				D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */,
 				D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */,
 				D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */,
 				D1F59B831CDAE1FB00D890E0 /* Recipe.swift */,
+				D1EE1D49201A98FE00184B64 /* Toast.swift */,
 				D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */,
 				D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */,
 				D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */,
@@ -201,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D11A08F6201AAB64008A7EA7 /* food.mp4 in Resources */,
 				D171D3BA201144F800734B48 /* Main.storyboard in Resources */,
 				D13F7EF32016A7A400D0A61A /* GoogleService-Info.plist in Resources */,
 				D1B420861CD571E600EDF6A0 /* LaunchScreen.storyboard in Resources */,
@@ -285,6 +292,7 @@
 				D1B420AC1CD573A400EDF6A0 /* recipeImageCell.swift in Sources */,
 				D1B714BC201A7FD200C0E0CE /* savedRecipeViewController.swift in Sources */,
 				D1B4207E1CD571E600EDF6A0 /* ViewController.swift in Sources */,
+				D1EE1D4A201A98FF00184B64 /* Toast.swift in Sources */,
 				D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */,
 				D1B4207C1CD571E600EDF6A0 /* AppDelegate.swift in Sources */,
 			);

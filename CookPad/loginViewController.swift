@@ -6,16 +6,41 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import AVFoundation
 
 class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var backgroundImage: UIImageView!
     let loginButton = FBSDKLoginButton()
     
+    var videoPlayer: AVPlayer!
+    var videoLayer: AVPlayerLayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //super.viewDidAppear(true)
         
+        //Setup view
+        let URL = Bundle.main.url(forResource: "food", withExtension: "mp4")
+        videoPlayer = AVPlayer.init(url: URL!)
+        videoLayer = AVPlayerLayer(player: videoPlayer)
+        videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        videoLayer.frame = view.layer.frame
+        
+        videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.none
+        videoPlayer.isMuted = true
+        
+        videoPlayer.play()
+        
+        
+        view.layer.insertSublayer(videoLayer, at: 0)
+        
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.videoPlayer.currentItem, queue: .main) { _ in
+            self.videoPlayer?.seek(to: kCMTimeZero)
+            self.videoPlayer?.play()
+        }
+        
+        //Setup Facebook Login and Authentication
         self.loginButton.delegate = self
         
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -94,6 +119,7 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
     {
         if error == nil {
             print("Login Complete")
+            videoPlayer.pause()
             self.loadViewController()
         }
         else {

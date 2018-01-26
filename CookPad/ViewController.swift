@@ -46,6 +46,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             (result)->Void in
             name = result
             print("Name is: \(name)")
+            self.view.makeToast("Hello \(name)")
         })
         loginViewController().getEmail({
             (result)->Void in
