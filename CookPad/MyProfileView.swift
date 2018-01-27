@@ -31,7 +31,6 @@ class MyProfileView: UIViewController, FBSDKLoginButtonDelegate {
             if let data = try? Data(contentsOf: facebookProfileUrl!)
             {
                 let profilePic: UIImage = UIImage(data: data)!
-                print(profilePic.size)
                 self.imageView.image = profilePic
                 
             }
