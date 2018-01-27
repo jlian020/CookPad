@@ -60,7 +60,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         })
         
         let storageRef = storage.reference() //create storage reference from Firebase Storage
-        for index in 1...20 {
+        for index in 1...3 {
             let imageRef = storageRef.child("Images/a\(index).JPG")
             imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
                 if let error = error {
