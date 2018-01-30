@@ -25,8 +25,8 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        reference = Database.database().reference()
-        recipeNameTextField.delegate = self
+        var reference = Database.database().reference()
+        recipeTitleTextField.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
@@ -70,23 +70,40 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     
-    @IBAction func submitRecipeTapped(_ sender: Any) {
-        //Submit the recipe to the database and append the user id to the recipe created
-        
-     
-        var recipeID =  reference?.child("Recipes").childByAutoId()
-        var currentUserID = Auth.auth().currentUser?.uid
-        print(recipeID) //later assign this key value to myRecipes
-        recipeID?.child("Name").setValue(recipeNameTextField.text)
-        //Save the Recipe ID key for later access to 'MyRecipes' folder
-        reference?.child("Users").child(currentUserID!).child("MyRecipes").child(recipeID!.key).setValue(recipeID!.key)
-        
-        
-        self.view.makeToast("Submitted Recipe")
-        
-        let delay = DispatchTime.now() + 1 // wait a second to display submitted recipe message, then perform segue
-        DispatchQueue.main.asyncAfter(deadline: delay) {
-            self.performSegue(withIdentifier: "showHome", sender: self)
+    @IBAction func submitRecipeTapped(_ sender: Any)
+    {
+        if recipeTitleTextField.text?.isEmpty ?? true || ingredientsTextView.text?.isEmpty ?? true ||
+            methodTextView.text?.isEmpty ?? true
+        {
+            var errorMsgString = "You are missing the following required fields: "
+            
+            if recipeTitleTextField.text?.isEmpty ?? true
+            {
+                errorMsgString += "\n-Title"
+            }
+            if ingredientsTextView.text?.isEmpty ?? true
+            {
+                errorMsgString += "\n-Ingredients"
+            }
+            if methodTextView.text?.isEmpty ?? true
+            {
+                errorMsgString += "\n-Method"
+            }
+            
+            let alert = UIAlertController(title: "Missing Required Fields!", message: errorMsgString, preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK",style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)}))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else
+        {
+            //TODO: Add recipe to database here:
+            
+            //Submit the recipe to the database and append the user id to the recipe created
+            self.view.makeToast("Submitted Recipe")
+            let delay = DispatchTime.now() + 1 // wait a second to display submitted recipe message, then perform segue
+            DispatchQueue.main.asyncAfter(deadline: delay) {
+                self.performSegue(withIdentifier: "showHome", sender: self) }
         }
     }
     
