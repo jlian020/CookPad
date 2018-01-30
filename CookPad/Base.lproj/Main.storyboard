@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8T6-QH-hE8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ux6-0A-LH8">
                                     <size key="itemSize" width="125" height="125"/>
@@ -93,7 +93,7 @@
                     <navigationItem key="navigationItem" title="CookPad" id="39y-N7-dAt">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UbI-yz-Ek0">
                             <connections>
-                                <segue destination="AIl-wT-Gse" kind="push" id="qY8-Nc-a1t"/>
+                                <segue destination="AIl-wT-Gse" kind="push" identifier="addRecipe" id="H83-98-iDe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -260,14 +260,28 @@
                                     <action selector="submitRecipeTapped:" destination="AIl-wT-Gse" eventType="touchUpInside" id="r69-XS-ABF"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9T8-EC-Hpp">
+                                <rect key="frame" x="67" y="377" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ivg-yf-NmD"/>
+                    <navigationItem key="navigationItem" id="Ivg-yf-NmD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="q99-jL-tpF">
+                            <connections>
+                                <action selector="selectImageButton:" destination="AIl-wT-Gse" id="M74-mc-stj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="9T8-EC-Hpp" id="AQU-hR-gJu"/>
+                        <segue destination="BYZ-38-t0r" kind="push" identifier="showHome" id="teJ-sI-CD5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g7w-5t-OXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1579" y="-174"/>
+            <point key="canvasLocation" x="1657" y="-43"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="4QW-Ng-z8u">
@@ -294,7 +308,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGa-DR-eMW">
-                                <rect key="frame" x="66" y="552" width="50" height="50"/>
+                                <rect key="frame" x="66" y="601" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Umf-45-2sH"/>
                                     <constraint firstAttribute="width" constant="50" id="bxD-bZ-HS8"/>
@@ -305,7 +319,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="800" verticalHuggingPriority="800" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="900" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUr-V4-C25">
-                                <rect key="frame" x="259" y="552" width="50" height="50"/>
+                                <rect key="frame" x="259" y="601" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="hgY-72-gf9"/>
                                     <constraint firstAttribute="width" constant="50" id="o0d-ET-LDy"/>
@@ -316,7 +330,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="400" horizontalCompressionResistancePriority="400" verticalCompressionResistancePriority="400" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S46-zl-mgN">
-                                <rect key="frame" x="12" y="447" width="351" height="83"/>
+                                <rect key="frame" x="12" y="447" width="351" height="132"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -397,15 +411,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBN-zl-HjS">
-                                <rect key="frame" x="140" y="349" width="95" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="3Bh-PM-QMf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yNh-3l-alu">
                                 <rect key="frame" x="30" y="385" width="320" height="113"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -423,6 +428,15 @@
                                     <constraint firstAttribute="height" constant="304" id="H15-65-JCN"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBN-zl-HjS">
+                                <rect key="frame" x="109" y="356" width="162" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="3Bh-PM-QMf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -430,7 +444,7 @@
                             <constraint firstItem="PBN-zl-HjS" firstAttribute="centerX" secondItem="PQZ-gn-mTs" secondAttribute="centerX" id="H3V-1e-OSu"/>
                             <constraint firstItem="T6F-oO-b3m" firstAttribute="centerX" secondItem="yNh-3l-alu" secondAttribute="centerX" constant="-2.5" id="JN0-QU-AKQ"/>
                             <constraint firstItem="yNh-3l-alu" firstAttribute="leading" secondItem="PQZ-gn-mTs" secondAttribute="leadingMargin" constant="14" id="LD5-ed-qvW"/>
-                            <constraint firstItem="PBN-zl-HjS" firstAttribute="top" secondItem="T6F-oO-b3m" secondAttribute="bottom" constant="45" id="Vfn-cX-lU2"/>
+                            <constraint firstItem="PBN-zl-HjS" firstAttribute="top" secondItem="T6F-oO-b3m" secondAttribute="bottom" constant="80" id="Vfn-cX-lU2"/>
                             <constraint firstItem="T6F-oO-b3m" firstAttribute="leading" secondItem="PQZ-gn-mTs" secondAttribute="leadingMargin" constant="-20" id="a3Z-2D-f6A"/>
                             <constraint firstAttribute="trailingMargin" secondItem="T6F-oO-b3m" secondAttribute="trailing" constant="-20" id="f1z-wE-RNZ"/>
                         </constraints>
@@ -445,7 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9m-5d-IpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="1640"/>
+            <point key="canvasLocation" x="-320.5" y="1639.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="2hk-qP-vU7">
@@ -591,6 +605,7 @@
         <image name="icons8-food-and-wine-50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="H2q-4G-eao"/>
+        <segue reference="jew-1D-0kM"/>
+        <segue reference="teJ-sI-CD5"/>
     </inferredMetricsTieBreakers>
 </document>

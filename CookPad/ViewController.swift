@@ -25,7 +25,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
         refresh.addTarget(self, action: #selector(ViewController.loadRecipes), for: .valueChanged)
-        self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
+        self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update recipes
         
         
         navigationController!.navigationBar.barTintColor = UIColor(red: 197/255, green: 42/255, blue: 53/255, alpha: 0.1) //changes the navigation bar color to light blue, divide by 255 to convert RGB
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         })
         
         let storageRef = storage.reference() //create storage reference from Firebase Storage
-        for index in 1...20 {
+        for index in 1...3 {
             let imageRef = storageRef.child("Images/a\(index).JPG")
             imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
                 if let error = error {
@@ -106,8 +106,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showRecipe", sender: self)
-        
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRecipe" { //show the recipe that the user selected
@@ -127,6 +127,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             recipeVC.ingredients = recipe.ingredients.first!
             
             //vc.title = self.recipes[indexPath.row]
+        }
+        
+        if segue.identifier == "addRecipe" {
+            let backButton = UIBarButtonItem()
+            backButton.title = ""
+            navigationItem.backBarButtonItem = backButton
         }
     }
 

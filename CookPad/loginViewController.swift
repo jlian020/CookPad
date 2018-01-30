@@ -81,6 +81,7 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     
+    
     //uses a completion handler to make sure it stores the name before continuing other actions
     func getFullName(_ completion:@escaping (_ result:String) -> Void) { //returns the name of the current logged profile
         let parameters = ["fields": "first_name, last_name"]
