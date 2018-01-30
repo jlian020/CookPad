@@ -13,7 +13,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
 
-class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
@@ -24,6 +24,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         reference = Database.database().reference()
+        recipeNameTextField.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
@@ -31,6 +32,11 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool { //when the user presses the return key, hide the keyboard
+        self.view.endEditing(true)
+        return true
     }
     
     @IBAction func selectImageButton(_ sender: Any) {
@@ -67,6 +73,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         var currentUserID = Auth.auth().currentUser?.uid
         print(recipeID) //later assign this key value to myRecipes
         recipeID?.child("Name").setValue(recipeNameTextField.text)
+        //Save the Recipe ID key for later access to 'MyRecipes' folder
         reference?.child("Users").child(currentUserID!).child("MyRecipes").child(recipeID!.key).setValue(recipeID!.key)
         
         
