@@ -6,6 +6,7 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
 import AVFoundation
 
 class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
@@ -122,6 +123,15 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
             print("Login Complete")
             videoPlayer.pause()
             self.loadViewController()
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().signIn(with: credential) { (user, error) in
+                if let error = error {
+                    print("Error \(error)")
+                }
+                //user is signed in
+            }
+            
+
         }
         else {
             print(error.localizedDescription)
