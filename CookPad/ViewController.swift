@@ -12,8 +12,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     var refresh : UIRefreshControl!
     
-    
-    var profileRecords = [CKRecord]()
     var recipes = [Recipe]() //array of recipes
     
     let storage = Storage.storage() //get reference to Google Firebase Storage

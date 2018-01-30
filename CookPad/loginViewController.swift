@@ -7,6 +7,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import FirebaseDatabase
 import AVFoundation
 
 class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
@@ -14,12 +15,15 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var backgroundImage: UIImageView!
     let loginButton = FBSDKLoginButton()
     
+    var reference: DatabaseReference?
     var videoPlayer: AVPlayer!
     var videoLayer: AVPlayerLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //super.viewDidAppear(true)
+        
+        reference = Database.database().reference()
         
         //Setup view
         let URL = Bundle.main.url(forResource: "food", withExtension: "mp4")
@@ -121,14 +125,25 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
     {
         if error == nil {
             print("Login Complete")
-            videoPlayer.pause()
-            self.loadViewController()
+            let fbloginresult : FBSDKLoginManagerLoginResult = result
+            if result.isCancelled { return }
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
                 if let error = error {
                     print("Error \(error)")
+                    let alertController = UIAlertController(title: "Login Error!", message: "Try Again!", preferredStyle: .alert)
+                    let okayAction = UIAlertAction(title: "Try Again!", style: .cancel, handler: nil)
+                    alertController.addAction(okayAction)
+                    self.present(alertController, animated: true, completion: nil)
                 }
                 //user is signed in
+                self.loadViewController()
+                self.videoPlayer.pause()
+                self.reference?.child("Users").child(user!.uid)
+                loginViewController().getFullName({
+                    (result)->Void in
+                   self.reference?.child("Users").child(user!.uid).child("Name").setValue(result)
+                })
             }
             
 

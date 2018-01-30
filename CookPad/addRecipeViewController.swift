@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -23,6 +25,10 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        reference = Database.database().reference()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning()
@@ -94,5 +100,11 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
             DispatchQueue.main.asyncAfter(deadline: delay) {
                 self.performSegue(withIdentifier: "showHome", sender: self) }
         }
+    }
+    
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 }
