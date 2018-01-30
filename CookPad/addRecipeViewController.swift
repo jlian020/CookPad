@@ -15,13 +15,15 @@ import FirebaseAuth
 
 class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var recipeNameTextField: UITextField!
+    @IBOutlet weak var recipeTitleTextField: UITextField!
+    @IBOutlet weak var recipeDescriptionTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     var recipeImage: UIImage!
+    @IBOutlet weak var methodTextView: UITextView!
+    @IBOutlet weak var ingredientsTextView: UITextView!
     
-    var reference:DatabaseReference?
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         reference = Database.database().reference()
         recipeNameTextField.delegate = self
@@ -30,7 +32,8 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         view.addGestureRecognizer(tap)
     }
     
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
     
@@ -46,11 +49,13 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         self.present(picker, animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
         if let possibleImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             recipeImage = possibleImage
         } else if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
@@ -83,7 +88,6 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         DispatchQueue.main.asyncAfter(deadline: delay) {
             self.performSegue(withIdentifier: "showHome", sender: self)
         }
-        
     }
     
     //Calls this function when the tap is recognized.
