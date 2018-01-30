@@ -8,16 +8,25 @@
 
 import Foundation
 import UIKit
+import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     var recipeImage: UIImage!
     
+    var reference:DatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        reference = Database.database().reference()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,11 +61,27 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func submitRecipeTapped(_ sender: Any) {
         //Submit the recipe to the database and append the user id to the recipe created
+        
+     
+        var recipeID =  reference?.child("Recipes").childByAutoId()
+        var currentUserID = Auth.auth().currentUser?.uid
+        print(recipeID) //later assign this key value to myRecipes
+        recipeID?.child("Name").setValue(recipeNameTextField.text)
+        reference?.child("Users").child(currentUserID!).child("MyRecipes").child(recipeID!.key).setValue(recipeID!.key)
+        
+        
         self.view.makeToast("Submitted Recipe")
+        
         let delay = DispatchTime.now() + 1 // wait a second to display submitted recipe message, then perform segue
         DispatchQueue.main.asyncAfter(deadline: delay) {
             self.performSegue(withIdentifier: "showHome", sender: self)
         }
         
+    }
+    
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 }

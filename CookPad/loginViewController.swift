@@ -7,6 +7,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import FirebaseDatabase
 import AVFoundation
 
 class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
@@ -14,12 +15,15 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var backgroundImage: UIImageView!
     let loginButton = FBSDKLoginButton()
     
+    var reference: DatabaseReference?
     var videoPlayer: AVPlayer!
     var videoLayer: AVPlayerLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //super.viewDidAppear(true)
+        
+        reference = Database.database().reference()
         
         //Setup view
         let URL = Bundle.main.url(forResource: "food", withExtension: "mp4")
@@ -135,7 +139,11 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
                 //user is signed in
                 self.loadViewController()
                 self.videoPlayer.pause()
-                
+                self.reference?.child("Users").child(user!.uid)
+                loginViewController().getFullName({
+                    (result)->Void in
+                   self.reference?.child("Users").child(user!.uid).child("Name").setValue(result)
+                })
             }
             
 
