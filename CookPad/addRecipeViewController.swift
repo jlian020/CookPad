@@ -21,11 +21,11 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     var recipeImage: UIImage!
     @IBOutlet weak var methodTextView: UITextView!
     @IBOutlet weak var ingredientsTextView: UITextView!
-    
+    var reference: DatabaseReference?
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        var reference = Database.database().reference()
+        reference = Database.database().reference()
         recipeTitleTextField.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
@@ -97,7 +97,8 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         }
         else
         {
-            //TODO: Add recipe to database here:
+            //Add recipe to database here:
+            submitRecipeToDatabase()
             
             //Submit the recipe to the database and append the user id to the recipe created
             self.view.makeToast("Submitted Recipe")
@@ -107,8 +108,16 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         }
     }
     
+    func submitRecipeToDatabase() {
+        var recipeID =  reference?.child("Recipes").childByAutoId()
+        var currentUserID = Auth.auth().currentUser?.uid
+        print(recipeID?.key) //later assign this key value to myRecipes
+        recipeID?.child("Name").setValue(recipeTitleTextField.text)
+        reference?.child("Users").child(currentUserID!).child("MyRecipes").child(recipeID!.key).setValue(recipeID!.key)
+    }
+    
     //Calls this function when the tap is recognized.
-    @objc func dismissKeyboard() {
+    func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
