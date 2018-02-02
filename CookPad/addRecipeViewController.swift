@@ -116,57 +116,36 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         let currentUserID = Auth.auth().currentUser?.uid
         print(recipeID?.key) //later assign this key value to myRecipes
         recipeID?.child("Name").setValue(recipeTitleTextField.text)
-        var numberOfRecipes: Int!
+        var numOfRecipesInFirebase: String!
         myFirebaseNetworkDataRequest {
             //stuff that is down after the fetch from the database
-            numberOfRecipes = self.userNumberOfRecipes
+            numOfRecipesInFirebase = String(self.userNumberOfRecipes)
             print("done with checking num recipes")
-            self.reference?.child("Users").child(currentUserID!).child("MyRecipes").child(String(numberOfRecipes)).setValue(recipeID!.key)
-            self.reference?.child("Users").child((Auth.auth().currentUser?.uid)!).child("numOfRecipes").setValue(String(numberOfRecipes))
+            self.reference?.child("Users").child(currentUserID!).child("MyRecipes").child(numOfRecipesInFirebase).setValue(recipeID!.key)
+            self.reference?.child("Users").child((Auth.auth().currentUser?.uid)!).child("numOfRecipes").setValue(numOfRecipesInFirebase)
             self.addToStorage(ID: (recipeID)!)
         }
-    }
-    
-    func checkNumberofRecipes() -> Int! {
-        var userNumberOfRecipes: Int! = 0
-        let userID = Auth.auth().currentUser?.uid
-//        reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-//            print(snapshot.hasChild("numOfRecipes"))
-//            if snapshot.exists() && snapshot.hasChild("numOfRecipes") {
-//                let value = snapshot.value as? NSDictionary
-//                let numRecipes: String = (value?["numOfRecipes"] as? String)!
-//                userNumberOfRecipes = userNumberOfRecipes + Int(numRecipes)! + 1
-//                print("this prints first")
-//                print(userNumberOfRecipes)
-//            }
-//            else{
-//                userNumberOfRecipes = 1
-//                print("false")
-//            }
-//        })
-        reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let numRecipes: String = (value?["numOfRecipes"] as? String)!
-            
-            userNumberOfRecipes = userNumberOfRecipes + Int(numRecipes)! + 1
-            print("print this one first")
-            print(userNumberOfRecipes)
-         })
-        return userNumberOfRecipes
     }
     
     func myFirebaseNetworkDataRequest(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
         let userID = Auth.auth().currentUser?.uid
         reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let numRecipes: String = (value?["numOfRecipes"] as? String)!
-            print(numRecipes)
-            self.userNumberOfRecipes = Int(numRecipes)! + 1
-            print("print this one first")
-            print(self.userNumberOfRecipes)
+            print(snapshot.hasChild("numOfRecipes"))
+            if snapshot.exists() && snapshot.hasChild("numOfRecipes") {
+                let value = snapshot.value as? NSDictionary
+                let numRecipes: String = (value?["numOfRecipes"] as? String)!
+                self.userNumberOfRecipes = Int(numRecipes)! + 1
+                print("this prints first")
+                print(self.userNumberOfRecipes)
+            }
+            else{
+                self.userNumberOfRecipes = 1
+                print("false")
+            }
             finished()
         })
+
     }
     
     
