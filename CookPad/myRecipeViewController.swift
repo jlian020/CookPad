@@ -5,6 +5,7 @@
 
 import UIKit
 import CloudKit
+import Firebase
 import FirebaseStorage
 
 class myRecipeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -15,12 +16,14 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var profileRecords = [CKRecord]()
     var myRecipes = [Recipe]() //array of recipes
-    
+    var reference: DatabaseReference!
     let storage = Storage.storage() //get reference to Google Firebase Storage
+    var myRecipeIDS = [String]()
+    var postRecipe = [String: AnyObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        reference = Database.database().reference()
         
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
@@ -58,8 +61,14 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
                 }
             })
         }
+    }
+    
+    @objc func fetchMyRecipes() -> Void {
+        let userID = Auth.auth().currentUser?.uid
+        reference.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
         
-        
+            
+        })
         
     }
     

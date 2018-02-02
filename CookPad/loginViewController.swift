@@ -143,6 +143,7 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate {
                 loginViewController().getFullName({
                     (result)->Void in
                    self.reference?.child("Users").child(user!.uid).child("Name").setValue(result)
+                    self.reference?.child("Users").child(user!.uid).child("numOfRecipes").setValue("0") // temp 
                 })
             }
             

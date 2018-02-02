@@ -2,7 +2,6 @@
 //  ViewController.swift
 //  CookPad
 //
-
 import UIKit
 import CloudKit
 import FirebaseStorage
@@ -112,5 +111,4 @@ class savedRecipeViewController: UIViewController, UICollectionViewDelegate, UIC
     
     
 }
-
 
