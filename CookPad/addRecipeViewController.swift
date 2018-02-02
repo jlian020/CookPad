@@ -13,6 +13,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
 
+
 class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var recipeTitleTextField: UITextField!
@@ -22,6 +23,8 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var methodTextView: UITextView!
     @IBOutlet weak var ingredientsTextView: UITextView!
     var reference: DatabaseReference?
+    let storage = Storage.storage() //get reference to Google Firebase Storage
+    var userNumberOfRecipes: Int! = 0
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -109,11 +112,87 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func submitRecipeToDatabase() {
-        var recipeID =  reference?.child("Recipes").childByAutoId()
-        var currentUserID = Auth.auth().currentUser?.uid
+        let recipeID =  reference?.child("Recipes").childByAutoId()
+        let currentUserID = Auth.auth().currentUser?.uid
         print(recipeID?.key) //later assign this key value to myRecipes
         recipeID?.child("Name").setValue(recipeTitleTextField.text)
-        reference?.child("Users").child(currentUserID!).child("MyRecipes").child(recipeID!.key).setValue(recipeID!.key)
+        var numberOfRecipes: Int!
+        myFirebaseNetworkDataRequest {
+            //stuff that is down after the fetch from the database
+            numberOfRecipes = self.userNumberOfRecipes
+            print("done with checking num recipes")
+            self.reference?.child("Users").child(currentUserID!).child("MyRecipes").child(String(numberOfRecipes)).setValue(recipeID!.key)
+            self.reference?.child("Users").child((Auth.auth().currentUser?.uid)!).child("numOfRecipes").setValue(String(numberOfRecipes))
+            self.addToStorage(ID: (recipeID)!)
+        }
+    }
+    
+    func checkNumberofRecipes() -> Int! {
+        var userNumberOfRecipes: Int! = 0
+        let userID = Auth.auth().currentUser?.uid
+//        reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+//            print(snapshot.hasChild("numOfRecipes"))
+//            if snapshot.exists() && snapshot.hasChild("numOfRecipes") {
+//                let value = snapshot.value as? NSDictionary
+//                let numRecipes: String = (value?["numOfRecipes"] as? String)!
+//                userNumberOfRecipes = userNumberOfRecipes + Int(numRecipes)! + 1
+//                print("this prints first")
+//                print(userNumberOfRecipes)
+//            }
+//            else{
+//                userNumberOfRecipes = 1
+//                print("false")
+//            }
+//        })
+        reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let numRecipes: String = (value?["numOfRecipes"] as? String)!
+            
+            userNumberOfRecipes = userNumberOfRecipes + Int(numRecipes)! + 1
+            print("print this one first")
+            print(userNumberOfRecipes)
+         })
+        return userNumberOfRecipes
+    }
+    
+    func myFirebaseNetworkDataRequest(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        //this func grabs this data from the database and make sure that it waits for the fetch
+        let userID = Auth.auth().currentUser?.uid
+        reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let numRecipes: String = (value?["numOfRecipes"] as? String)!
+            print(numRecipes)
+            self.userNumberOfRecipes = Int(numRecipes)! + 1
+            print("print this one first")
+            print(self.userNumberOfRecipes)
+            finished()
+        })
+    }
+    
+    
+    @objc func addToStorage(ID: DatabaseReference) -> Void {
+        let storageRef = storage.reference() //create storage reference from Firebase Storage
+        //dismiss(animated: true, completion: nil)
+        var data = Data()
+        data = UIImageJPEGRepresentation(imageView.image!, 0.8)!
+        // set upload path
+        let filePath = "\("Images")/\(ID.key)"
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        storageRef.child(filePath).putData(data, metadata: metaData){(metaData,error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }else{
+                //store downloadURL
+                let downloadURL = metaData!.downloadURL()!.absoluteString
+                //store downloadURL at database
+                self.reference?.child("Recipes").child(ID.key).updateChildValues(["storageURL": downloadURL])
+                print("id created")
+            }
+            
+        }
     }
     
     //Calls this function when the tap is recognized.
