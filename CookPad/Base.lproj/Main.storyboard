@@ -481,8 +481,8 @@
                                     <constraint firstAttribute="height" constant="304" id="H15-65-JCN"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBN-zl-HjS">
-                                <rect key="frame" x="109" y="356" width="162" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="PBN-zl-HjS">
+                                <rect key="frame" x="30" y="356" width="320" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="95" id="3Bh-PM-QMf"/>
                                 </constraints>

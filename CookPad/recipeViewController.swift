@@ -29,8 +29,8 @@ class recipeViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     @IBAction func likeButtonPressed(_ sender: AnyObject) {
-        self.view.makeToast("Like Button pressed")
-        //stamp like, hide buttons
+        print("like Button pressed")
+        //stamp like, hide buttons, save the recipe to saved
         overlayImageView?.isHidden = false
         overlayImageView?.image = likeOverlay
         //When pressed, save the recipe to the user's 'Saved Recipes' folder
