@@ -6,39 +6,63 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FirebaseAuth
+import GoogleSignIn
 
-class MyProfileView: UIViewController, FBSDKLoginButtonDelegate {
+class MyProfileView: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bioView: UITextView!
-    var loginButton = FBSDKLoginButton()
+    var FacebookLogoutButton = FBSDKLoginButton()
     
+    @IBOutlet weak var googleLogout: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //imageView.image = UIImage(named: "a47")
-        loginViewController().getFullName({
-            (result)->Void in
-            self.nameLabel.text = result
-        })
+        nameLabel.text = Auth.auth().currentUser?.displayName
         
-        //load profile picture from facebook by using facebook ID
-        loginViewController().getFacebookID({
-            (result)->Void in
-            //grab profile pic from Facebook ID
-            var facebookProfileUrl = URL(string: "https://graph.facebook.com/\(result)/picture?width=2560&height=2560")
-            if let data = try? Data(contentsOf: facebookProfileUrl!)
-            {
-                let profilePic: UIImage = UIImage(data: data)!
-                self.imageView.image = profilePic
-                
-            }
-        })
         bioView.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
-        loginButton.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height - 150) //logout button
-        loginButton.delegate = self
-        self.view.addSubview(loginButton)
+        FacebookLogoutButton.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height - 150) //logout button
+        FacebookLogoutButton.delegate = self
+        
+        //Check whether user logged in through Facebook or Google to show correct logout button
+        if let providerData = Auth.auth().currentUser?.providerData {
+            for userInfo in providerData {
+                switch userInfo.providerID {
+                case "facebook.com":
+                    googleLogout.isHidden = true
+                    self.view.addSubview(FacebookLogoutButton)
+                    //load profile picture from facebook by using facebook ID
+                    loginViewController().getFacebookID({
+                        (result)->Void in
+                        //grab profile pic from Facebook ID
+                        var facebookProfileUrl = URL(string: "https://graph.facebook.com/\(result)/picture?width=2560&height=2560")
+                        if let data = try? Data(contentsOf: facebookProfileUrl!)
+                        {
+                            let profilePic: UIImage = UIImage(data: data)!
+                            self.imageView.image = profilePic
+                            
+                        }
+                    })
+                    
+                case "google.com":
+                    FacebookLogoutButton.isHidden = true
+                    //Grab URL from Google for Profile Pic
+                    var profileURL = Auth.auth().currentUser?.photoURL?.absoluteString
+                    profileURL = profileURL?.replacingOccurrences(of: "s96-c/photo.jpg", with: "s800-c/photo.jpg")
+                    let newProfileURL = URL(string: profileURL!)
+                    
+                    if let data = try? Data(contentsOf: newProfileURL!)
+                    {
+                        let profilePic: UIImage = UIImage(data: data)!
+                        self.imageView.image = profilePic
+                    }
+                default:
+                    print("user is signed in with \(userInfo.providerID)")
+                }
+            }
+        }
         
     }
     
@@ -49,15 +73,27 @@ class MyProfileView: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!)
     {
         if error == nil {
-            print("Login Complete")
+            print("MyProfileView Login Button")
         }
         else {
-            print(error.localizedDescription)
+            print("Facebook Login Button Error")
         }
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("User logged out")
+        FBSDKLoginManager().logOut()
         self.performSegue(withIdentifier: "showLoginController", sender: self)
     }
+    
+    @IBAction func GoogleLogoutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        GIDSignIn.sharedInstance().signOut()
+        self.performSegue(withIdentifier: "showLoginController", sender: self)
+    }
+    
 }

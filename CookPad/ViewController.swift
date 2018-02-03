@@ -6,6 +6,9 @@
 import UIKit
 import CloudKit
 import FirebaseStorage
+import FirebaseAuth
+import Firebase
+
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -37,35 +40,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @objc func loadRecipes() -> Void {
         
-        var name: String = "Default"
         var email: String = "Default"
         var ID : String = ""
-        loginViewController().getFullName({
-            (result)->Void in
-            name = result
-            print("Name is: \(name)")
-            self.view.makeToast("Hello \(name)")
-        })
-        loginViewController().getEmail({
-            (result)->Void in
-            email = result
-            print("Email is: \(email)")
-        })
-        loginViewController().getFacebookID({
-            (result)->Void in
-            ID = result
-            print("ID is: \(ID)")
-        })
+        
+        let name = Auth.auth().currentUser?.displayName
+        self.view.makeToast("Hello \(name)")
         
         let storageRef = storage.reference() //create storage reference from Firebase Storage
-        for index in 1...3 {
+        for index in 1...2 {
             let imageRef = storageRef.child("Images/a\(index).JPG")
             imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
                 if let error = error {
-                    print("couldn't find image")
+                    self.view.makeToast("Error: \(error)")
                     //print(error)
                 } else {
-                    print("image is being populated")
+                    //print("image is being populated")
                     var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"]);
                     self.recipes.append(newRecipe)
                     DispatchQueue.main.async(execute: {
@@ -133,6 +122,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             navigationItem.backBarButtonItem = backButton
         }
     }
+    
 
 }
 

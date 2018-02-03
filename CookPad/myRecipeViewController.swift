@@ -47,7 +47,6 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
                     print("couldn't find image")
                     //print(error)
                 } else {
-                    print("image is being populated")
                     var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"]);
                     self.myRecipes.append(newRecipe)
                     DispatchQueue.main.async(execute: {
