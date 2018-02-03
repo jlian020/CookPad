@@ -74,14 +74,6 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
 
     
     override func viewDidAppear(_ animated: Bool) {
-        if (FBSDKAccessToken.current() != nil) { //if the person is logged in, present the view controller
-            print("Logged into Facebook")
-            //print("ID is: \(self.getID())")
-            //print("Email is: \(self.getEmail())")
-            //self.getFirstName()
-            
-            self.loadViewController()
-        }
         
         if (GIDSignIn.sharedInstance().hasAuthInKeychain()){
             print("Logged into Google")

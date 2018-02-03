@@ -13,30 +13,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
-        if error != nil {
+        if let error = error {
             print("Google Sign In Error")
             return
         }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        Auth.auth().signIn(with: credential) { (user, error) in
-            if let error = error {
-                print("Google Authentication Error")
-                return
+        else {
+            guard let authentication = user.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                           accessToken: authentication.accessToken)
+            Auth.auth().signIn(with: credential) { (user, error) in
+                if let error = error {
+                    print("Google Authentication Error")
+                    return
+                }
+                // User is signed in.
+                print("Signed into Google under \(user?.displayName)")
+                //loginViewController().videoPlayer.pause()
+                var reference: DatabaseReference?
+                reference = Database.database().reference()
+                reference?.child("Users").child(user!.uid).child("Name").setValue(user?.displayName)
             }
-            // User is signed in
-            print("Signed into Google under \(user?.displayName)")
-            //loginViewController().videoPlayer.pause()
-            var reference: DatabaseReference?
-            reference = Database.database().reference()
-            reference?.child("Users").child(user!.uid).child("Name").setValue(user?.displayName)
         }
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
+        print("should stay here")
     }
     
 
@@ -67,7 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return googleDidHandle || facebookDidHandle
     }
     
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

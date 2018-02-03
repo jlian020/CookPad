@@ -40,18 +40,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @objc func loadRecipes() -> Void {
         
-        var email: String = "Default"
-        var ID : String = ""
         
-        let name = Auth.auth().currentUser?.displayName
-        self.view.makeToast("Hello \(name)")
+        if let name = Auth.auth().currentUser?.displayName {
+            self.view.makeToast("Hello \(name)")
+        }
         
         let storageRef = storage.reference() //create storage reference from Firebase Storage
         for index in 1...2 {
             let imageRef = storageRef.child("Images/a\(index).JPG")
-            imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
+            imageRef.getData(maxSize: 2*1024*1024, completion: { (data, error) in
                 if let error = error {
-                    self.view.makeToast("Error: \(error)")
+                    //self.view.makeToast("Error: \(error)")
                     //print(error)
                 } else {
                     //print("image is being populated")
