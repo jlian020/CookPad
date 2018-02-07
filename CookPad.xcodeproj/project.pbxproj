@@ -170,7 +170,7 @@
 				TargetAttributes = {
 					D1B420771CD571E600EDF6A0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = D27NEHPLYS;
+						DevelopmentTeam = 9JUEZ6UHT3;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -416,12 +416,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D27NEHPLYS;
+				DEVELOPMENT_TEAM = 9JUEZ6UHT3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad2;
 				PRODUCT_NAME = CookPad;
@@ -439,12 +440,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D27NEHPLYS;
+				DEVELOPMENT_TEAM = 9JUEZ6UHT3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad2;
 				PRODUCT_NAME = CookPad;
