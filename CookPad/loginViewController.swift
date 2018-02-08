@@ -82,7 +82,6 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
     }
  
     func getFacebookID(_ completion:@escaping (_ result:String) -> Void) {
-        print("hi")
         let parameters = ["fields": "id"]
         var id : String!
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start {
@@ -99,14 +98,14 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
     func loginButton(_ LoginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!)
     {
         if error == nil {
-            print("Login Complete")
             if result.isCancelled { return }
+            print("FB Login Complete")
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
                 if let error = error {
                     print("Facebook Login Error")
                     let alertController = UIAlertController(title: "Login Error!", message: "Try Again!", preferredStyle: .alert)
-                    let okayAction = UIAlertAction(title: "Try Again!", style: .cancel, handler: nil)
+                    let okayAction = UIAlertAction(title: "Try Again!", style : .cancel, handler: nil)
                     alertController.addAction(okayAction)
                     self.present(alertController, animated: true, completion: nil)
                 }
@@ -115,7 +114,6 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
                 self.reference?.child("Users").child(user!.uid)
                 let currentUser = Auth.auth().currentUser?.displayName
                 self.reference?.child("Users").child(user!.uid).child("Name").setValue(currentUser)
-                print("Supposed to go into view controller")
                 self.loadViewController()
             }
         }

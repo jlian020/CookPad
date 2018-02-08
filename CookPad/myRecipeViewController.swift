@@ -27,7 +27,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
-        refresh.addTarget(self, action: #selector(ViewController.loadRecipes), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(myRecipeViewController.loadMyRecipes), for: .valueChanged)
         self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
         
         
@@ -45,7 +45,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
         let storageRef = storage.reference() //create storage reference from Firebase Storage
         for index in 1...3 {
             let imageRef = storageRef.child("Images/a\(index).JPG")
-            imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
+            imageRef.getData(maxSize: 2*1024*1024, completion: { (data, error) in
                 if let error = error {
                     print("couldn't find image")
                     //print(error)

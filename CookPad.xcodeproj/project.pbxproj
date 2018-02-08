@@ -423,7 +423,7 @@
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad2;
+				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad3;
 				PRODUCT_NAME = CookPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -446,7 +446,7 @@
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad2;
+				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad3;
 				PRODUCT_NAME = CookPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

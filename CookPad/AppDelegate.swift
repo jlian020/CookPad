@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
         if let error = error {
-            print("Google Sign In Error")
+            print("Google Sign In Error/Cancelled")
             return
         }
         else {
@@ -58,8 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let googleDidHandle = GIDSignIn.sharedInstance().handle(url,
                                                                    sourceApplication: sourceApplication,
-                                                                   annotation: annotation)
-        
+                                                                   annotation: nil)
+ 
         let facebookDidHandle = FBSDKApplicationDelegate.sharedInstance().application(
             application,
             open: url,
