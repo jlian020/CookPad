@@ -237,7 +237,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzI-AO-a5i">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9T8-EC-Hpp">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AddAPhoto2.png" translatesAutoresizingMaskIntoConstraints="NO" id="9T8-EC-Hpp">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -267,6 +267,7 @@
                                                 <rect key="frame" x="8" y="401" width="359" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -281,6 +282,7 @@
                                                 <rect key="frame" x="8" y="538" width="343" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -306,7 +308,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.89945419520547942" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="k41-p7-ODz" firstAttribute="top" secondItem="qLB-9A-eOY" secondAttribute="top" id="2t5-XN-zyZ"/>
                             <constraint firstAttribute="trailing" secondItem="k41-p7-ODz" secondAttribute="trailing" id="Q2j-FZ-N1E"/>
@@ -659,6 +661,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddAPhoto2.png" width="1272" height="774"/>
         <image name="I3NM6" width="315" height="147"/>
         <image name="Oval 2 + Rectangle 10" width="120" height="120"/>
         <image name="Oval 3 + Rectangle 11" width="120" height="120"/>

@@ -27,6 +27,8 @@
 		D1E994ED1CDAA1B0002FBF9D /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */; };
 		D1EE1D4A201A98FF00184B64 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EE1D49201A98FE00184B64 /* Toast.swift */; };
 		D1F59B841CDAE1FB00D890E0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F59B831CDAE1FB00D890E0 /* Recipe.swift */; };
+		D3144822202F8BA200CAC400 /* AddAPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = D3144821202F8BA200CAC400 /* AddAPhoto.png */; };
+		D3144824202F8C4700CAC400 /* AddAPhoto2.png in Resources */ = {isa = PBXBuildFile; fileRef = D3144823202F8C4700CAC400 /* AddAPhoto2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		D1EE1D49201A98FE00184B64 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		D1F59B831CDAE1FB00D890E0 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		D3144821202F8BA200CAC400 /* AddAPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddAPhoto.png; path = ../../../../../Downloads/AddAPhoto.png; sourceTree = "<group>"; };
+		D3144823202F8C4700CAC400 /* AddAPhoto2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddAPhoto2.png; path = ../../../../../Desktop/AddAPhoto2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 				D1B420821CD571E600EDF6A0 /* Assets.xcassets */,
 				D1B420841CD571E600EDF6A0 /* LaunchScreen.storyboard */,
 				D171D3B8201144F800734B48 /* Main.storyboard */,
+				D3144823202F8C4700CAC400 /* AddAPhoto2.png */,
+				D3144821202F8BA200CAC400 /* AddAPhoto.png */,
 				D11A08F5201AAB54008A7EA7 /* food.mp4 */,
 				D1B420871CD571E600EDF6A0 /* Info.plist */,
 				D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */,
@@ -209,6 +215,8 @@
 			files = (
 				D11A08F6201AAB64008A7EA7 /* food.mp4 in Resources */,
 				D171D3BA201144F800734B48 /* Main.storyboard in Resources */,
+				D3144822202F8BA200CAC400 /* AddAPhoto.png in Resources */,
+				D3144824202F8C4700CAC400 /* AddAPhoto2.png in Resources */,
 				D13F7EF32016A7A400D0A61A /* GoogleService-Info.plist in Resources */,
 				D1B420861CD571E600EDF6A0 /* LaunchScreen.storyboard in Resources */,
 				D1B420831CD571E600EDF6A0 /* Assets.xcassets in Resources */,
