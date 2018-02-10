@@ -65,6 +65,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.13)
   - GTMSessionFetcher/Full (1.1.13):
     - GTMSessionFetcher/Core (= 1.1.13)
+  - IQKeyboardManagerSwift (5.0.7)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - GoogleSignIn
+  - IQKeyboardManagerSwift
 
 SPEC CHECKSUMS:
   Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
@@ -94,10 +96,11 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5bb1eae636127de695590f50e7d248483eb891e6
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
-PODFILE CHECKSUM: ff50b7013c21f837d1e8555b1fa5ae6eee5475c1
+PODFILE CHECKSUM: bdc8424246fa6af632d655ae13fe4d5b53721a2b
 
 COCOAPODS: 1.4.0

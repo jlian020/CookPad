@@ -13,4 +13,5 @@ target 'CookPad' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
+  pod 'IQKeyboardManagerSwift'
 end
