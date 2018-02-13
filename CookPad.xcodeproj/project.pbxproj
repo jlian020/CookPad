@@ -30,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11B181CA20327919000024A7 /* recipeDataFromFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = recipeDataFromFirebase.swift; path = ../recipeDataFromFirebase.swift; sourceTree = "<group>"; };
 		21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94666D85FC680BBAF4229F3E /* Pods-CookPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.release.xcconfig"; sourceTree = "<group>"; };
 		9902771DC4F0DD1FAFEF5C71 /* Pods-CookPad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 				D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */,
 				D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */,
 				D1E994EC1CDAA1B0002FBF9D /* MyProfileView.swift */,
+				11B181CA20327919000024A7 /* recipeDataFromFirebase.swift */,
 				D1F59B831CDAE1FB00D890E0 /* Recipe.swift */,
 				D1EE1D49201A98FE00184B64 /* Toast.swift */,
 				D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */,
