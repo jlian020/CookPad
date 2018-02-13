@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25656FFD6E9D7EF4717842BF /* Pods_CookPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */; };
+		BACD0A3E202941DF004CE00D /* savedRecipeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACD0A3D202941DF004CE00D /* savedRecipeTVC.swift */; };
 		D11A08F6201AAB64008A7EA7 /* food.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D11A08F5201AAB54008A7EA7 /* food.mp4 */; };
 		D13F7EF32016A7A400D0A61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */; };
 		D171D3BA201144F800734B48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D171D3B8201144F800734B48 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94666D85FC680BBAF4229F3E /* Pods-CookPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.release.xcconfig"; sourceTree = "<group>"; };
 		9902771DC4F0DD1FAFEF5C71 /* Pods-CookPad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.debug.xcconfig"; sourceTree = "<group>"; };
+		BACD0A3D202941DF004CE00D /* savedRecipeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedRecipeTVC.swift; sourceTree = "<group>"; };
 		D11A08F5201AAB54008A7EA7 /* food.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = food.mp4; sourceTree = "<group>"; };
 		D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D171D3B9201144F800734B48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				D1B420821CD571E600EDF6A0 /* Assets.xcassets */,
 				D1B420841CD571E600EDF6A0 /* LaunchScreen.storyboard */,
 				D171D3B8201144F800734B48 /* Main.storyboard */,
+				BACD0A3D202941DF004CE00D /* savedRecipeTVC.swift */,
 				D11A08F5201AAB54008A7EA7 /* food.mp4 */,
 				D1B420871CD571E600EDF6A0 /* Info.plist */,
 				D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */,
@@ -287,6 +290,7 @@
 				D1B714BE201A860600C0E0CE /* myRecipeViewController.swift in Sources */,
 				D1B714BA201A724B00C0E0CE /* addRecipeViewController.swift in Sources */,
 				D1C8FDEA1CDBF016006D7D60 /* loginViewController.swift in Sources */,
+				BACD0A3E202941DF004CE00D /* savedRecipeTVC.swift in Sources */,
 				D1F59B841CDAE1FB00D890E0 /* Recipe.swift in Sources */,
 				D1E994ED1CDAA1B0002FBF9D /* MyProfileView.swift in Sources */,
 				D1B420AC1CD573A400EDF6A0 /* recipeImageCell.swift in Sources */,
