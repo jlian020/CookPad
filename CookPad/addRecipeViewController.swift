@@ -14,7 +14,7 @@ import FirebaseStorage
 import FirebaseAuth
 
 
-class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var recipeTitleTextField: UITextField!
     @IBOutlet weak var recipeDescriptionTextField: UITextField!
@@ -22,6 +22,8 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     var recipeImage: UIImage!
     @IBOutlet weak var methodTextView: UITextView!
     @IBOutlet weak var ingredientsTextView: UITextView!
+    var methodPlaceholderLabel: UILabel!
+    var ingredientsPlaceholderLabel: UILabel!
     var reference: DatabaseReference?
     let storage = Storage.storage() //get reference to Google Firebase Storage
     var userNumberOfRecipes: Int! = 0
@@ -31,6 +33,30 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
         reference = Database.database().reference()
         recipeTitleTextField.delegate = self
+        ingredientsTextView.delegate = self
+        methodTextView.delegate = self
+        
+        ingredientsTextView.tag = 0
+        methodTextView.tag = 1
+        
+        ingredientsPlaceholderLabel = UILabel()
+        ingredientsPlaceholderLabel.text = "List ingredients here..."
+        ingredientsPlaceholderLabel.font = UIFont.italicSystemFont(ofSize: (ingredientsTextView.font?.pointSize)!)
+        ingredientsPlaceholderLabel.sizeToFit()
+        ingredientsTextView.addSubview(ingredientsPlaceholderLabel)
+        ingredientsPlaceholderLabel.frame.origin = CGPoint(x: 5, y: (ingredientsTextView.font?.pointSize)! / 2)
+        ingredientsPlaceholderLabel.textColor = UIColor.lightGray
+        ingredientsPlaceholderLabel.isHidden = !ingredientsTextView.text.isEmpty
+        
+        methodPlaceholderLabel = UILabel()
+        methodPlaceholderLabel.text = "Step-by-step instructions here..."
+        methodPlaceholderLabel.font = UIFont.italicSystemFont(ofSize: (methodTextView.font?.pointSize)!)
+        methodPlaceholderLabel.sizeToFit()
+        methodTextView.addSubview(methodPlaceholderLabel)
+        methodPlaceholderLabel.frame.origin = CGPoint(x: 5, y: (methodTextView.font?.pointSize)! / 2)
+        methodPlaceholderLabel.textColor = UIColor.lightGray
+        methodPlaceholderLabel.isHidden = !methodTextView.text.isEmpty
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
@@ -81,7 +107,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         if recipeTitleTextField.text?.isEmpty ?? true || ingredientsTextView.text?.isEmpty ?? true ||
             methodTextView.text?.isEmpty ?? true
         {
-            var errorMsgString = "You are missing the following required fields: "
+            var errorMsgString = "You still need to complete the following fields before submitting: "
             
             if recipeTitleTextField.text?.isEmpty ?? true
             {
@@ -96,7 +122,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
                 errorMsgString += "\n-Method"
             }
             
-            let alert = UIAlertController(title: "Missing Required Fields!", message: errorMsgString, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Whoa, slow down chef!", message: errorMsgString, preferredStyle: UIAlertControllerStyle.alert)
             
             alert.addAction(UIAlertAction(title: "OK",style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)}))
             self.present(alert, animated: true, completion: nil)
@@ -176,6 +202,18 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
                 print("id created")
             }
             
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView)
+    {
+        if (textView.tag == 0)
+        {
+            ingredientsPlaceholderLabel.isHidden = !textView.text.isEmpty
+        }
+        else if (textView.tag == 1)
+        {
+            methodPlaceholderLabel.isHidden = !textView.text.isEmpty
         }
     }
     

@@ -41,12 +41,10 @@ class savedRecipeViewController: UIViewController, UICollectionViewDelegate, UIC
         let storageRef = storage.reference() //create storage reference from Firebase Storage
         for index in 1...5 {
             let imageRef = storageRef.child("Images/a\(index).JPG")
-            imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
+            imageRef.getData(maxSize: 2*1024*1024, completion: { (data, error) in
                 if let error = error {
-                    //print(error)
                     self.view.makeToast("Error: \(error)")
                 } else {
-                    print("image is being populated")
                     var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"]);
                     self.savedRecipes.append(newRecipe)
                     DispatchQueue.main.async(execute: {

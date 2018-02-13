@@ -228,7 +228,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MPI-qQ-E7e"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qLB-9A-eOY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9T8-EC-Hpp">
@@ -280,40 +280,21 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpz-nT-AzO">
                                 <rect key="frame" x="163" y="602" width="49" height="13"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="13" id="etH-OG-sRa"/>
+                                    <constraint firstItem="wzI-AO-a5i" firstAttribute="centerX" secondItem="k41-p7-ODz" secondAttribute="centerX" id="6hJ-g2-r82"/>
+                                    <constraint firstItem="wzI-AO-a5i" firstAttribute="leading" secondItem="k41-p7-ODz" secondAttribute="leading" id="8C2-nC-M57"/>
+                                    <constraint firstAttribute="bottom" secondItem="wzI-AO-a5i" secondAttribute="bottom" id="F7S-QJ-Yie"/>
+                                    <constraint firstItem="wzI-AO-a5i" firstAttribute="centerY" secondItem="k41-p7-ODz" secondAttribute="centerY" id="XV2-E9-q8T"/>
+                                    <constraint firstItem="wzI-AO-a5i" firstAttribute="top" secondItem="k41-p7-ODz" secondAttribute="top" id="YcH-tr-rvT"/>
+                                    <constraint firstAttribute="trailing" secondItem="wzI-AO-a5i" secondAttribute="trailing" id="hoe-Me-tEd"/>
                                 </constraints>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="submitRecipeTapped:" destination="AIl-wT-Gse" eventType="touchUpInside" id="r69-XS-ABF"/>
-                                </connections>
-                            </button>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.89945419520547942" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="trailing" secondItem="qLB-9A-eOY" secondAttribute="trailingMargin" id="14R-cw-9Z5"/>
-                            <constraint firstItem="voD-FZ-a8T" firstAttribute="top" secondItem="EZr-xC-qEz" secondAttribute="bottom" constant="16" id="4XJ-JS-pPN"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="trailing" secondItem="vG6-nH-cAP" secondAttribute="trailing" id="5Og-aW-QTE"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="leading" secondItem="BVe-cB-uJ1" secondAttribute="leading" id="8wq-8x-u2a"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="leading" secondItem="qLB-9A-eOY" secondAttribute="leadingMargin" id="Bh2-w9-dPp"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="trailing" secondItem="BVe-cB-uJ1" secondAttribute="trailing" id="DDo-Nr-tOY"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="trailing" secondItem="EZr-xC-qEz" secondAttribute="trailing" id="Eh5-ro-ORq"/>
-                            <constraint firstItem="EZr-xC-qEz" firstAttribute="top" secondItem="Kmp-CI-H4Y" secondAttribute="bottom" constant="8" symbolic="YES" id="FZR-Bt-JyL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Kmp-CI-H4Y" secondAttribute="trailing" constant="80" id="GEP-HJ-2Bs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="voD-FZ-a8T" secondAttribute="trailing" constant="94" id="Jib-KE-gM2"/>
-                            <constraint firstItem="MPI-qQ-E7e" firstAttribute="top" secondItem="cpz-nT-AzO" secondAttribute="bottom" constant="38" id="OO8-qh-XOG"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="leading" secondItem="Kmp-CI-H4Y" secondAttribute="leading" id="RSg-9F-Yh7"/>
-                            <constraint firstItem="uuq-ZH-1Uk" firstAttribute="top" secondItem="vG6-nH-cAP" secondAttribute="bottom" constant="18" id="WB2-3L-otK"/>
-                            <constraint firstItem="cpz-nT-AzO" firstAttribute="top" secondItem="BVe-cB-uJ1" secondAttribute="bottom" constant="62" id="WkO-mb-LC5"/>
-                            <constraint firstItem="vG6-nH-cAP" firstAttribute="top" secondItem="9T8-EC-Hpp" secondAttribute="bottom" constant="31" id="Y3B-kK-Ksl"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="leading" secondItem="EZr-xC-qEz" secondAttribute="leading" id="bUH-91-DeN"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="leading" secondItem="vG6-nH-cAP" secondAttribute="leading" id="dT9-KE-e8j"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="leading" secondItem="uuq-ZH-1Uk" secondAttribute="leading" id="eZ1-mV-OHP"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="leading" secondItem="voD-FZ-a8T" secondAttribute="leading" id="pdc-6B-1ST"/>
-                            <constraint firstItem="cpz-nT-AzO" firstAttribute="centerX" secondItem="BVe-cB-uJ1" secondAttribute="centerX" id="prv-ga-ZFZ"/>
-                            <constraint firstItem="Kmp-CI-H4Y" firstAttribute="top" secondItem="uuq-ZH-1Uk" secondAttribute="bottom" constant="23" id="v3s-Y1-PEr"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="top" secondItem="buG-dv-dcy" secondAttribute="bottom" id="vnJ-ob-eyv"/>
-                            <constraint firstItem="9T8-EC-Hpp" firstAttribute="trailing" secondItem="uuq-ZH-1Uk" secondAttribute="trailing" id="xci-e0-YxH"/>
-                            <constraint firstItem="BVe-cB-uJ1" firstAttribute="top" secondItem="voD-FZ-a8T" secondAttribute="bottom" constant="8" symbolic="YES" id="xlg-Ap-pNT"/>
+                            <constraint firstItem="k41-p7-ODz" firstAttribute="top" secondItem="qLB-9A-eOY" secondAttribute="top" id="2t5-XN-zyZ"/>
+                            <constraint firstAttribute="trailing" secondItem="k41-p7-ODz" secondAttribute="trailing" id="Q2j-FZ-N1E"/>
+                            <constraint firstItem="MPI-qQ-E7e" firstAttribute="top" secondItem="k41-p7-ODz" secondAttribute="bottom" id="t9S-cF-uV6"/>
+                            <constraint firstItem="k41-p7-ODz" firstAttribute="leading" secondItem="qLB-9A-eOY" secondAttribute="leading" id="zDS-YE-sLe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ivg-yf-NmD">
@@ -323,6 +304,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="imageView" destination="9T8-EC-Hpp" id="AQU-hR-gJu"/>
                         <outlet property="ingredientsTextView" destination="EZr-xC-qEz" id="jDj-WC-Pjv"/>
@@ -334,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g7w-5t-OXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1656.5" y="-43.5"/>
+            <point key="canvasLocation" x="1656.5" y="-44"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="4QW-Ng-z8u">
@@ -481,8 +463,8 @@
                                     <constraint firstAttribute="height" constant="304" id="H15-65-JCN"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBN-zl-HjS">
-                                <rect key="frame" x="109" y="356" width="162" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="PBN-zl-HjS">
+                                <rect key="frame" x="30" y="356" width="320" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="95" id="3Bh-PM-QMf"/>
                                 </constraints>
@@ -490,6 +472,14 @@
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2a-9Y-kjk">
+                                <rect key="frame" x="139" y="569" width="97" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="I3NM6"/>
+                                <connections>
+                                    <action selector="GoogleLogoutButton:" destination="1Yw-uO-fNC" eventType="touchUpInside" id="seR-lM-Kka"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -505,6 +495,7 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="edit_user-25" id="S7O-9s-c1C"/>
                     <connections>
                         <outlet property="bioView" destination="yNh-3l-alu" id="q0m-VS-EWX"/>
+                        <outlet property="googleLogout" destination="p2a-9Y-kjk" id="NSq-5f-R0J"/>
                         <outlet property="imageView" destination="T6F-oO-b3m" id="DZa-JT-0C6"/>
                         <outlet property="nameLabel" destination="PBN-zl-HjS" id="uHE-Kk-dSf"/>
                         <segue destination="Dtk-2Y-mGf" kind="modal" identifier="showLoginController" id="M51-u0-Kox"/>
@@ -551,7 +542,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Je4-mm-qtL">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dsn-rd-moG" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="home" automaticallyAdjustsScrollViewInsets="NO" id="dsn-rd-moG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="lfc-1U-wTo"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="g43-g3-c4j">
@@ -651,6 +642,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddAPhoto2" width="1272" height="774"/>
+        <image name="I3NM6" width="315" height="147"/>
         <image name="Oval 2 + Rectangle 10" width="120" height="120"/>
         <image name="Oval 3 + Rectangle 11" width="120" height="120"/>
         <image name="edit_user-25" width="25" height="25"/>

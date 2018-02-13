@@ -7,6 +7,9 @@ import UIKit
 import CloudKit
 import Firebase
 import FirebaseStorage
+import FirebaseAuth
+import Firebase
+
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -193,6 +196,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             navigationItem.backBarButtonItem = backButton
         }
     }
+    
 
 }
 
