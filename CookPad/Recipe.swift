@@ -4,6 +4,9 @@
 //
 
 import UIKit
+import CloudKit
+import Firebase
+//import FirebaseStorage
 
 class Recipe {
     
@@ -12,7 +15,6 @@ class Recipe {
     var id = Int()
     var ingredients = [String]()
     var directions = [String]()
-    
     static var nextUID = 1
     static func generateUID() -> Int { //creates a unique identifier for each recipe
         nextUID += 1
@@ -26,12 +28,12 @@ class Recipe {
     
     init(name: String, image: UIImage, ingredients : [String], directions : [String]) {
         self.name = name
-        self.image = image
         self.id = Recipe.generateUID()
         self.ingredients = ingredients
+        self.image = image
         self.directions = directions
     }
-    
-    
 }
+
+
 

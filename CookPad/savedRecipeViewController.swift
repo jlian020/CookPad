@@ -23,7 +23,7 @@ class savedRecipeViewController: UIViewController, UICollectionViewDelegate, UIC
         
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
-        refresh.addTarget(self, action: #selector(ViewController.loadRecipes), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(savedRecipeViewController.loadSavedRecipes), for: .valueChanged)
         self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
         
         
