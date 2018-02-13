@@ -52,17 +52,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         var name: String = "Default"
         var email: String = "Default"
         var ID : String = ""
-        loginViewController().getFullName({
-            (result)->Void in
-            name = result
-            print("Name is: \(name)")
+        if let name = Auth.auth().currentUser?.displayName {
             self.view.makeToast("Hello \(name)")
-        })
-        loginViewController().getEmail({
-            (result)->Void in
-            email = result
-            print("Email is: \(email)")
-        })
+        }
         loginViewController().getFacebookID({
             (result)->Void in
             ID = result
