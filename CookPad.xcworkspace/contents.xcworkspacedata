@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:recipeDataFromFirebase.swift">
-   </FileRef>
-   <FileRef
       location = "group:CookPad.xcodeproj">
    </FileRef>
    <FileRef
