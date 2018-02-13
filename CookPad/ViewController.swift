@@ -5,6 +5,7 @@
 
 import UIKit
 import CloudKit
+import Firebase
 import FirebaseStorage
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -14,12 +15,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var recipes = [Recipe]() //array of recipes
     
-    let storage = Storage.storage() //get reference to Google Firebase Storage
+    var dataFromFirebase = [recipeDataFromFirebase]()
+    
+    var reference: DatabaseReference?
+    
+    var recipeImage: UIImage?
+    
+    var recipePictureURL: URL?
+    
+    var recipeDoneSending: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        reference = Database.database().reference()
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
         refresh.addTarget(self, action: #selector(ViewController.loadRecipes), for: .valueChanged)
@@ -36,7 +45,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @objc func loadRecipes() -> Void {
-        
+        self.collectionView.reloadData()
         var name: String = "Default"
         var email: String = "Default"
         var ID : String = ""
@@ -56,28 +65,79 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             ID = result
             print("ID is: \(ID)")
         })
-        
-        let storageRef = storage.reference() //create storage reference from Firebase Storage
-        for index in 1...3 {
-            let imageRef = storageRef.child("Images/a\(index).JPG")
-            imageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
-                if let error = error {
-                    print("couldn't find image")
-                    //print(error)
-                } else {
-                    print("image is being populated")
-                    var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"]);
-                    self.recipes.append(newRecipe)
-                    DispatchQueue.main.async(execute: {
-                        //push the current info into the main thread, otherwise for loop would be asynchronous
-                        self.collectionView.reloadData() //add new recipe to collectionView
-                        //self.refresh.endRefreshing()
-                    })
+        reference?.child("Recipes").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                let firebaseSnap: NSArray = snapshot.children.allObjects as NSArray
+                
+                for child in firebaseSnap {
+                    print("num in \(firebaseSnap.count)")
+                    let snap = child as! DataSnapshot
+                    if snap.value is NSDictionary {
+                        let data: NSDictionary = snap.value as! NSDictionary
+                        let x: String = data.value(forKey: "Name") as! String
+                        print(x)
+                        let recipeURL : String = data.value(forKey: "storageURL") as! String
+                        print("first")
+                        print(x)
+                        let newTempData = recipeDataFromFirebase.init(name: x, recipeURL: URL(string: recipeURL)!)
+                        self.dataFromFirebase.append(newTempData)
+                    }
                 }
-                })
+                print(self.dataFromFirebase.count)
+                for i in self.dataFromFirebase {
+                    print(i.recipeURL)
+                    self.recipePictureURL = i.recipeURL
+                    self.myFirebaseStorageImageGrab {
+                        let newRecipe = Recipe.init(name: i.name, image: self.recipeImage!, ingredients: ["Stuff"], directions: ["Do Stuff"] )
+                        self.recipes.append(newRecipe)
+                        DispatchQueue.main.async(execute: {
+                            //push the current info into the main thread, otherwise for loop would be asynchronous
+                            if self.recipeDoneSending == true {
+                                self.collectionView.reloadData() //add new recipe to collectionView
+                                //self.refresh.endRefreshing()
+                            }
+                        })
+                    }
+                }
+            }
+            else {
+                print("nope")
+            }
+                
+        })
+        
+    }
+    
+    func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        //this func grabs this data from the database and make sure that it waits for the fetch
+        print("last")
+        print("now")
+        print(recipePictureURL)
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
+            // The download has finished.
+            if let e = error {
+                print("Error downloading recipe picture: \(e)")
+            } else {
+                // No errors found.
+                // It would be weird if we didn't have a response, so check for that too.
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded recipe picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        // Finally convert that Data into an image and do what you wish with it.
+                        self.recipeImage = UIImage(data: imageData)!
+                        print("Got it")
+                        finished()
+                        // Do something with your image.
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
         }
-        
-        
+        downloadPicTask.resume()
         
     }
     

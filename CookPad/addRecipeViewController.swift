@@ -25,6 +25,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     var reference: DatabaseReference?
     let storage = Storage.storage() //get reference to Google Firebase Storage
     var userNumberOfRecipes: Int! = 0
+    let vc = ViewController(nibName: "ViewController", bundle: nil)
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -75,6 +76,8 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func submitRecipeTapped(_ sender: Any)
     {
+        vc.recipeDoneSending = false
+        print(vc.recipeDoneSending)
         if recipeTitleTextField.text?.isEmpty ?? true || ingredientsTextView.text?.isEmpty ?? true ||
             methodTextView.text?.isEmpty ?? true
         {
@@ -116,6 +119,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         let currentUserID = Auth.auth().currentUser?.uid
         print(recipeID?.key) //later assign this key value to myRecipes
         recipeID?.child("Name").setValue(recipeTitleTextField.text)
+        recipeID?.child("Method").setValue(methodTextView.text)
         var numOfRecipesInFirebase: String!
         myFirebaseNetworkDataRequest {
             //stuff that is down after the fetch from the database
@@ -158,7 +162,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         let filePath = "\("Images")/\(ID.key)"
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
-        
+        print("we reached storage")
         storageRef.child(filePath).putData(data, metadata: metaData){(metaData,error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -168,6 +172,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
                 let downloadURL = metaData!.downloadURL()!.absoluteString
                 //store downloadURL at database
                 self.reference?.child("Recipes").child(ID.key).updateChildValues(["storageURL": downloadURL])
+                self.vc.recipeDoneSending = true
                 print("id created")
             }
             

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110882BE2026DEE9003CED2F /* recipeDataFromFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110882BD2026DEE9003CED2F /* recipeDataFromFirebase.swift */; };
 		25656FFD6E9D7EF4717842BF /* Pods_CookPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */; };
 		D11A08F6201AAB64008A7EA7 /* food.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D11A08F5201AAB54008A7EA7 /* food.mp4 */; };
 		D13F7EF32016A7A400D0A61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */; };
@@ -128,6 +129,7 @@
 				11B181CA20327919000024A7 /* recipeDataFromFirebase.swift */,
 				D1F59B831CDAE1FB00D890E0 /* Recipe.swift */,
 				D1EE1D49201A98FE00184B64 /* Toast.swift */,
+				110882BD2026DEE9003CED2F /* recipeDataFromFirebase.swift */,
 				D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */,
 				D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */,
 				D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */,
@@ -296,6 +298,7 @@
 				D1B4207E1CD571E600EDF6A0 /* ViewController.swift in Sources */,
 				D1EE1D4A201A98FF00184B64 /* Toast.swift in Sources */,
 				D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */,
+				110882BE2026DEE9003CED2F /* recipeDataFromFirebase.swift in Sources */,
 				D1B4207C1CD571E600EDF6A0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
