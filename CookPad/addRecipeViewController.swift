@@ -146,6 +146,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         print(recipeID?.key) //later assign this key value to myRecipes
         recipeID?.child("Name").setValue(recipeTitleTextField.text)
         recipeID?.child("Method").setValue(methodTextView.text)
+        recipeID?.child("Ingredients").setValue(ingredientsTextView.text)
         var numOfRecipesInFirebase: String!
         myFirebaseNetworkDataRequest {
             //stuff that is down after the fetch from the database
