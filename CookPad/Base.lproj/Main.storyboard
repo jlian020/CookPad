@@ -107,14 +107,10 @@
             <point key="canvasLocation" x="881" y="288"/>
         </scene>
         <!--Saved Recipes-->
-        <scene sceneID="5wo-BM-C5L">
+        <scene sceneID="rOb-iM-V6F">
             <objects>
-                <viewController id="Dcy-pm-j6n" customClass="savedRecipeViewController" customModule="CookPad" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zHY-76-fpr"/>
-                        <viewControllerLayoutGuide type="bottom" id="PwG-F6-Jv3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QEK-2L-33I">
+                <tableViewController id="KMr-qH-p9W" customClass="savedRecipeTVC" customModule="CookPad" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="y8V-qk-a3E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -159,8 +155,8 @@
                         <outlet property="tableView" destination="1CY-nJ-Ps0" id="MTn-wr-RS2"/>
                         <segue destination="rvF-Xt-rLX" kind="push" identifier="showRecipe" id="hcb-YF-rvS"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0rD-15-Ub2" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbn-YX-HHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="880.5" y="1142.5"/>
         </scene>
@@ -191,7 +187,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Dcy-pm-j6n" kind="relationship" relationship="rootViewController" id="FVg-gY-DQP"/>
+                        <segue destination="KMr-qH-p9W" kind="relationship" relationship="rootViewController" id="kDs-dF-7z7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcq-LS-afl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -441,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhL-DT-wYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1657" y="876"/>
+            <point key="canvasLocation" x="2173" y="845"/>
         </scene>
         <!--Home-->
         <scene sceneID="mt5-vc-hnN">
