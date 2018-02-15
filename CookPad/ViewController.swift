@@ -12,13 +12,11 @@ import Firebase
 
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     var refresh : UIRefreshControl!
     
     var recipes = [Recipe]() //array of recipes
-    
-    var dataFromFirebase = [recipeDataFromFirebase]()
     
     var reference: DatabaseReference?
     
@@ -69,44 +67,35 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     let snap = child as! DataSnapshot
                     if snap.value is NSDictionary {
                         let data: NSDictionary = snap.value as! NSDictionary
-                        let x: String = data.value(forKey: "Name") as! String
-                        print(x)
-                        let recipeURL : String = data.value(forKey: "storageURL") as! String
-                        print("first")
-                        print(x)
-                        let newTempData = recipeDataFromFirebase.init(name: x, recipeURL: URL(string: recipeURL)!)
-                        self.dataFromFirebase.append(newTempData)
-                    }
-                }
-                print(self.dataFromFirebase.count)
-                for i in self.dataFromFirebase {
-                    print(i.recipeURL)
-                    self.recipePictureURL = i.recipeURL
-                    self.myFirebaseStorageImageGrab {
-                        let newRecipe = Recipe.init(name: i.name, image: self.recipeImage!, ingredients: ["Stuff"], directions: ["Do Stuff"] )
-                        self.recipes.append(newRecipe)
-                        DispatchQueue.main.async(execute: {
-                            //push the current info into the main thread, otherwise for loop would be asynchronous
-                            if self.recipeDoneSending == true {
-                                self.collectionView.reloadData() //add new recipe to collectionView
-                                //self.refresh.endRefreshing()
-                            }
-                        })
+                        let tempRecipeName: String = data.value(forKey: "Name") as! String
+                        let tempRecipeURL = data.value(forKey: "storageURL") as! String
+                        let tempRecipeIngredients : String = data.value(forKey: "Ingredients") as! String
+                        let tempRecipeDirections : String = data.value(forKey: "Directions") as!  String
+                        self.recipePictureURL = URL(string: tempRecipeURL)
+                        self.myFirebaseStorageImageGrab {
+                            let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections] )
+                            self.recipes.append(newRecipe)
+                            DispatchQueue.main.async(execute: {
+                                //push the current info into the main thread, otherwise for loop would be asynchronous
+                                if self.recipeDoneSending == true {
+                                    self.collectionView.reloadData() //add new recipe to collectionView
+                                    //self.refresh.endRefreshing()
+                                }
+                            })
+                        }
                     }
                 }
             }
             else {
                 print("nope")
             }
-                
+            
         })
         
     }
     
     func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
-        print("last")
-        print("now")
         print(recipePictureURL)
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
@@ -121,7 +110,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     if let imageData = data {
                         // Finally convert that Data into an image and do what you wish with it.
                         self.recipeImage = UIImage(data: imageData)!
-                        print("Got it")
                         finished()
                         // Do something with your image.
                     } else {
@@ -139,12 +127,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { //corrects auto layout, using 2 rows
         return CGSize(width: self.view.bounds.width/2, height: self.view.bounds.height/4)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { //required function for UICollectionView, counts how many cells are in the collection view
         return recipes.count
     }
@@ -189,6 +177,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-
+    
 }
 
