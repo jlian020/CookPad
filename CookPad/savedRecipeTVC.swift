@@ -87,5 +87,32 @@ class savedRecipeTVC: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "showRecipe", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRecipe" { //show the recipe that the user selected
+            let backButton = UIBarButtonItem()
+            backButton.title = "" //want an empty title, rather than app name near back button
+            navigationItem.backBarButtonItem = backButton //recreates bar button with empty title
+//            let indexPaths = self.collectionView!.indexPathsForSelectedItems! //get the number of selected items in our collectionView
+            let indexPaths = self.tableView!.indexPathsForSelectedRows!
+            let indexPath = indexPaths[0] as IndexPath //start at first i
+            
+            let recipeVC = segue.destination as! recipeViewController
+            
+            //set the profile view up
+            let recipe = savedRecipes[indexPath.row]
+            
+            recipeVC.name = recipe.name
+            recipeVC.image = recipe.image
+            recipeVC.ingredients = recipe.ingredients.first!
+            
+            //vc.title = self.recipes[indexPath.row]
+        }
+    }
+    
 
 }
