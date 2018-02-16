@@ -79,6 +79,10 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
             print("Logged into Google")
             self.loadViewController()
         }
+        
+        if (FBSDKAccessToken.current() != nil) {
+            self.loadViewController()
+        }
     }
  
     func getFacebookID(_ completion:@escaping (_ result:String) -> Void) {

@@ -49,7 +49,7 @@ class savedRecipeTVC: UITableViewController {
         let storageRef = storage.reference() //create storage reference from Firebase Storage
         for index in 1...5 {
             let imageRef = storageRef.child("Images/a\(index).JPG")
-            imageRef.getData(maxSize: 2*1024*1024, completion: { (data, error) in
+            imageRef.getData(maxSize: 3*1024*1024, completion: { (data, error) in
                 if let error = error {
                     self.view.makeToast("Error: \(error)")
                 } else {

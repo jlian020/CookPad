@@ -59,9 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        let googleDidHandle = GIDSignIn.sharedInstance().handle(url,
-                                                                   sourceApplication: sourceApplication,
-                                                                   annotation: nil)
+        let googleDidHandle = GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: nil)
  
         let facebookDidHandle = FBSDKApplicationDelegate.sharedInstance().application(
             application,
@@ -69,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             sourceApplication: sourceApplication,
             annotation: annotation)
         
-        return googleDidHandle || facebookDidHandle
+        return facebookDidHandle || googleDidHandle
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
