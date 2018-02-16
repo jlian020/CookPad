@@ -69,10 +69,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         while data.count != 4 {
                             //wait if new recipe is being added
                         }
-                        let tempRecipeName: String = data.value(forKey: "Name") as! String
-                        let tempRecipeURL = data.value(forKey: "storageURL") as! String
-                        let tempRecipeIngredients : String = data.value(forKey: "Ingredients") as! String
-                        let tempRecipeDirections : String = data.value(forKey: "Directions") as!  String
+                        let tempRecipeName = data.value(forKey: "Name") as? String ?? ""
+                        let tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
+                        let tempRecipeIngredients = data.value(forKey: "Ingredients") as? String ?? ""
+                        let tempRecipeDirections = data.value(forKey: "Directions") as?  String ?? ""
                         self.recipePictureURL = URL(string: tempRecipeURL)
                         self.myFirebaseStorageImageGrab {
                             let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections] )
