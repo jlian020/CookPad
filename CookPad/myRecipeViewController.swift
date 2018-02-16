@@ -20,14 +20,21 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     let storage = Storage.storage() //get reference to Google Firebase Storage
     var myRecipeIDS = [String]()
     var postRecipe = [String: AnyObject]()
+    var myRecipeDict : NSArray?
+    var currentUserID = Auth.auth().currentUser?.uid
+    var recipePictureURL : URL?
+    var recipeImage : UIImage?
+    let vc = ViewController(nibName: "ViewController", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.alwaysBounceVertical = true
         reference = Database.database().reference()
         
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
         refresh.addTarget(self, action: #selector(myRecipeViewController.loadMyRecipes), for: .valueChanged)
+
         self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
         
         
@@ -36,39 +43,110 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.tintColor = UIColor.white
         
+        
         loadMyRecipes()
         
     }
     
     @objc func loadMyRecipes() -> Void {
-        
-        let storageRef = storage.reference() //create storage reference from Firebase Storage
-        for index in 1...3 {
-            let imageRef = storageRef.child("Images/a\(index).JPG")
-            imageRef.getData(maxSize: 2*1024*1024, completion: { (data, error) in
-                if let error = error {
-                    print("couldn't find image")
-                    //print(error)
-                } else {
-                    var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"]);
-                    self.myRecipes.append(newRecipe)
-                    DispatchQueue.main.async(execute: {
-                        //push the current info into the main thread, otherwise for loop would be asynchronous
-                        self.collectionView.reloadData() //add new recipe to collectionView
-                        //self.refresh.endRefreshing()
-                    })
+        print ("looking ")
+        grabMyRecipesFromFirebase {
+            print("Print")
+            if self.myRecipeDict!.count > 0 {
+                self.grabRecipes {
+                    //HELLO
+                }
+            }
+            
+        }
+    }
+    
+    func grabRecipes(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        for each in self.myRecipeDict!{
+            let x: String = each as! String
+            self.reference?.child("Recipes").child(x).observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    let value = snapshot.value as? NSDictionary
+                    while snapshot.childrenCount != 4 {}
+                    let tempRecipeName = value?["Name"] as? String ?? ""
+                    let tempRecipeIngredients = value?["Ingredients"] as? String ?? ""
+                    let tempRecipeDirections = value?["Directions"] as? String ?? ""
+                    let tempRecipeURL = value?["storageURL"] as? String ?? ""
+                    self.recipePictureURL = URL(string: tempRecipeURL)
+                    self.myFirebaseStorageImageGrab {
+                        let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections] )
+                        self.myRecipes.append(newRecipe)
+                        DispatchQueue.main.async(execute: {
+                            //push the current info into the main thread, otherwise for loop would be asynchronous
+                            if self.vc.recipeDoneSending == true {
+                                self.collectionView.reloadData() //add new recipe to collectionView
+                                //self.refresh.endRefreshing()
+                            }
+                        })
+                    }
+                    finished()
+                }
+                else {
+                    print("doesnt exists")
                 }
             })
         }
     }
     
-    @objc func fetchMyRecipes() -> Void {
-        let userID = Auth.auth().currentUser?.uid
-        reference.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-        
+    func grabMyRecipesFromFirebase(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        reference?.child("Users").child(currentUserID!).observeSingleEvent(of: .value, with: {(UserRecipeSnap) in
+            if UserRecipeSnap.exists(){
+                if UserRecipeSnap.hasChild("MyRecipes") {
+                    let Dict : NSDictionary = UserRecipeSnap.value as! NSDictionary
+                    self.myRecipeDict = Dict["MyRecipes"] as? NSArray
+
+                    finished()
+                }
+                else {
+                    print("MyRecipes DOES NOT EXIST")
+                }
+            }
+            else {
+                print("Error with retrieving snapshot from Firebase")
+            }
             
         })
+        print("cleared")
+    }
+
+    
+    func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        //this func grabs this data from the database and make sure that it waits for the fetch
+        print(recipePictureURL)
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
+            // The download has finished.
+            if let e = error {
+                print("Error downloading recipe picture: \(e)")
+            } else {
+                // No errors found.
+                // It would be weird if we didn't have a response, so check for that too.
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded recipe picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        // Finally convert that Data into an image and do what you wish with it.
+                        self.recipeImage = UIImage(data: imageData)!
+                        finished()
+                        // Do something with your image.
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        downloadPicTask.resume()
         
+    }
+
+    
+    @objc func fetchMyRecipes() -> Void {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { //corrects auto layout, using 2 rows

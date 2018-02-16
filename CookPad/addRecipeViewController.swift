@@ -147,13 +147,11 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         recipeID?.child("Name").setValue(recipeTitleTextField.text)
         recipeID?.child("Directions").setValue(methodTextView.text)
         recipeID?.child("Ingredients").setValue(ingredientsTextView.text)
-        var numOfRecipesInFirebase: String!
         myFirebaseNetworkDataRequest {
             //stuff that is down after the fetch from the database
-            numOfRecipesInFirebase = String(self.userNumberOfRecipes)
             print("done with checking num recipes")
-            self.reference?.child("Users").child(currentUserID!).child("MyRecipes").child(numOfRecipesInFirebase).setValue(recipeID!.key)
-            self.reference?.child("Users").child((Auth.auth().currentUser?.uid)!).child("numOfRecipes").setValue(numOfRecipesInFirebase)
+            self.reference?.child("Users").child(currentUserID!).child("MyRecipes").child("\(self.userNumberOfRecipes! - 1)").setValue(recipeID!.key)
+            self.reference?.child("Users").child((Auth.auth().currentUser?.uid)!).child("numOfRecipes").setValue("\(self.userNumberOfRecipes!)")
             self.addToStorage(ID: (recipeID)!)
         }
     }

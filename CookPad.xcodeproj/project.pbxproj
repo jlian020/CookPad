@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11CC388120350E82005B910E /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CC388220350E82005B910E /* IQKeyboardManagerSwift.framework */; };
 		25656FFD6E9D7EF4717842BF /* Pods_CookPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */; };
 		D11A08F6201AAB64008A7EA7 /* food.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D11A08F5201AAB54008A7EA7 /* food.mp4 */; };
 		D13F7EF32016A7A400D0A61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11CC388220350E82005B910E /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94666D85FC680BBAF4229F3E /* Pods-CookPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.release.xcconfig"; sourceTree = "<group>"; };
 		9902771DC4F0DD1FAFEF5C71 /* Pods-CookPad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookPad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookPad/Pods-CookPad.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11CC388120350E82005B910E /* IQKeyboardManagerSwift.framework in Frameworks */,
 				D1C8FDE71CDBE4EE006D7D60 /* FBSDKLoginKit.framework in Frameworks */,
 				D1C8FDE61CDBE4EE006D7D60 /* FBSDKCoreKit.framework in Frameworks */,
 				D1C8FDE81CDBE4EE006D7D60 /* FBSDKShareKit.framework in Frameworks */,
@@ -75,6 +78,7 @@
 		AF2F6560056F8BDCBB20085B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11CC388220350E82005B910E /* IQKeyboardManagerSwift.framework */,
 				21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */,
 			);
 			name = Frameworks;

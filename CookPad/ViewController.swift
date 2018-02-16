@@ -28,13 +28,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.collectionView.alwaysBounceVertical = true
         reference = Database.database().reference()
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
         refresh.addTarget(self, action: #selector(ViewController.loadRecipes), for: .valueChanged)
         self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update recipes
-        
         
         navigationController!.navigationBar.barTintColor = UIColor(red: 197/255, green: 42/255, blue: 53/255, alpha: 0.1) //changes the navigation bar color to light blue, divide by 255 to convert RGB
         //Status Bar White Font
@@ -67,6 +66,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     let snap = child as! DataSnapshot
                     if snap.value is NSDictionary {
                         let data: NSDictionary = snap.value as! NSDictionary
+                        while data.count != 4 {
+                            //wait if new recipe is being added
+                        }
                         let tempRecipeName: String = data.value(forKey: "Name") as! String
                         let tempRecipeURL = data.value(forKey: "storageURL") as! String
                         let tempRecipeIngredients : String = data.value(forKey: "Ingredients") as! String
