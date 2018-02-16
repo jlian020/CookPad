@@ -87,7 +87,7 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start {
             (connection, result, error) -> Void in
             if error != nil {
-                print(error)
+                print("Cannot find Facebook ID")
             }
             guard let data = result as? [String:Any] else {return}
             id = data["id"] as! String

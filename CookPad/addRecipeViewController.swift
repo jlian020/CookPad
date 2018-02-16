@@ -103,7 +103,6 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     @IBAction func submitRecipeTapped(_ sender: Any)
     {
         vc.recipeDoneSending = false
-        print(vc.recipeDoneSending)
         if recipeTitleTextField.text?.isEmpty ?? true || ingredientsTextView.text?.isEmpty ?? true ||
             methodTextView.text?.isEmpty ?? true
         {
@@ -134,6 +133,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
             
             //Submit the recipe to the database and append the user id to the recipe created
             self.view.makeToast("Submitted Recipe")
+            vc.recipes.removeAll()
             let delay = DispatchTime.now() + 1 // wait a second to display submitted recipe message, then perform segue
             DispatchQueue.main.asyncAfter(deadline: delay) {
                 self.performSegue(withIdentifier: "showHome", sender: self) }
@@ -143,13 +143,11 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     func submitRecipeToDatabase() {
         let recipeID =  reference?.child("Recipes").childByAutoId()
         let currentUserID = Auth.auth().currentUser?.uid
-        print(recipeID?.key) //later assign this key value to myRecipes
         recipeID?.child("Name").setValue(recipeTitleTextField.text)
         recipeID?.child("Directions").setValue(methodTextView.text)
         recipeID?.child("Ingredients").setValue(ingredientsTextView.text)
         myFirebaseNetworkDataRequest {
             //stuff that is down after the fetch from the database
-            print("done with checking num recipes")
             self.reference?.child("Users").child(currentUserID!).child("MyRecipes").child("\(self.userNumberOfRecipes! - 1)").setValue(recipeID!.key)
             self.reference?.child("Users").child((Auth.auth().currentUser?.uid)!).child("numOfRecipes").setValue("\(self.userNumberOfRecipes!)")
             self.addToStorage(ID: (recipeID)!)
@@ -160,17 +158,13 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         //this func grabs this data from the database and make sure that it waits for the fetch
         let userID = Auth.auth().currentUser?.uid
         reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.hasChild("numOfRecipes"))
             if snapshot.exists() && snapshot.hasChild("numOfRecipes") {
                 let value = snapshot.value as? NSDictionary
                 let numRecipes: String = (value?["numOfRecipes"] as? String)!
                 self.userNumberOfRecipes = Int(numRecipes)! + 1
-                print("this prints first")
-                print(self.userNumberOfRecipes)
             }
             else{
                 self.userNumberOfRecipes = 1
-                print("false")
             }
             finished()
         })
@@ -187,7 +181,6 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         let filePath = "\("Images")/\(ID.key)"
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
-        print("we reached storage")
         storageRef.child(filePath).putData(data, metadata: metaData){(metaData,error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -198,7 +191,6 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
                 //store downloadURL at database
                 self.reference?.child("Recipes").child(ID.key).updateChildValues(["storageURL": downloadURL])
                 self.vc.recipeDoneSending = true
-                print("id created")
             }
             
         }

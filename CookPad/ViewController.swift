@@ -45,7 +45,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @objc func loadRecipes() -> Void {
+        recipes.removeAll()
         self.collectionView.reloadData()
+        self.refresh.endRefreshing()
         var name: String = "Default"
         var email: String = "Default"
         var ID : String = ""
@@ -62,7 +64,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 let firebaseSnap: NSArray = snapshot.children.allObjects as NSArray
                 
                 for child in firebaseSnap {
-                    print("num in \(firebaseSnap.count)")
                     let snap = child as! DataSnapshot
                     if snap.value is NSDictionary {
                         let data: NSDictionary = snap.value as! NSDictionary
@@ -89,7 +90,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }
             else {
-                print("nope")
+                print("Error: Snapshot does not exist")
             }
             
         })

@@ -49,9 +49,9 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     @objc func loadMyRecipes() -> Void {
-        print ("looking ")
+        myRecipes.removeAll()
+        refresh.endRefreshing()
         grabMyRecipesFromFirebase {
-            print("Print")
             if self.myRecipeDict!.count > 0 {
                 self.grabRecipes {
                     //HELLO
@@ -87,7 +87,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
                     finished()
                 }
                 else {
-                    print("doesnt exists")
+                    print("Error: Snapshot doesnt exist")
                 }
             })
         }
@@ -111,7 +111,6 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
             
         })
-        print("cleared")
     }
 
     
