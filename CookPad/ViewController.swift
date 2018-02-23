@@ -62,7 +62,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         reference?.child("Recipes").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let firebaseSnap: NSArray = snapshot.children.allObjects as NSArray
-                
                 for child in firebaseSnap {
                     let snap = child as! DataSnapshot
                     if snap.value is NSDictionary {
@@ -70,13 +69,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         while data.count != 4 {
                             //wait if new recipe is being added
                         }
-                        let tempRecipeName = data.value(forKey: "Name") as? String ?? ""
-                        let tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
-                        let tempRecipeIngredients = data.value(forKey: "Ingredients") as? String ?? ""
-                        let tempRecipeDirections = data.value(forKey: "Directions") as?  String ?? ""
+                        print(snap.key)
+                        var tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
+                        while(tempRecipeURL == "") {
+                            tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
+                        }
                         self.recipePictureURL = URL(string: tempRecipeURL)
                         self.myFirebaseStorageImageGrab {
-                            let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections] )
+                            let tempRecipeName = data.value(forKey: "Name") as? String ?? ""
+                            let tempRecipeIngredients = data.value(forKey: "Ingredients") as? String ?? ""
+                            let tempRecipeDirections = data.value(forKey: "Directions") as?  String ?? ""
+                            let tempRecipeID = snap.key
+                            let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections], id: tempRecipeID)
                             self.recipes.append(newRecipe)
                             DispatchQueue.main.async(execute: {
                                 //push the current info into the main thread, otherwise for loop would be asynchronous
@@ -88,6 +92,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         }
                     }
                 }
+                
             }
             else {
                 print("Error: Snapshot does not exist")
@@ -99,7 +104,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
-        print(recipePictureURL)
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
             // The download has finished.
@@ -166,9 +170,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             //set the profile view up
             let recipe = recipes[indexPath.row]
             
-            recipeVC.name = recipe.name
-            recipeVC.image = recipe.image
-            recipeVC.ingredients = recipe.ingredients.first!
+            recipeVC.recipe = recipe
+//            recipeVC.name = recipe.name
+//            recipeVC.image = recipe.image
+//            recipeVC.ingredients = recipe.ingredients.first!
             
             //vc.title = self.recipes[indexPath.row]
         }
