@@ -68,7 +68,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             let tempRecipeIngredients = data.value(forKey: "Ingredients") as? String ?? ""
                             let tempRecipeDirections = data.value(forKey: "Directions") as?  String ?? ""
                             let tempRecipeID = snap.key
-                            let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections], id: tempRecipeID)
+                            let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: tempRecipeIngredients, directions: tempRecipeDirections, id: tempRecipeID)
                             self.recipes.append(newRecipe)
                             DispatchQueue.main.async(execute: {
                                 //push the current info into the main thread, otherwise for loop would be asynchronous

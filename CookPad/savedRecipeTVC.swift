@@ -53,7 +53,7 @@ class savedRecipeTVC: UITableViewController {
                 if let error = error {
                     self.view.makeToast("Error: \(error)")
                 } else {
-                    var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"], id : "");
+                    var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: "Stuff", directions: "Do Stuff", id : "");
                     self.savedRecipes.append(newRecipe)
                     DispatchQueue.main.async(execute: {
                         //push the current info into the main thread, otherwise for loop would be asynchronous

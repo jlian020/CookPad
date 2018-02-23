@@ -83,13 +83,13 @@ class SearchRecipeViewController: UIViewController, UICollectionViewDelegate, UI
     func filterRecipes(for searchText: String) {
         filteredRecipes = recipes.filter({ (recipe: Recipe) -> Bool in
             let name = recipe.name
-            let ingredients = recipe.ingredients.first
-            let directions = recipe.directions.first
+            let ingredients = recipe.ingredients
+            let directions = recipe.directions
             
             if let searchText = self.searchController.searchBar.text?.lowercased() {
                 return (name.lowercased().contains(searchText) ||
-                    ingredients!.lowercased().contains(searchText) ||
-                    directions!.lowercased().contains(searchText))
+                    ingredients.lowercased().contains(searchText) ||
+                    directions.lowercased().contains(searchText))
             }
             else {
                 return false
@@ -156,10 +156,7 @@ class SearchRecipeViewController: UIViewController, UICollectionViewDelegate, UI
             
             //set the profile view up
             let recipe = filteredRecipes[indexPath.row]
-            
-            recipeVC.name = recipe.name
-            recipeVC.image = recipe.image
-            recipeVC.ingredients = recipe.ingredients.first!
+            recipeVC.recipe = recipe
             
             //vc.title = self.recipes[indexPath.row]
         }

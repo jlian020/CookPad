@@ -78,7 +78,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
                     
                     self.recipePictureURL = URL(string: tempRecipeURL)
                     self.myFirebaseStorageImageGrab {
-                        let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections], id: x)
+                        let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: tempRecipeIngredients, directions: tempRecipeDirections, id: x)
                         self.myRecipes.append(newRecipe)
                         DispatchQueue.main.async(execute: {
                             //push the current info into the main thread, otherwise for loop would be asynchronous

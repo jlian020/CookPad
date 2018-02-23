@@ -23,6 +23,7 @@ class recipeViewController: UIViewController {
     var reference : DatabaseReference?
     let currentUserId = Auth.auth().currentUser?.uid
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -30,8 +31,14 @@ class recipeViewController: UIViewController {
         
         self.imageView?.image = self.recipe?.image
         self.nameLabel?.text = self.recipe?.name
-        self.ingredientsList?.text = self.recipe?.ingredients.first
-        //overlayImageView?.hidden = true
+        self.ingredientsList?.text = self.recipe?.ingredients
+        self.directionsTextView?.text = self.recipe?.directions
+        
+        var numDirectionsLines = (directionsTextView.contentSize.height / (directionsTextView.font?.lineHeight)!) as? CGFloat
+        var numIngredientsLines = ((ingredientsList?.contentSize.height)! / (ingredientsList?.font?.lineHeight)!) as? CGFloat
+        let numOfLines = numDirectionsLines! + numIngredientsLines!
+        print(numOfLines)
+        viewHeight.constant = numOfLines > 8 ? 667 + numOfLines*(directionsTextView.font?.lineHeight)! : 667
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,3 +61,4 @@ class recipeViewController: UIViewController {
         }
     }
 }
+
