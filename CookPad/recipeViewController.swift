@@ -46,7 +46,8 @@ class recipeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    @IBAction func likeButtonPressed(_ sender: AnyObject) {
+    
+    @IBAction func likeButtonPressed(_ sender: Any) {
         print("like Button pressed")
         //stamp like, hide buttons, save the recipe to saved
         overlayImageView?.isHidden = false
