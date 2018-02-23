@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -383,26 +382,6 @@
                                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGa-DR-eMW">
-                                                <rect key="frame" x="226" y="228" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="Qa0-wj-7LK"/>
-                                                    <constraint firstAttribute="width" secondItem="EGa-DR-eMW" secondAttribute="height" multiplier="1:1" id="bZ4-ku-fVQ"/>
-                                                    <constraint firstAttribute="height" constant="50" id="jHY-BB-XYi"/>
-                                                </constraints>
-                                                <state key="normal" title="Button" image="Oval 2 + Rectangle 10"/>
-                                                <connections>
-                                                    <action selector="dislikeButtonPressed:" destination="rvF-Xt-rLX" eventType="touchUpInside" id="hxr-iP-T5C"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="800" verticalHuggingPriority="800" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="900" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUr-V4-C25">
-                                                <rect key="frame" x="103" y="228" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button" image="Oval 3 + Rectangle 11"/>
-                                                <connections>
-                                                    <action selector="likeButtonPressed:" destination="rvF-Xt-rLX" eventType="touchUpInside" id="36b-gb-Kpb"/>
-                                                </connections>
-                                            </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="400" horizontalCompressionResistancePriority="400" verticalCompressionResistancePriority="400" ambiguous="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S46-zl-mgN">
                                                 <rect key="frame" x="12" y="459" width="351" height="199"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -467,10 +446,8 @@
                                             <constraint firstAttribute="trailing" secondItem="y1n-JR-Q6s" secondAttribute="trailing" constant="40" id="hIb-I4-wVP"/>
                                             <constraint firstItem="T1b-T7-HzD" firstAttribute="top" secondItem="9vg-vf-fxi" secondAttribute="bottom" constant="8" id="hMP-th-Q88"/>
                                             <constraint firstItem="y1n-JR-Q6s" firstAttribute="leading" secondItem="KnC-Z3-kJR" secondAttribute="leading" constant="40" id="hfb-46-36z"/>
-                                            <constraint firstItem="EGa-DR-eMW" firstAttribute="top" secondItem="y1n-JR-Q6s" secondAttribute="bottom" constant="14" id="kHu-sX-QeE"/>
                                             <constraint firstItem="hHm-UQ-tdv" firstAttribute="top" secondItem="hgU-87-jHz" secondAttribute="bottom" constant="35" id="pec-SW-MHL"/>
                                             <constraint firstAttribute="trailing" secondItem="T1b-T7-HzD" secondAttribute="trailing" constant="8" id="qyz-74-q9a"/>
-                                            <constraint firstAttribute="trailing" secondItem="EGa-DR-eMW" secondAttribute="trailing" constant="99" id="vcR-uo-zbj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -491,7 +468,13 @@
                             <constraint firstAttribute="bottom" secondItem="QgY-O9-hOO" secondAttribute="bottom" id="r4s-Nl-wuM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0io-zW-bWL"/>
+                    <navigationItem key="navigationItem" id="0io-zW-bWL">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="favorite-heart-button" id="lHR-T3-B1z">
+                            <connections>
+                                <action selector="likeButtonPressed:" destination="rvF-Xt-rLX" id="txz-Us-a1f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="directionsTextView" destination="XCz-2J-7hm" id="vXb-W8-q8G"/>
@@ -804,25 +787,25 @@
                     <connections>
                         <outlet property="collectionView" destination="nq3-wc-JO9" id="Ycf-ve-psz"/>
                         <segue destination="rvF-Xt-rLX" kind="push" identifier="showRecipe" id="wsY-tb-Yt9"/>
+                        <segue destination="BYZ-38-t0r" kind="push" identifier="showHome" id="bTp-Fw-YzM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OL0-40-mrK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="-355"/>
+            <point key="canvasLocation" x="1874" y="-794"/>
         </scene>
     </scenes>
     <resources>
         <image name="AddAPhoto2" width="1272" height="774"/>
         <image name="I3NM6" width="315" height="147"/>
-        <image name="Oval 2 + Rectangle 10" width="120" height="120"/>
-        <image name="Oval 3 + Rectangle 11" width="120" height="120"/>
         <image name="edit_user-25" width="25" height="25"/>
+        <image name="favorite-heart-button" width="24" height="24"/>
         <image name="home-50" width="16" height="16"/>
         <image name="icons8-food-and-wine-50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="H83-98-iDe"/>
+        <segue reference="3QK-ld-D0s"/>
         <segue reference="vb6-9P-OcS"/>
-        <segue reference="teJ-sI-CD5"/>
+        <segue reference="bTp-Fw-YzM"/>
     </inferredMetricsTieBreakers>
 </document>

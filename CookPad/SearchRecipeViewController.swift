@@ -67,7 +67,7 @@ class SearchRecipeViewController: UIViewController, UICollectionViewDelegate, UI
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
-        self.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "showHome", sender: self)
     }
     
     func updateSearchResults(for searchController: UISearchController)
