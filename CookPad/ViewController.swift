@@ -169,6 +169,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             recipeVC.name = recipe.name
             recipeVC.image = recipe.image
             recipeVC.ingredients = recipe.ingredients.first!
+            recipeVC.directions = recipe.directions.first!
             
             //vc.title = self.recipes[indexPath.row]
         }
