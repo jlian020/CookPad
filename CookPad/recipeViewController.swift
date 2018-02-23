@@ -22,6 +22,8 @@ class recipeViewController: UIViewController {
     let likeOverlay = UIImage(named: "like button")
     var reference : DatabaseReference?
     let currentUserId = Auth.auth().currentUser?.uid
+    var myLikedRecipeDict : NSArray?
+    var userNumberOfLikedRecipes: Int! = 0
     
     
     override func viewDidLoad()
@@ -49,8 +51,11 @@ class recipeViewController: UIViewController {
         //stamp like, hide buttons, save the recipe to saved
         overlayImageView?.isHidden = false
         overlayImageView?.image = likeOverlay
-        reference?.child("Users").child(currentUserId!).child("LikedRecipes").child((recipe?.firebaseId)!).setValue(recipe?.firebaseId)
-        
+        myFirebaseNetworkDataRequest {
+            //stuff that is down after the fetch from the database
+            self.reference?.child("Users").child(self.currentUserId!).child("LikedRecipes").child("\(self.userNumberOfLikedRecipes! - 1)").setValue(self.recipe?.firebaseId)
+            self.reference?.child("Users").child(self.currentUserId!).child("numOfLikedRecipes").setValue("\(self.userNumberOfLikedRecipes!)")
+        }
         
         //When pressed, save the recipe to the user's 'Saved Recipes' folder
     }
@@ -60,5 +65,26 @@ class recipeViewController: UIViewController {
             overlayImageView?.isHidden = true
         }
     }
+    
+    func myFirebaseNetworkDataRequest(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        //this func grabs this data from the database and make sure that it waits for the fetch
+        let userID = Auth.auth().currentUser?.uid
+        reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() && snapshot.hasChild("numOfLikedRecipes") {
+                let value = snapshot.value as? NSDictionary
+                let numRecipes: String = (value?["numOfLikedRecipes"] as? String)!
+                self.userNumberOfLikedRecipes = Int(numRecipes)! + 1
+            }
+            else{
+                self.userNumberOfLikedRecipes = 1
+            }
+            finished()
+        })
+        
+    }
+
+    
+
+    
 }
 

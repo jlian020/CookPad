@@ -148,8 +148,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     
-    @objc func fetchMyRecipes() -> Void {
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { //corrects auto layout, using 2 rows
         return CGSize(width: self.view.bounds.width/2, height: self.view.bounds.height/4)
