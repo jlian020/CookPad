@@ -7,9 +7,12 @@ import UIKit
 import Firebase
 
 class recipeViewController: UIViewController {
+    
+    @IBOutlet weak var viewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageView = UIImageView()
     @IBOutlet weak var nameLabel = UILabel()
     @IBOutlet weak var ingredientsList = UITextView() //lists steps to follow for recipe
+    @IBOutlet weak var directionsTextView: UITextView!
     @IBOutlet weak var overlayImageView = UIImageView()
     
     var recipe : Recipe?
@@ -20,7 +23,8 @@ class recipeViewController: UIViewController {
     var reference : DatabaseReference?
     let currentUserId = Auth.auth().currentUser?.uid
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         reference = Database.database().reference()
         

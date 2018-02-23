@@ -48,7 +48,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
     
-    @objc func loadMyRecipes() -> Void {
+    @objc func loadMyRecipes() {
         myRecipes.removeAll()
         refresh.endRefreshing()
         grabMyRecipesFromFirebase {

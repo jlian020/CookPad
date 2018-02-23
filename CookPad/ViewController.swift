@@ -17,7 +17,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var refresh : UIRefreshControl!
     
     var recipes = [Recipe]() //array of recipes
-    
     var reference: DatabaseReference?
     
     var recipeImage: UIImage?
@@ -48,17 +47,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         recipes.removeAll()
         self.collectionView.reloadData()
         self.refresh.endRefreshing()
-        var name: String = "Default"
-        var email: String = "Default"
-        var ID : String = ""
-        if let name = Auth.auth().currentUser?.displayName {
-            self.view.makeToast("Hello \(name)")
-        }
-        loginViewController().getFacebookID({
-            (result)->Void in
-            ID = result
-            print("ID is: \(ID)")
-        })
         reference?.child("Recipes").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let firebaseSnap: NSArray = snapshot.children.allObjects as NSArray
@@ -100,6 +88,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
         })
         
+        
+    }
+    
+    func getRecipeArray() -> [Recipe] {
+        return recipes
     }
     
     func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
@@ -182,6 +175,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let backButton = UIBarButtonItem()
             backButton.title = ""
             navigationItem.backBarButtonItem = backButton
+        }
+        
+        if segue.identifier == "searchRecipe" {
+            let backButton = UIBarButtonItem()
+            backButton.title = ""
+            navigationItem.backBarButtonItem = backButton
+            let searchVC = segue.destination as! SearchRecipeViewController
+            
+            //set the profile view up
+            searchVC.recipes = self.recipes
+            print(searchVC.recipes.count)
         }
     }
     
