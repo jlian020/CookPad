@@ -48,7 +48,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
     
-    @objc func loadMyRecipes() -> Void {
+    @objc func loadMyRecipes() {
         myRecipes.removeAll()
         refresh.endRefreshing()
         grabMyRecipesFromFirebase {
@@ -71,10 +71,14 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
                     let tempRecipeName = value?["Name"] as? String ?? ""
                     let tempRecipeIngredients = value?["Ingredients"] as? String ?? ""
                     let tempRecipeDirections = value?["Directions"] as? String ?? ""
-                    let tempRecipeURL = value?["storageURL"] as? String ?? ""
+                    var tempRecipeURL = value?["storageURL"] as? String ?? ""
+                    while(tempRecipeURL == "") {
+                        tempRecipeURL = value?["storageURL"] as? String ?? ""
+                    }
+                    
                     self.recipePictureURL = URL(string: tempRecipeURL)
                     self.myFirebaseStorageImageGrab {
-                        let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections] )
+                        let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: tempRecipeIngredients, directions: tempRecipeDirections, id: x)
                         self.myRecipes.append(newRecipe)
                         DispatchQueue.main.async(execute: {
                             //push the current info into the main thread, otherwise for loop would be asynchronous
@@ -116,7 +120,6 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
-        print(recipePictureURL)
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
             // The download has finished.
@@ -145,8 +148,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     
-    @objc func fetchMyRecipes() -> Void {
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { //corrects auto layout, using 2 rows
         return CGSize(width: self.view.bounds.width/2, height: self.view.bounds.height/4)
@@ -186,10 +188,10 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             //set the profile view up
             let recipe = myRecipes[indexPath.row]
-            
-            recipeVC.name = recipe.name
-            recipeVC.image = recipe.image
-            recipeVC.ingredients = recipe.ingredients.first!
+            recipeVC.recipe = recipe
+//            recipeVC.name = recipe.name
+//            recipeVC.image = recipe.image
+//            recipeVC.ingredients = recipe.ingredients.first!
             
             //vc.title = self.recipes[indexPath.row]
         }

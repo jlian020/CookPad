@@ -17,7 +17,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var refresh : UIRefreshControl!
     
     var recipes = [Recipe]() //array of recipes
-    
     var reference: DatabaseReference?
     
     var recipeImage: UIImage?
@@ -48,21 +47,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         recipes.removeAll()
         self.collectionView.reloadData()
         self.refresh.endRefreshing()
-        var name: String = "Default"
-        var email: String = "Default"
-        var ID : String = ""
-        if let name = Auth.auth().currentUser?.displayName {
-            self.view.makeToast("Hello \(name)")
-        }
-        loginViewController().getFacebookID({
-            (result)->Void in
-            ID = result
-            print("ID is: \(ID)")
-        })
         reference?.child("Recipes").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let firebaseSnap: NSArray = snapshot.children.allObjects as NSArray
-                
                 for child in firebaseSnap {
                     let snap = child as! DataSnapshot
                     if snap.value is NSDictionary {
@@ -70,13 +57,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         while data.count != 4 {
                             //wait if new recipe is being added
                         }
-                        let tempRecipeName = data.value(forKey: "Name") as? String ?? ""
-                        let tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
-                        let tempRecipeIngredients = data.value(forKey: "Ingredients") as? String ?? ""
-                        let tempRecipeDirections = data.value(forKey: "Directions") as?  String ?? ""
+                        print(snap.key)
+                        var tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
+                        while(tempRecipeURL == "") {
+                            tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
+                        }
                         self.recipePictureURL = URL(string: tempRecipeURL)
                         self.myFirebaseStorageImageGrab {
-                            let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: [tempRecipeIngredients], directions: [tempRecipeDirections] )
+                            let tempRecipeName = data.value(forKey: "Name") as? String ?? ""
+                            let tempRecipeIngredients = data.value(forKey: "Ingredients") as? String ?? ""
+                            let tempRecipeDirections = data.value(forKey: "Directions") as?  String ?? ""
+                            let tempRecipeID = snap.key
+                            let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: tempRecipeIngredients, directions: tempRecipeDirections, id: tempRecipeID)
                             self.recipes.append(newRecipe)
                             DispatchQueue.main.async(execute: {
                                 //push the current info into the main thread, otherwise for loop would be asynchronous
@@ -88,6 +80,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         }
                     }
                 }
+                
             }
             else {
                 print("Error: Snapshot does not exist")
@@ -95,11 +88,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
         })
         
+        
+    }
+    
+    func getRecipeArray() -> [Recipe] {
+        return recipes
     }
     
     func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
-        print(recipePictureURL)
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
             // The download has finished.
@@ -166,9 +163,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             //set the profile view up
             let recipe = recipes[indexPath.row]
             
-            recipeVC.name = recipe.name
-            recipeVC.image = recipe.image
-            recipeVC.ingredients = recipe.ingredients.first!
+            recipeVC.recipe = recipe
+//            recipeVC.name = recipe.name
+//            recipeVC.image = recipe.image
+//            recipeVC.ingredients = recipe.ingredients.first!
             
             //vc.title = self.recipes[indexPath.row]
         }
@@ -177,6 +175,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let backButton = UIBarButtonItem()
             backButton.title = ""
             navigationItem.backBarButtonItem = backButton
+        }
+        
+        if segue.identifier == "searchRecipe" {
+            let backButton = UIBarButtonItem()
+            backButton.title = ""
+            navigationItem.backBarButtonItem = backButton
+            let searchVC = segue.destination as! SearchRecipeViewController
+            
+            //set the profile view up
+            searchVC.recipes = self.recipes
+            print(searchVC.recipes.count)
         }
     }
     
