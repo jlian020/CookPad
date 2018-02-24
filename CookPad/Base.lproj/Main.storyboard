@@ -118,29 +118,33 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" rowHeight="85" id="g0X-Lq-fOC" customClass="savedRecipeCell" customModule="CookPad" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g0X-Lq-fOC" id="AnU-bq-JWf">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g0X-Lq-fOC" id="AnU-bq-JWf">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Una-st-Bas">
-                                            <rect key="frame" x="0.0" y="0.0" width="175" height="79.5"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Una-st-Bas">
+                                            <rect key="frame" x="0.0" y="0.0" width="175" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="lCV-lL-mNt"/>
                                                 <constraint firstAttribute="width" constant="175" id="ncl-Jd-2MK"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
-                                            <rect key="frame" x="195" y="11" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
+                                            <rect key="frame" x="195" y="11" width="159" height="63"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="leading" secondItem="Una-st-Bas" secondAttribute="trailing" constant="20" id="2Jd-kD-8Ur"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="l4J-zx-oqn" secondAttribute="trailing" constant="5" id="2xw-rk-EVQ"/>
+                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="bottom" secondItem="AnU-bq-JWf" secondAttribute="bottomMargin" id="4qI-tj-6W5"/>
                                         <constraint firstItem="Una-st-Bas" firstAttribute="leading" secondItem="AnU-bq-JWf" secondAttribute="leading" id="EX3-8P-gdo"/>
                                         <constraint firstAttribute="bottom" secondItem="Una-st-Bas" secondAttribute="bottom" id="I0J-7P-Hg9"/>
                                         <constraint firstItem="l4J-zx-oqn" firstAttribute="leading" secondItem="Una-st-Bas" secondAttribute="trailing" constant="20" id="SH9-O4-yuT"/>
                                         <constraint firstItem="Una-st-Bas" firstAttribute="top" secondItem="AnU-bq-JWf" secondAttribute="top" id="fni-1a-vlW"/>
+                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="top" secondItem="AnU-bq-JWf" secondAttribute="topMargin" id="pqc-Xx-Dih"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
