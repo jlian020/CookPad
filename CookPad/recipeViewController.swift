@@ -16,15 +16,12 @@ class recipeViewController: UIViewController {
     @IBOutlet weak var overlayImageView = UIImageView()
     
     var recipe : Recipe?
-    //var image = UIImage()
-    //var name = String()
-    //var ingredients = String()
+   
     let likeOverlay = UIImage(named: "like button")
     var reference : DatabaseReference?
     let currentUserId = Auth.auth().currentUser?.uid
     var myLikedRecipeDict : NSArray?
     var userNumberOfLikedRecipes: Int! = 0
-    
     
     override func viewDidLoad()
     {

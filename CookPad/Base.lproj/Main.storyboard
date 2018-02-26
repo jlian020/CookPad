@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8T6-QH-hE8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ux6-0A-LH8">
                                     <size key="itemSize" width="125" height="125"/>
@@ -110,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="881" y="288"/>
+            <point key="canvasLocation" x="991" y="288"/>
         </scene>
         <!--Saved Recipes-->
         <scene sceneID="rOb-iM-V6F">
@@ -223,10 +223,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k41-p7-ODz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="751"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzI-AO-a5i">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="751"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddAPhoto2" translatesAutoresizingMaskIntoConstraints="NO" id="9T8-EC-Hpp">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -354,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g7w-5t-OXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681" y="195"/>
+            <point key="canvasLocation" x="1710" y="1611"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="4QW-Ng-z8u">
@@ -711,12 +711,12 @@
                     <navigationItem key="navigationItem" title="My Recipes" id="6KM-mO-vS6"/>
                     <connections>
                         <outlet property="collectionView" destination="7GI-jh-PD9" id="bml-P3-GxX"/>
-                        <segue destination="rvF-Xt-rLX" kind="push" identifier="showRecipe" id="H2q-4G-eao"/>
+                        <segue destination="AIl-wT-Gse" kind="push" identifier="editRecipe" id="A7b-fd-mCg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AeO-61-MdD" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="881" y="1995"/>
+            <point key="canvasLocation" x="1014" y="2010"/>
         </scene>
         <!--Search Recipes-->
         <scene sceneID="Y1H-ml-CRj">
@@ -731,7 +731,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nq3-wc-JO9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="edY-q6-f8C">
                                     <size key="itemSize" width="125" height="125"/>
@@ -808,8 +808,8 @@
         <image name="icons8-food-and-wine-50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3QK-ld-D0s"/>
         <segue reference="vb6-9P-OcS"/>
-        <segue reference="bTp-Fw-YzM"/>
+        <segue reference="A7b-fd-mCg"/>
+        <segue reference="teJ-sI-CD5"/>
     </inferredMetricsTieBreakers>
 </document>

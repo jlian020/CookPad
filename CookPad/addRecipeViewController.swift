@@ -5,7 +5,6 @@
 //  Created by Justin Mac on 1/25/18.
 //  Copyright © 2018 Justin Mac. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import Firebase
@@ -28,6 +27,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     let storage = Storage.storage() //get reference to Google Firebase Storage
     var userNumberOfRecipes: Int! = 0
     let vc = ViewController(nibName: "ViewController", bundle: nil)
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
