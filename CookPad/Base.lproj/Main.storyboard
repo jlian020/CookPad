@@ -804,7 +804,6 @@
         <image name="icons8-food-and-wine-50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3QK-ld-D0s"/>
         <segue reference="vb6-9P-OcS"/>
         <segue reference="bTp-Fw-YzM"/>
     </inferredMetricsTieBreakers>
