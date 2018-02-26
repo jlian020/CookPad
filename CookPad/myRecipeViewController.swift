@@ -172,7 +172,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     } //reuses cell for all cells in UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showRecipe", sender: self)
+        self.performSegue(withIdentifier: "editRecipe", sender: self)
         
     }
     
