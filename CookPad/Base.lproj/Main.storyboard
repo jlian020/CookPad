@@ -421,6 +421,14 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAo-oQ-7dE">
+                                                <rect key="frame" x="331" y="315" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="share-symbol"/>
+                                                <connections>
+                                                    <action selector="shareButtonPressed:" destination="rvF-Xt-rLX" eventType="touchUpInside" id="Za0-7V-DOS"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -487,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhL-DT-wYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2172.5" y="844"/>
+            <point key="canvasLocation" x="2172.5" y="843.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="mt5-vc-hnN">
@@ -802,10 +810,11 @@
         <image name="favorite-heart-button" width="24" height="24"/>
         <image name="home-50" width="16" height="16"/>
         <image name="icons8-food-and-wine-50" width="50" height="50"/>
+        <image name="share-symbol" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3QK-ld-D0s"/>
-        <segue reference="vb6-9P-OcS"/>
+        <segue reference="jew-1D-0kM"/>
         <segue reference="bTp-Fw-YzM"/>
     </inferredMetricsTieBreakers>
 </document>

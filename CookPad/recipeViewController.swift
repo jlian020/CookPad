@@ -5,6 +5,7 @@
 
 import UIKit
 import Firebase
+import FacebookShare
 
 class recipeViewController: UIViewController {
     
@@ -45,6 +46,17 @@ class recipeViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        
+        let shareDialog = ShareDialog(content: myContent)
+        shareDialog.mode = .Native
+        shareDialog.failsOnInvalidData = true
+        shareDialog.completion = { result in
+            // Handle share results
+        }
+        
+        try shareDialog.show()
+    }
     @IBAction func likeButtonPressed(_ sender: Any) {
         print("like Button pressed")
         //stamp like, hide buttons, save the recipe to saved
