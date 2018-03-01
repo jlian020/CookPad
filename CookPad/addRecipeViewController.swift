@@ -134,7 +134,7 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
             //Submit the recipe to the database and append the user id to the recipe created
             self.view.makeToast("Submitted Recipe")
             vc.recipes.removeAll()
-            let delay = DispatchTime.now() + 1 // wait a second to display submitted recipe message, then perform segue
+            let delay = DispatchTime.now() + 2 // wait a second to display submitted recipe message, then perform segue
             DispatchQueue.main.asyncAfter(deadline: delay) {
                 self.performSegue(withIdentifier: "showHome", sender: self) }
         }
@@ -168,7 +168,6 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
             }
             finished()
         })
-
     }
     
     
@@ -192,7 +191,6 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
                 self.reference?.child("Recipes").child(ID.key).updateChildValues(["storageURL": downloadURL])
                 self.vc.recipeDoneSending = true
             }
-            
         }
     }
     
