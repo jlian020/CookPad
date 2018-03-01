@@ -56,14 +56,14 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
         
         //FBLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
         //FBLoginButton.publishPermissions = ["publish_actions"]
-        FBLoginButton.frame = CGRect(x: self.view.bounds.width/4, y: self.view.bounds.height-150, width: 200, height: 50)
-        FBLoginButton.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height-150)
+        FBLoginButton.frame = CGRect(x: self.view.bounds.width/4, y: self.view.bounds.height-90, width: 200, height: 50)
+        FBLoginButton.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height-90)
         //FBLoginButton.center = CGPointMake(self.view.bounds.width/2, self.view.bounds.height-50)
         //FBLoginButton.delegate = self
         self.view.addSubview(FBLoginButton)
         
         //Setup Google Login and Authentication
-        
+        /*
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
         
@@ -71,7 +71,7 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
         GoogleLoginButton.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height-90)
         //GoogleLoginButton.colorScheme = GIDSignInButtonColorScheme.light
         self.view.addSubview(GoogleLoginButton)
-        
+        */
     }
 
     

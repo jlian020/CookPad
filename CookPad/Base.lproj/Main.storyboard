@@ -354,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g7w-5t-OXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912" y="319"/>
+            <point key="canvasLocation" x="3005" y="580"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="4QW-Ng-z8u">
@@ -499,7 +499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhL-DT-wYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2085" y="1447"/>
+            <point key="canvasLocation" x="1795" y="1086"/>
         </scene>
         <!--Edit Recipe View Controller-->
         <scene sceneID="VCm-MM-eKo">
@@ -645,7 +645,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q56-Hq-MP3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1817" y="2252"/>
+            <point key="canvasLocation" x="1996" y="2252"/>
         </scene>
         <!--Home-->
         <scene sceneID="mt5-vc-hnN">

@@ -44,11 +44,13 @@ class editRecipeViewController: UIViewController {
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
+        
         let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to edit?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Title of Recipe", style: .default, handler: editRecipeTitle))
         alert.addAction(UIAlertAction(title: "Description", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Ingredients", style: .default, handler: editRecipeIngredients))
         alert.addAction(UIAlertAction(title: "Directions", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete Recipe", style: .default, handler: deleteRecipe))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
             self.performSegue(withIdentifier: "showMyRecipes", sender: self)
@@ -59,7 +61,7 @@ class editRecipeViewController: UIViewController {
     func editRecipeTitle(alertAction: UIAlertAction) -> Void {
         let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
         alert.addTextField { (textField : UITextField) -> Void in
-            textField.placeholder = "Title of Recipe"
+            textField.text = self.recipe?.name ?? ""
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             print(alert.textFields?.first?.text)
@@ -71,7 +73,7 @@ class editRecipeViewController: UIViewController {
     func editRecipeIngredients(alertAction: UIAlertAction) -> Void {
         let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.placeholder = "Recipe Ingredients"
+            textField.text = self.recipe?.ingredients ?? ""
             let heightConstraint = NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
             textField.addConstraint(heightConstraint)
         }
@@ -82,8 +84,16 @@ class editRecipeViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func deleteRecipe(alertAction: UIAlertAction) -> Void {
+        let alert = UIAlertController(title: "Are you sure?", message: "Are you sure you want to delete this recipe?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            //Delete the recipe from Firebase
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
     @IBAction func shareButtonPressed(_ sender: Any) {
-        
         //Implement share
     }
     
@@ -125,9 +135,6 @@ class editRecipeViewController: UIViewController {
             
         })
     }
-    
-    
-    
     
 }
 
