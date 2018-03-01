@@ -55,6 +55,7 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
         self.FBLoginButton.delegate = self
         
         FBLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        FBLoginButton.publishPermissions = ["publish_actions"]
         FBLoginButton.frame = CGRect(x: self.view.bounds.width/4, y: self.view.bounds.height-150, width: 200, height: 50)
         FBLoginButton.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height-150)
         //FBLoginButton.center = CGPointMake(self.view.bounds.width/2, self.view.bounds.height-50)
@@ -118,6 +119,7 @@ class loginViewController : UIViewController, FBSDKLoginButtonDelegate, GIDSignI
                 self.reference?.child("Users").child(user!.uid)
                 let currentUser = Auth.auth().currentUser?.displayName
                 self.reference?.child("Users").child(user!.uid).child("Name").setValue(currentUser)
+                
                 self.loadViewController()
             }
         }

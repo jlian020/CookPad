@@ -21,7 +21,6 @@
 		D1B420AC1CD573A400EDF6A0 /* recipeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */; };
 		D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */; };
 		D1B714BA201A724B00C0E0CE /* addRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */; };
-		D1B714BC201A7FD200C0E0CE /* savedRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714BB201A7FD200C0E0CE /* savedRecipeViewController.swift */; };
 		D1B714BE201A860600C0E0CE /* myRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */; };
 		D1C8FDE61CDBE4EE006D7D60 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */; };
 		D1C8FDE71CDBE4EE006D7D60 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */; };
@@ -52,7 +51,6 @@
 		D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeImageCell.swift; sourceTree = "<group>"; };
 		D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeViewController.swift; sourceTree = "<group>"; };
 		D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRecipeViewController.swift; sourceTree = "<group>"; };
-		D1B714BB201A7FD200C0E0CE /* savedRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedRecipeViewController.swift; sourceTree = "<group>"; };
 		D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myRecipeViewController.swift; sourceTree = "<group>"; };
 		D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -123,11 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				D1B4207B1CD571E600EDF6A0 /* AppDelegate.swift */,
-				D1B4207D1CD571E600EDF6A0 /* ViewController.swift */,
 				D1B420821CD571E600EDF6A0 /* Assets.xcassets */,
 				D1B420841CD571E600EDF6A0 /* LaunchScreen.storyboard */,
 				D171D3B8201144F800734B48 /* Main.storyboard */,
-				BACD0A3D202941DF004CE00D /* savedRecipeTVC.swift */,
 				D11A08F5201AAB54008A7EA7 /* food.mp4 */,
 				D1B420871CD571E600EDF6A0 /* Info.plist */,
 				D1B420AB1CD573A400EDF6A0 /* recipeImageCell.swift */,
@@ -138,7 +134,8 @@
 				D1C8FDE91CDBF016006D7D60 /* loginViewController.swift */,
 				D13F7EF22016A7A400D0A61A /* GoogleService-Info.plist */,
 				D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */,
-				D1B714BB201A7FD200C0E0CE /* savedRecipeViewController.swift */,
+				D1B4207D1CD571E600EDF6A0 /* ViewController.swift */,
+				BACD0A3D202941DF004CE00D /* savedRecipeTVC.swift */,
 				D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */,
 				D1214A35203FA4D7002DF7E8 /* SearchRecipeViewController.swift */,
 			);
@@ -180,7 +177,7 @@
 				TargetAttributes = {
 					D1B420771CD571E600EDF6A0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = D27NEHPLYS;
+						DevelopmentTeam = UR8AP3R8R3;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -319,7 +316,6 @@
 				D1F59B841CDAE1FB00D890E0 /* Recipe.swift in Sources */,
 				D1E994ED1CDAA1B0002FBF9D /* MyProfileView.swift in Sources */,
 				D1B420AC1CD573A400EDF6A0 /* recipeImageCell.swift in Sources */,
-				D1B714BC201A7FD200C0E0CE /* savedRecipeViewController.swift in Sources */,
 				D1B4207E1CD571E600EDF6A0 /* ViewController.swift in Sources */,
 				D1EE1D4A201A98FF00184B64 /* Toast.swift in Sources */,
 				D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */,
@@ -440,14 +436,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D27NEHPLYS;
+				DEVELOPMENT_TEAM = UR8AP3R8R3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad2;
+				PRODUCT_BUNDLE_IDENTIFIER = Satkaran.CookPad2;
 				PRODUCT_NAME = CookPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -463,14 +459,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D27NEHPLYS;
+				DEVELOPMENT_TEAM = UR8AP3R8R3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = justinmac.CookPad2;
+				PRODUCT_BUNDLE_IDENTIFIER = Satkaran.CookPad2;
 				PRODUCT_NAME = CookPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

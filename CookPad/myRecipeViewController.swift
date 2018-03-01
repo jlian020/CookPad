@@ -148,8 +148,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     
-    @objc func fetchMyRecipes() -> Void {
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { //corrects auto layout, using 2 rows
         return CGSize(width: self.view.bounds.width/2, height: self.view.bounds.height/4)
@@ -173,23 +172,23 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     } //reuses cell for all cells in UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showRecipe", sender: self)
+        self.performSegue(withIdentifier: "editRecipe", sender: self)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRecipe" { //show the recipe that the user selected
+        if segue.identifier == "editRecipe" { //show the recipe that the user selected
             let backButton = UIBarButtonItem()
             backButton.title = "" //want an empty title, rather than app name near back button
             navigationItem.backBarButtonItem = backButton //recreates bar button with empty title
             let indexPaths = self.collectionView!.indexPathsForSelectedItems! //get the number of selected items in our collectionView
             let indexPath = indexPaths[0] as IndexPath //start at first i
             
-            let recipeVC = segue.destination as! recipeViewController
+            let recipeVC = segue.destination as! addRecipeViewController
             
             //set the profile view up
-            let recipe = myRecipes[indexPath.row]
-            recipeVC.recipe = recipe
+            //let recipe = myRecipes[indexPath.row]
+            //recipeVC.recipe = recipe
 //            recipeVC.name = recipe.name
 //            recipeVC.image = recipe.image
 //            recipeVC.ingredients = recipe.ingredients.first!
