@@ -14,7 +14,14 @@ class savedRecipeCell: UITableViewCell {
         
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
-
+    @IBOutlet weak var recipeDescription: UILabel!
+    
+    @IBOutlet weak var star1: UIImageView!
+    @IBOutlet weak var star2: UIImageView!
+    @IBOutlet weak var star3: UIImageView!
+    @IBOutlet weak var star4: UIImageView!
+    @IBOutlet weak var star5: UIImageView!
+    
 }
 
 class savedRecipeTVC: UITableViewController {
@@ -51,7 +58,7 @@ class savedRecipeTVC: UITableViewController {
             let imageRef = storageRef.child("Images/a\(index).JPG")
             imageRef.getData(maxSize: 3*1024*1024, completion: { (data, error) in
                 if let error = error {
-                    self.view.makeToast("Error: \(error)")
+                    print("Error: \(error)")
                 } else {
                     var newRecipe = Recipe.init(name: "test", image: UIImage(data: data!)!, ingredients: ["Stuff"], directions: ["Do Stuff"]);
                     self.savedRecipes.append(newRecipe)
@@ -83,6 +90,12 @@ class savedRecipeTVC: UITableViewController {
         
         cell.recipeLabel?.text = savedRecipes[indexPath.row].name
         cell.recipeImage?.image = savedRecipes[indexPath.row].image
+        cell.recipeDescription?.text = "BLAH BLAH BLACH BLAH BLACH"
+        cell.star1?.image = UIImage(named: "star2")
+        cell.star2?.image = UIImage(named: "star2")
+        cell.star3?.image = UIImage(named: "star2")
+        cell.star4?.image = UIImage(named: "star2")
+        cell.star5?.image = UIImage(named: "star")
         
         return cell
     }
