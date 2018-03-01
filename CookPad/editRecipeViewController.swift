@@ -1,12 +1,12 @@
 //
-//  recipeViewController.swift
+//  editRecipeViewController.swift
 //  CookPad
 //
 
 import UIKit
 import Firebase
 
-class recipeViewController: UIViewController {
+class editRecipeViewController: UIViewController {
     
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageView = UIImageView()
@@ -16,13 +16,12 @@ class recipeViewController: UIViewController {
     @IBOutlet weak var overlayImageView = UIImageView()
     
     var recipe : Recipe?
-   
+    
     let likeOverlay = UIImage(named: "like button")
     var reference : DatabaseReference?
     let currentUserId = Auth.auth().currentUser?.uid
     var myLikedRecipe : NSArray?
     var userNumberOfLikedRecipes: Int! = 0
-    let savedVC = savedRecipeTVC(nibName: "savedRecipeTVC", bundle: nil)
     
     override func viewDidLoad()
     {
@@ -44,48 +43,60 @@ class recipeViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func shareButtonPressed(_ sender: Any) {
+    @IBAction func editButtonPressed(_ sender: Any) {
         
+        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to edit?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Title of Recipe", style: .default, handler: editRecipeTitle))
+        alert.addAction(UIAlertAction(title: "Description", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ingredients", style: .default, handler: editRecipeIngredients))
+        alert.addAction(UIAlertAction(title: "Directions", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete Recipe", style: .default, handler: deleteRecipe))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    func editRecipeTitle(alertAction: UIAlertAction) -> Void {
+        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
+        alert.addTextField { (textField : UITextField) -> Void in
+            textField.text = self.recipe?.name ?? ""
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            print(alert.textFields?.first?.text)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func editRecipeIngredients(alertAction: UIAlertAction) -> Void {
+        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.text = self.recipe?.ingredients ?? ""
+            let heightConstraint = NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
+            textField.addConstraint(heightConstraint)
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            print(alert.textFields?.first?.text)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func deleteRecipe(alertAction: UIAlertAction) -> Void {
+        let alert = UIAlertController(title: "Are you sure?", message: "Are you sure you want to delete this recipe?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            //Delete the recipe from Firebase
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction func shareButtonPressed(_ sender: Any) {
         //Implement share
     }
     
-    @IBAction func likeButtonPressed(_ sender: Any) {
-        print("like Button pressed")
-        //stamp like, hide buttons, save the recipe to saved
-        overlayImageView?.isHidden = false
-        overlayImageView?.image = likeOverlay
-        grabLikedFromFirebase {
-            var alreadyLiked: Bool = false
-            if self.myLikedRecipe != nil {
-                for each in self.myLikedRecipe! {
-                    print("reaches")
-                    if (each as! String) == self.recipe?.firebaseId {
-                        print("print")
-                        alreadyLiked = true
-                    }
-                }
-            }
-            print(alreadyLiked)
-            if alreadyLiked == false {
-                print("got in")
-                self.myFirebaseNetworkDataRequest {
-                    //stuff that is down after the fetch from the database
-                    self.reference?.child("Users").child(self.currentUserId!).child("LikedRecipes").child("\(self.userNumberOfLikedRecipes! - 1)").setValue(self.recipe?.firebaseId)
-                    self.reference?.child("Users").child(self.currentUserId!).child("numOfLikedRecipes").setValue("\(self.userNumberOfLikedRecipes!)")
-                    //self.savedVC.loadSavedRecipes()
-                }
-            }
-        }
-
-        
-        //When pressed, save the recipe to the user's 'Saved Recipes' folder
-    }
-    @IBAction func dislikeButtonPressed(_ sender: AnyObject) {
-        self.view.makeToast("Dislike button pressed")
-        if(overlayImageView?.image == likeOverlay) {
-            overlayImageView?.isHidden = true
-        }
-    }
     
     func myFirebaseNetworkDataRequest(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
@@ -124,9 +135,7 @@ class recipeViewController: UIViewController {
             
         })
     }
-
-    
-
     
 }
+
 

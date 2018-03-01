@@ -12,23 +12,13 @@ class Recipe {
     
     var name = String()
     var image = UIImage()
-    var id = Int()
-    var ingredients = [String]()
-    var directions = [String]()
-    static var nextUID = 1
-    static func generateUID() -> Int { //creates a unique identifier for each recipe
-        nextUID += 1
-        return nextUID
-    }
+    var firebaseId = String()
+    var ingredients = String()
+    var directions = String()
     
-    init() {
-        name = "No name"
-        id = -1
-    }
-    
-    init(name: String, image: UIImage, ingredients : [String], directions : [String]) {
+    init(name: String, image: UIImage, ingredients : String, directions : String, id: String) {
         self.name = name
-        self.id = Recipe.generateUID()
+        self.firebaseId = id
         self.ingredients = ingredients
         self.image = image
         self.directions = directions

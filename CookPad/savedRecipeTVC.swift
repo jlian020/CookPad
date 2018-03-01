@@ -8,7 +8,7 @@
 
 import UIKit
 import CloudKit
-import FirebaseStorage
+import Firebase
 
 class savedRecipeCell: UITableViewCell {
         
@@ -27,15 +27,20 @@ class savedRecipeCell: UITableViewCell {
 class savedRecipeTVC: UITableViewController {
     
     var refresh : UIRefreshControl!
-    
+    var reference: DatabaseReference?
+    let currentUserId = Auth.auth().currentUser?.uid
     var profileRecords = [CKRecord]()
     var savedRecipes = [Recipe]() //array of recipes
+    var recipeImage : UIImage?
+    var recipePictureURL : URL?
+    var myLikedRecipeDict : NSArray?
+
+    let vc = ViewController(nibName: "ViewController", bundle: nil)
     
-    let storage = Storage.storage() //get reference to Google Firebase Storage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        reference = Database.database().reference()
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
         refresh.addTarget(self, action: #selector(savedRecipeTVC.loadSavedRecipes), for: .valueChanged)
@@ -72,6 +77,57 @@ class savedRecipeTVC: UITableViewController {
             })
         }
     }
+    
+    func grabLikedRecipesFromFirebase(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        reference?.child("Users").child(currentUserId!).observeSingleEvent(of: .value, with: {(UserRecipeSnap) in
+            if UserRecipeSnap.exists(){
+                if UserRecipeSnap.hasChild("LikedRecipes") {
+                    let Dict : NSDictionary = UserRecipeSnap.value as! NSDictionary
+                    print("entered")
+                    self.myLikedRecipeDict = Dict["LikedRecipes"] as? NSArray
+                    finished()
+                }
+                else {
+                    print("MyRecipes DOES NOT EXIST")
+                }
+            }
+            else {
+                print("Error with retrieving snapshot from Firebase")
+            }
+            
+        })
+    }
+    
+    
+    func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        //this func grabs this data from the database and make sure that it waits for the fetch
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
+            // The download has finished.
+            if let e = error {
+                print("Error downloading recipe picture: \(e)")
+            } else {
+                // No errors found.
+                // It would be weird if we didn't have a response, so check for that too.
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded recipe picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        // Finally convert that Data into an image and do what you wish with it.
+                        self.recipeImage = UIImage(data: imageData)!
+                        finished()
+                        // Do something with your image.
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        downloadPicTask.resume()
+        
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -117,12 +173,8 @@ class savedRecipeTVC: UITableViewController {
             
             //set the profile view up
             let recipe = savedRecipes[indexPath.row]
-            
-            recipeVC.name = recipe.name
-            recipeVC.image = recipe.image
-            recipeVC.ingredients = recipe.ingredients.first!
-            
-            //vc.title = self.recipes[indexPath.row]
+            recipeVC.recipe = recipe
+
         }
     }
     
