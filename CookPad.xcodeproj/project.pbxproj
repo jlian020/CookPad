@@ -22,6 +22,7 @@
 		D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */; };
 		D1B714BA201A724B00C0E0CE /* addRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */; };
 		D1B714BE201A860600C0E0CE /* myRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */; };
+		D1C293B820486FEE00F7244D /* editRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C293B720486FEE00F7244D /* editRecipeViewController.swift */; };
 		D1C8FDE61CDBE4EE006D7D60 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */; };
 		D1C8FDE71CDBE4EE006D7D60 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */; };
 		D1C8FDE81CDBE4EE006D7D60 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */; };
@@ -52,6 +53,7 @@
 		D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeViewController.swift; sourceTree = "<group>"; };
 		D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRecipeViewController.swift; sourceTree = "<group>"; };
 		D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myRecipeViewController.swift; sourceTree = "<group>"; };
+		D1C293B720486FEE00F7244D /* editRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editRecipeViewController.swift; sourceTree = "<group>"; };
 		D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		D1C8FDE51CDBE4EE006D7D60 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				BACD0A3D202941DF004CE00D /* savedRecipeTVC.swift */,
 				D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */,
 				D1214A35203FA4D7002DF7E8 /* SearchRecipeViewController.swift */,
+				D1C293B720486FEE00F7244D /* editRecipeViewController.swift */,
 			);
 			path = CookPad;
 			sourceTree = "<group>";
@@ -268,11 +271,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CookPad/Pods-CookPad-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -283,11 +281,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -310,6 +303,7 @@
 			files = (
 				D1B714BE201A860600C0E0CE /* myRecipeViewController.swift in Sources */,
 				D1B714BA201A724B00C0E0CE /* addRecipeViewController.swift in Sources */,
+				D1C293B820486FEE00F7244D /* editRecipeViewController.swift in Sources */,
 				D1214A36203FA4D7002DF7E8 /* SearchRecipeViewController.swift in Sources */,
 				D1C8FDEA1CDBF016006D7D60 /* loginViewController.swift in Sources */,
 				BACD0A3E202941DF004CE00D /* savedRecipeTVC.swift in Sources */,

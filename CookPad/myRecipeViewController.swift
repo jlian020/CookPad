@@ -184,14 +184,11 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
             let indexPaths = self.collectionView!.indexPathsForSelectedItems! //get the number of selected items in our collectionView
             let indexPath = indexPaths[0] as IndexPath //start at first i
             
-            let recipeVC = segue.destination as! addRecipeViewController
+            let recipeVC = segue.destination as! editRecipeViewController
             
             //set the profile view up
-            //let recipe = myRecipes[indexPath.row]
-            //recipeVC.recipe = recipe
-//            recipeVC.name = recipe.name
-//            recipeVC.image = recipe.image
-//            recipeVC.ingredients = recipe.ingredients.first!
+            let recipe = myRecipes[indexPath.row]
+            recipeVC.recipe = recipe
             
             //vc.title = self.recipes[indexPath.row]
         }
