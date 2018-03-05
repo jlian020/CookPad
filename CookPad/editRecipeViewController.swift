@@ -49,7 +49,7 @@ class editRecipeViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Title of Recipe", style: .default, handler: editRecipeTitle))
         alert.addAction(UIAlertAction(title: "Description", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Ingredients", style: .default, handler: editRecipeIngredients))
-        alert.addAction(UIAlertAction(title: "Directions", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Directions", style: .default, handler: editRecipeDirections))
         alert.addAction(UIAlertAction(title: "Delete Recipe", style: .default, handler: deleteRecipe))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
@@ -61,24 +61,51 @@ class editRecipeViewController: UIViewController {
     func editRecipeTitle(alertAction: UIAlertAction) -> Void {
         let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
         alert.addTextField { (textField : UITextField) -> Void in
-            textField.text = self.recipe?.name ?? ""
+            textField.text = self.nameLabel?.text
         }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            print(alert.textFields?.first?.text)
+        alert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+            self.nameLabel?.text = alert.textFields![0].text
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Name").setValue(self.nameLabel?.text)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
     func editRecipeIngredients(alertAction: UIAlertAction) -> Void {
-        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.text = self.recipe?.ingredients ?? ""
-            let heightConstraint = NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
-            textField.addConstraint(heightConstraint)
-        }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            print(alert.textFields?.first?.text)
+        let alert = UIAlertController(title: "What ingredients would you like to change?", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        
+        let margin:CGFloat = 8.0
+        print(alert.view.frame.size.width)
+        let rect = CGRect(x: margin, y: margin+60.0,width: 254.0,height: 158.0)
+        let customView = UITextView(frame: rect)
+        customView.text = self.ingredientsList?.text
+        customView.font = UIFont(name: "Helvetica", size: 12)
+        alert.view.addSubview(customView)
+
+        alert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+            //actually change in database here:
+            self.ingredientsList?.text = customView.text
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Ingredients").setValue(self.ingredientsList?.text)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func editRecipeDirections(alertAction: UIAlertAction) -> Void {
+        let alert = UIAlertController(title: "What directions would you like to change?", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        
+        let margin:CGFloat = 8.0
+        print(alert.view.frame.size.width)
+        let rect = CGRect(x: margin, y: margin+60.0,width: 254.0,height: 158.0)
+        let customView = UITextView(frame: rect)
+        customView.text = self.directionsTextView?.text
+        customView.font = UIFont(name: "Helvetica", size: 12)
+        alert.view.addSubview(customView)
+        
+        alert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+            //actually change in database here:
+            self.directionsTextView?.text = customView.text
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Directions").setValue(self.directionsTextView?.text)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
@@ -102,12 +129,14 @@ class editRecipeViewController: UIViewController {
         //this func grabs this data from the database and make sure that it waits for the fetch
         let userID = Auth.auth().currentUser?.uid
         reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.exists() && snapshot.hasChild("numOfLikedRecipes") {
+            if snapshot.exists() && snapshot.hasChild("numOfLikedRecipes")
+            {
                 let value = snapshot.value as? NSDictionary
                 let numRecipes: String = (value?["numOfLikedRecipes"] as? String)!
                 self.userNumberOfLikedRecipes = Int(numRecipes)! + 1
             }
-            else{
+            else
+            {
                 self.userNumberOfLikedRecipes = 1
             }
             finished()

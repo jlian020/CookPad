@@ -963,6 +963,7 @@
         <image name="share-symbol" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="jBb-sf-38a"/>
         <segue reference="Wr9-gh-MFV"/>
         <segue reference="wsY-tb-Yt9"/>
         <segue reference="teJ-sI-CD5"/>
