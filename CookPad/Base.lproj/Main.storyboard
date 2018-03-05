@@ -135,19 +135,6 @@
                                                 <constraint firstAttribute="width" constant="175" id="ncl-Jd-2MK"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
-                                            <rect key="frame" x="270" y="29" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxZ-8m-KTy">
-                                            <rect key="frame" x="193" y="46" width="166" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHU-1M-jem">
                                             <rect key="frame" x="228" y="100" width="27" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -168,17 +155,21 @@
                                             <rect key="frame" x="193" y="100" width="27" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
+                                            <rect key="frame" x="193" y="20" width="166" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Una-st-Bas" firstAttribute="leading" secondItem="AnU-bq-JWf" secondAttribute="leading" constant="10" id="EX3-8P-gdo"/>
                                         <constraint firstAttribute="bottom" secondItem="Una-st-Bas" secondAttribute="bottom" constant="10" id="I0J-7P-Hg9"/>
-                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="leading" secondItem="Una-st-Bas" secondAttribute="trailing" constant="85" id="SH9-O4-yuT"/>
-                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="top" secondItem="AnU-bq-JWf" secondAttribute="topMargin" constant="5" id="fYN-zb-SHI"/>
                                         <constraint firstItem="Una-st-Bas" firstAttribute="top" secondItem="AnU-bq-JWf" secondAttribute="top" constant="10" id="fni-1a-vlW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="recipeDescription" destination="hxZ-8m-KTy" id="hud-oP-3iL"/>
                                     <outlet property="recipeImage" destination="Una-st-Bas" id="7M3-at-Hs8"/>
                                     <outlet property="recipeLabel" destination="l4J-zx-oqn" id="6Ad-2W-CKE"/>
                                     <outlet property="star1" destination="aaL-12-hOj" id="CH1-Go-5gg"/>
@@ -994,7 +985,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Wr9-gh-MFV"/>
-        <segue reference="wsY-tb-Yt9"/>
+        <segue reference="vb6-9P-OcS"/>
         <segue reference="teJ-sI-CD5"/>
     </inferredMetricsTieBreakers>
 </document>
