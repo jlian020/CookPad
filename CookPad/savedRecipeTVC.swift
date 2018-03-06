@@ -24,6 +24,7 @@ class savedRecipeTVC: UITableViewController {
     let currentUserId = Auth.auth().currentUser?.uid
     var profileRecords = [CKRecord]()
     var savedRecipes = [Recipe]() //array of recipes
+    var tempSavedRecipes = [Recipe]() //array of recipes
     var recipeImage : UIImage?
     var recipePictureURL : URL?
     var myLikedRecipeDict : NSArray?
@@ -44,27 +45,30 @@ class savedRecipeTVC: UITableViewController {
         //Status Bar White Font
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.tintColor = UIColor.white
-        
+//        DispatchQueue.main.async {
+//            self.loadSavedRecipes()
+//        }
          loadSavedRecipes()
     }
     
     @objc func loadSavedRecipes() -> Void {
-        savedRecipes.removeAll()
-        refresh.endRefreshing()
+        tempSavedRecipes.removeAll()
+        if refresh.isRefreshing {
+            refresh.endRefreshing()
+        }
+        
         grabLikedRecipesFromFirebase {
             print(self.myLikedRecipeDict!)
             if self.myLikedRecipeDict!.count > 0 {
                 self.grabRecipes {
-                    //HELLO
                 }
-            }
-            
-        }
 
+            }
+
+        }
     }
     
-    
-    func grabRecipes(finished: @escaping () -> Void){ // the function thats going to take a little moment
+    func grabRecipes(finished: @escaping () -> Void) { // the function thats going to take a little moment
         for each in self.myLikedRecipeDict!{
             let x: String = each as! String
             self.reference?.child("Recipes").child(x).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -82,7 +86,8 @@ class savedRecipeTVC: UITableViewController {
                     self.recipePictureURL = URL(string: tempRecipeURL)
                     self.myFirebaseStorageImageGrab {
                         let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: tempRecipeIngredients, directions: tempRecipeDirections, id: x)
-                        self.savedRecipes.append(newRecipe)
+                        self.tempSavedRecipes.append(newRecipe)
+                        self.savedRecipes = self.tempSavedRecipes
                         DispatchQueue.main.async(execute: {
                             //push the current info into the main thread, otherwise for loop would be asynchronous
                             if self.vc.recipeDoneSending == true {

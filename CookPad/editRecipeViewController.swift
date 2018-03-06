@@ -19,15 +19,16 @@ class editRecipeViewController: UIViewController {
     
     let likeOverlay = UIImage(named: "like button")
     var reference : DatabaseReference?
+    let storage = Storage.storage()
     let currentUserId = Auth.auth().currentUser?.uid
-    var myLikedRecipe : NSArray?
+    var myRecipes : NSArray?
     var userNumberOfLikedRecipes: Int! = 0
+    let currentUserID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         reference = Database.database().reference()
-        
         self.imageView?.image = self.recipe?.image
         self.nameLabel?.text = self.recipe?.name
         self.ingredientsList?.text = self.recipe?.ingredients
@@ -47,9 +48,9 @@ class editRecipeViewController: UIViewController {
         
         let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to edit?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Title of Recipe", style: .default, handler: editRecipeTitle))
-        alert.addAction(UIAlertAction(title: "Description", style: .default, handler: nil))
+        //alert.addAction(UIAlertAction(title: "Description", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Ingredients", style: .default, handler: editRecipeIngredients))
-        alert.addAction(UIAlertAction(title: "Directions", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Directions", style: .default, handler: editRecipeDirections))
         alert.addAction(UIAlertAction(title: "Delete Recipe", style: .default, handler: deleteRecipe))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
@@ -64,30 +65,74 @@ class editRecipeViewController: UIViewController {
             textField.text = self.recipe?.name ?? ""
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            print(alert.textFields?.first?.text)
+            //edit title
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Name").setValue(alert.textFields?.first?.text)
+            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
     func editRecipeIngredients(alertAction: UIAlertAction) -> Void {
-        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to change it to?", preferredStyle: .alert)
         alert.addTextField { textField in
             textField.text = self.recipe?.ingredients ?? ""
             let heightConstraint = NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
             textField.addConstraint(heightConstraint)
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            print(alert.textFields?.first?.text)
+            //edit Ingredients
+            print((self.recipe?.ingredients)!)
+            print((alert.textFields?.first?.text)!)
+            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
+    func editRecipeDirections(alertAction: UIAlertAction) -> Void {
+        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to change it to?", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.text = self.recipe?.ingredients ?? ""
+            let heightConstraint = NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
+            textField.addConstraint(heightConstraint)
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            //Edit Directions to Firebase
+            //self.performSegue(withIdentifier: "showMyRecipes", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+
     func deleteRecipe(alertAction: UIAlertAction) -> Void {
         let alert = UIAlertController(title: "Are you sure?", message: "Are you sure you want to delete this recipe?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             //Delete the recipe from Firebase
+            //self.reference?.child("Users").child(currentUserID).child("MyRecipes")
+            self.grabMyRecipesFromFirebase {
+                var i: Int = 0
+                for each in self.myRecipes! {
+                    let x: String = each as! String
+                    if x == self.recipe?.firebaseId {
+                        print("found")
+                        self.reference?.child("Users").child(self.currentUserID!).child("MyRecipes").child(String(i)).setValue("N/A")
+                    } else {
+                        i += 1
+                    }
+                }
+                
+            }
+            let storageRef = self.storage.reference()
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).removeValue()
+            storageRef.child("Images").child((self.recipe?.firebaseId)!).delete { error in
+                if let error = error{
+                    print("Error:\(error)")
+                } else {
+                    //success
+                }
+            }
+            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
@@ -96,7 +141,6 @@ class editRecipeViewController: UIViewController {
     @IBAction func shareButtonPressed(_ sender: Any) {
         //Implement share
     }
-    
     
     func myFirebaseNetworkDataRequest(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
@@ -115,13 +159,13 @@ class editRecipeViewController: UIViewController {
         
     }
     
-    func grabLikedFromFirebase(finished: @escaping () -> Void){ // the function thats going to take a little moment
+    func grabMyRecipesFromFirebase(finished: @escaping () -> Void){ // the function thats going to take a little moment
         reference?.child("Users").child(currentUserId!).observeSingleEvent(of: .value, with: {(UserRecipeSnap) in
             if UserRecipeSnap.exists(){
-                if UserRecipeSnap.hasChild("LikedRecipes") {
+                if UserRecipeSnap.hasChild("MyRecipes") {
                     let Dict : NSDictionary = UserRecipeSnap.value as! NSDictionary
                     print("entered")
-                    self.myLikedRecipe = Dict["LikedRecipes"] as? NSArray
+                    self.myRecipes = Dict["MyRecipes"] as? NSArray
                     finished()
                 }
                 else {

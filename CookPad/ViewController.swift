@@ -57,12 +57,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         while data.count != 4 {
                             //wait if new recipe is being added
                         }
-                        print(snap.key)
-                        var tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
+                        var tempRecipeURL = data.value(forKey: "storageURL") as? String ?? "not found"
                         while(tempRecipeURL == "") {
-                            tempRecipeURL = data.value(forKey: "storageURL") as? String ?? ""
+                            tempRecipeURL = data.value(forKey: "storageURL") as? String ?? "not found"
                         }
+                        print(tempRecipeURL)
                         self.recipePictureURL = URL(string: tempRecipeURL)
+                        print(data.value(forKey: "Name"))
                         self.myFirebaseStorageImageGrab {
                             let tempRecipeName = data.value(forKey: "Name") as? String ?? ""
                             let tempRecipeIngredients = data.value(forKey: "Ingredients") as? String ?? ""
@@ -98,29 +99,36 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func myFirebaseStorageImageGrab(finished: @escaping () -> Void){ // the function thats going to take a little moment
         //this func grabs this data from the database and make sure that it waits for the fetch
         let session = URLSession(configuration: .default)
-        let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
-            // The download has finished.
-            if let e = error {
-                print("Error downloading recipe picture: \(e)")
-            } else {
-                // No errors found.
-                // It would be weird if we didn't have a response, so check for that too.
-                if let res = response as? HTTPURLResponse {
-                    print("Downloaded recipe picture with response code \(res.statusCode)")
-                    if let imageData = data {
-                        // Finally convert that Data into an image and do what you wish with it.
-                        self.recipeImage = UIImage(data: imageData)!
-                        finished()
-                        // Do something with your image.
-                    } else {
-                        print("Couldn't get image: Image is nil")
-                    }
+        if(recipePictureURL?.absoluteString != "") {
+            //print("True: \(recipePictureURL?.absoluteString)")
+            let downloadPicTask = session.dataTask(with: recipePictureURL!) { (data, response, error) in
+                // The download has finished.
+                if let e = error {
+                    print("Error downloading recipe picture: \(e)")
                 } else {
-                    print("Couldn't get response code for some reason")
+                    // No errors found.
+                    // It would be weird if we didn't have a response, so check for that too.
+                    if let res = response as? HTTPURLResponse {
+                        print("Downloaded recipe picture with response code \(res.statusCode)")
+                        if let imageData = data {
+                            // Finally convert that Data into an image and do what you wish with it.
+                            self.recipeImage = UIImage(data: imageData)!
+                            finished()
+                            // Do something with your image.
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code for some reason")
+                    }
                 }
             }
+            downloadPicTask.resume()
+        } else {
+            //print("False: \(recipePictureURL?.absoluteString)")
+            self.recipeImage = UIImage(named: "default.jpg")
         }
-        downloadPicTask.resume()
+
         
     }
     

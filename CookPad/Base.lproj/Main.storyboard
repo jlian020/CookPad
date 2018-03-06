@@ -135,8 +135,8 @@
                                                 <constraint firstAttribute="width" constant="175" id="ncl-Jd-2MK"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
-                                            <rect key="frame" x="195" y="11" width="159" height="63"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
+                                            <rect key="frame" x="196" y="11" width="159" height="63"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -964,7 +964,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Wr9-gh-MFV"/>
-        <segue reference="wsY-tb-Yt9"/>
+        <segue reference="vb6-9P-OcS"/>
         <segue reference="teJ-sI-CD5"/>
     </inferredMetricsTieBreakers>
 </document>
