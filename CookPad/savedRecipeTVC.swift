@@ -30,6 +30,7 @@ class savedRecipeTVC: UITableViewController {
     let currentUserId = Auth.auth().currentUser?.uid
     var profileRecords = [CKRecord]()
     var savedRecipes = [Recipe]() //array of recipes
+    var tempSavedRecipes = [Recipe]() //array of recipes
     var recipeImage : UIImage?
     var recipePictureURL : URL?
     var myLikedRecipeDict : NSArray?
@@ -55,8 +56,10 @@ class savedRecipeTVC: UITableViewController {
     }
     
     @objc func loadSavedRecipes() -> Void {
-        savedRecipes.removeAll()
-        refresh.endRefreshing()
+        tempSavedRecipes.removeAll()
+        if refresh.isRefreshing {
+            refresh.endRefreshing()
+        }
         grabLikedRecipesFromFirebase {
             print(self.myLikedRecipeDict!)
             if self.myLikedRecipeDict!.count > 0 {
@@ -66,7 +69,7 @@ class savedRecipeTVC: UITableViewController {
             }
             
         }
-        
+
     }
     
     
@@ -88,7 +91,8 @@ class savedRecipeTVC: UITableViewController {
                     self.recipePictureURL = URL(string: tempRecipeURL)
                     self.myFirebaseStorageImageGrab {
                         let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: tempRecipeIngredients, directions: tempRecipeDirections, id: x)
-                        self.savedRecipes.append(newRecipe)
+                        self.tempSavedRecipes.append(newRecipe)
+                        self.savedRecipes = self.tempSavedRecipes
                         DispatchQueue.main.async(execute: {
                             //push the current info into the main thread, otherwise for loop would be asynchronous
                             if self.vc.recipeDoneSending == true {
@@ -180,7 +184,7 @@ class savedRecipeTVC: UITableViewController {
         cell.star3?.image = UIImage(named: "star2")
         cell.star4?.image = UIImage(named: "star2")
         cell.star5?.image = UIImage(named: "star")
-        
+
         return cell
     }
     
