@@ -22,6 +22,7 @@
 		D1B420B01CD5745500EDF6A0 /* recipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */; };
 		D1B714BA201A724B00C0E0CE /* addRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */; };
 		D1B714BE201A860600C0E0CE /* myRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */; };
+		D1BC5E57204DFD9F00C2D6BC /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BC5E58204DFD9F00C2D6BC /* JGProgressHUD.framework */; };
 		D1C293B820486FEE00F7244D /* editRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C293B720486FEE00F7244D /* editRecipeViewController.swift */; };
 		D1C8FDE61CDBE4EE006D7D60 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */; };
 		D1C8FDE71CDBE4EE006D7D60 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */; };
@@ -53,6 +54,7 @@
 		D1B420AF1CD5745500EDF6A0 /* recipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeViewController.swift; sourceTree = "<group>"; };
 		D1B714B9201A724B00C0E0CE /* addRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRecipeViewController.swift; sourceTree = "<group>"; };
 		D1B714BD201A860600C0E0CE /* myRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myRecipeViewController.swift; sourceTree = "<group>"; };
+		D1BC5E58204DFD9F00C2D6BC /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C293B720486FEE00F7244D /* editRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editRecipeViewController.swift; sourceTree = "<group>"; };
 		D1C8FDE31CDBE4EE006D7D60 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D1C8FDE41CDBE4EE006D7D60 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1BC5E57204DFD9F00C2D6BC /* JGProgressHUD.framework in Frameworks */,
 				11CC388120350E82005B910E /* IQKeyboardManagerSwift.framework in Frameworks */,
 				D1C8FDE71CDBE4EE006D7D60 /* FBSDKLoginKit.framework in Frameworks */,
 				D1C8FDE61CDBE4EE006D7D60 /* FBSDKCoreKit.framework in Frameworks */,
@@ -82,6 +85,7 @@
 		AF2F6560056F8BDCBB20085B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1BC5E58204DFD9F00C2D6BC /* JGProgressHUD.framework */,
 				11CC388220350E82005B910E /* IQKeyboardManagerSwift.framework */,
 				21F7E419984B2EFF211AE04B /* Pods_CookPad.framework */,
 			);
@@ -275,6 +279,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -285,6 +290,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",

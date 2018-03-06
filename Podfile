@@ -14,4 +14,5 @@ target 'CookPad' do
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'IQKeyboardManagerSwift'
+  pod ‘JGProgressHUD’
 end

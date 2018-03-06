@@ -62,7 +62,7 @@ class editRecipeViewController: UIViewController {
     func editRecipeTitle(alertAction: UIAlertAction) -> Void {
         let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to rename it to?", preferredStyle: .alert)
         alert.addTextField { (textField : UITextField) -> Void in
-            textField.text = self.recipe?.name ?? ""
+            textField.text = self.nameLabel?.text
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             //edit title
@@ -146,12 +146,14 @@ class editRecipeViewController: UIViewController {
         //this func grabs this data from the database and make sure that it waits for the fetch
         let userID = Auth.auth().currentUser?.uid
         reference?.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.exists() && snapshot.hasChild("numOfLikedRecipes") {
+            if snapshot.exists() && snapshot.hasChild("numOfLikedRecipes")
+            {
                 let value = snapshot.value as? NSDictionary
                 let numRecipes: String = (value?["numOfLikedRecipes"] as? String)!
                 self.userNumberOfLikedRecipes = Int(numRecipes)! + 1
             }
-            else{
+            else
+            {
                 self.userNumberOfLikedRecipes = 1
             }
             finished()
