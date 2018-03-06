@@ -64,47 +64,54 @@ class editRecipeViewController: UIViewController {
         alert.addTextField { (textField : UITextField) -> Void in
             textField.text = self.nameLabel?.text
         }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            //edit title
-            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Name").setValue(alert.textFields?.first?.text)
-            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
+        alert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+            self.nameLabel?.text = alert.textFields![0].text
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Name").setValue(self.nameLabel?.text)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
     func editRecipeIngredients(alertAction: UIAlertAction) -> Void {
-        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to change it to?", preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.text = self.recipe?.ingredients ?? ""
-            let heightConstraint = NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
-            textField.addConstraint(heightConstraint)
-        }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            //edit Ingredients
-            print((self.recipe?.ingredients)!)
-            print((alert.textFields?.first?.text)!)
-            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
+        let alert = UIAlertController(title: "What ingredients would you like to change?", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        
+        let margin:CGFloat = 8.0
+        print(alert.view.frame.size.width)
+        let rect = CGRect(x: margin, y: margin+60.0,width: 254.0,height: 158.0)
+        let customView = UITextView(frame: rect)
+        customView.text = self.ingredientsList?.text
+        customView.font = UIFont(name: "Helvetica", size: 12)
+        alert.view.addSubview(customView)
+
+        alert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+            //actually change in database here:
+            self.ingredientsList?.text = customView.text
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Ingredients").setValue(self.ingredientsList?.text)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
     func editRecipeDirections(alertAction: UIAlertAction) -> Void {
-        let alert = UIAlertController(title: "Edit Recipe", message: "What do you want to change it to?", preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.text = self.recipe?.ingredients ?? ""
-            let heightConstraint = NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
-            textField.addConstraint(heightConstraint)
-        }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            //Edit Directions to Firebase
-            //self.performSegue(withIdentifier: "showMyRecipes", sender: self)
+        let alert = UIAlertController(title: "What directions would you like to change?", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        
+        let margin:CGFloat = 8.0
+        print(alert.view.frame.size.width)
+        let rect = CGRect(x: margin, y: margin+60.0,width: 254.0,height: 158.0)
+        let customView = UITextView(frame: rect)
+        customView.text = self.directionsTextView?.text
+        customView.font = UIFont(name: "Helvetica", size: 12)
+        alert.view.addSubview(customView)
+        
+        alert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
+            //actually change in database here:
+            self.directionsTextView?.text = customView.text
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Directions").setValue(self.directionsTextView?.text)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
-
+    
     func deleteRecipe(alertAction: UIAlertAction) -> Void {
         let alert = UIAlertController(title: "Are you sure?", message: "Are you sure you want to delete this recipe?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in

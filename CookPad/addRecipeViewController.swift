@@ -135,7 +135,11 @@ class addRecipeViewController: UIViewController, UIImagePickerControllerDelegate
             //Submit the recipe to the database and append the user id to the recipe created
             //self.view.makeToast("Submitted Recipe")
             vc.recipes.removeAll()
-            let delay = DispatchTime.now() + 3.25 // wait a second to display submitted recipe message, then perform segue
+            
+            var progress = JGProgressHUD(style: .dark)
+            progress.textLabel.text = "Uploading Recipe"
+            progress.show(in: self.view, animated: true)
+            let delay = DispatchTime.now() + 3 // wait 3 seconds to display uploading recipe message
             DispatchQueue.main.asyncAfter(deadline: delay) {
                 progress.indicatorView = JGProgressHUDSuccessIndicatorView.init() //display upload recipe success
                 progress.dismiss(afterDelay: 2.0)
