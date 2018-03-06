@@ -62,6 +62,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func grabRecipes(finished: @escaping () -> Void){ // the function thats going to take a little moment
+        print(self.myRecipeDict)
         for each in self.myRecipeDict!{
             let x: String = each as! String
             self.reference?.child("Recipes").child(x).observeSingleEvent(of: .value, with: { (snapshot) in

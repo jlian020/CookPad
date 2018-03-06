@@ -64,16 +64,14 @@ class savedRecipeTVC: UITableViewController {
             print(self.myLikedRecipeDict!)
             if self.myLikedRecipeDict!.count > 0 {
                 self.grabRecipes {
-                    //HELLO
                 }
-            }
-            
-        }
 
+            }
+
+        }
     }
     
-    
-    func grabRecipes(finished: @escaping () -> Void){ // the function thats going to take a little moment
+    func grabRecipes(finished: @escaping () -> Void) { // the function thats going to take a little moment
         for each in self.myLikedRecipeDict!{
             let x: String = each as! String
             self.reference?.child("Recipes").child(x).observeSingleEvent(of: .value, with: { (snapshot) in
