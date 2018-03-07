@@ -8,13 +8,14 @@ import Firebase
 
 class editRecipeViewController: UIViewController {
     
-    @IBOutlet weak var viewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageView = UIImageView()
     @IBOutlet weak var nameLabel = UILabel()
-    @IBOutlet weak var ingredientsList = UITextView() //lists steps to follow for recipe
-    @IBOutlet weak var directionsTextView: UITextView!
+    //@IBOutlet weak var ingredientsList = UITextView() //lists steps to follow for recipe
+    //@IBOutlet weak var directionsTextView: UITextView!
     @IBOutlet weak var overlayImageView = UIImageView()
     
+    @IBOutlet weak var directionsList: UILabel!
+    @IBOutlet weak var ingredientsList: UILabel!
     var recipe : Recipe?
     
     let likeOverlay = UIImage(named: "like button")
@@ -32,12 +33,9 @@ class editRecipeViewController: UIViewController {
         self.imageView?.image = self.recipe?.image
         self.nameLabel?.text = self.recipe?.name
         self.ingredientsList?.text = self.recipe?.ingredients
-        self.directionsTextView?.text = self.recipe?.directions
-        var numDirectionsLines = (directionsTextView.contentSize.height / (directionsTextView.font?.lineHeight)!) as? CGFloat
-        var numIngredientsLines = ((ingredientsList?.contentSize.height)! / (ingredientsList?.font?.lineHeight)!) as? CGFloat
-        let numOfLines = numDirectionsLines! + numIngredientsLines!
-        print(numOfLines)
-        viewHeight.constant = numOfLines > 8 ? 667 + numOfLines*(directionsTextView.font?.lineHeight)! : 667
+        self.directionsList?.text = self.recipe?.directions
+        self.ingredientsList.sizeToFit()
+        self.directionsList.sizeToFit()
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,14 +97,14 @@ class editRecipeViewController: UIViewController {
         print(alert.view.frame.size.width)
         let rect = CGRect(x: margin, y: margin+60.0,width: 254.0,height: 158.0)
         let customView = UITextView(frame: rect)
-        customView.text = self.directionsTextView?.text
+        customView.text = self.directionsList?.text
         customView.font = UIFont(name: "Helvetica", size: 12)
         alert.view.addSubview(customView)
         
         alert.addAction(UIAlertAction(title: "Save Changes", style: .default, handler: { (action) in
             //actually change in database here:
-            self.directionsTextView?.text = customView.text
-            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Directions").setValue(self.directionsTextView?.text)
+            self.directionsList.text = customView.text
+            self.reference?.child("Recipes").child((self.recipe?.firebaseId)!).child("Directions").setValue(self.directionsList?.text)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)

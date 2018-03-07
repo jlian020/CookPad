@@ -11,8 +11,10 @@ class recipeViewController: UIViewController {
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageView = UIImageView()
     @IBOutlet weak var nameLabel = UILabel()
-    @IBOutlet weak var ingredientsList = UITextView() //lists steps to follow for recipe
-    @IBOutlet weak var directionsTextView: UITextView!
+    @IBOutlet weak var ingredientsList: UILabel!
+    @IBOutlet weak var directionsList: UILabel!
+    //@IBOutlet weak var ingredientsList = UITextView() //lists steps to follow for recipe
+    //@IBOutlet weak var directionsTextView: UITextView!
     @IBOutlet weak var overlayImageView = UIImageView()
     
     var recipe : Recipe?
@@ -32,12 +34,10 @@ class recipeViewController: UIViewController {
         self.imageView?.image = self.recipe?.image
         self.nameLabel?.text = self.recipe?.name
         self.ingredientsList?.text = self.recipe?.ingredients
-        self.directionsTextView?.text = self.recipe?.directions
-        var numDirectionsLines = (directionsTextView.contentSize.height / (directionsTextView.font?.lineHeight)!) as? CGFloat
-        var numIngredientsLines = ((ingredientsList?.contentSize.height)! / (ingredientsList?.font?.lineHeight)!) as? CGFloat
-        let numOfLines = numDirectionsLines! + numIngredientsLines!
-        print(numOfLines)
-        viewHeight.constant = numOfLines > 8 ? 667 + numOfLines*(directionsTextView.font?.lineHeight)! : 667
+        self.directionsList?.text = self.recipe?.directions
+        
+        self.directionsList.sizeToFit()
+        self.ingredientsList.sizeToFit()
     }
     
     override func didReceiveMemoryWarning() {
