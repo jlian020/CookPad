@@ -184,7 +184,7 @@
 				TargetAttributes = {
 					D1B420771CD571E600EDF6A0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = UR8AP3R8R3;
+						DevelopmentTeam = 23BS9M87J5;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -436,14 +436,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UR8AP3R8R3;
+				DEVELOPMENT_TEAM = 23BS9M87J5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Satkaran.CookPad2;
+				PRODUCT_BUNDLE_IDENTIFIER = Junhao.CookPad2;
 				PRODUCT_NAME = CookPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -459,14 +459,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UR8AP3R8R3;
+				DEVELOPMENT_TEAM = 23BS9M87J5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CookPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Satkaran.CookPad2;
+				PRODUCT_BUNDLE_IDENTIFIER = Junhao.CookPad2;
 				PRODUCT_NAME = CookPad;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

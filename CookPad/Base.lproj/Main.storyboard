@@ -121,41 +121,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" rowHeight="85" id="g0X-Lq-fOC" customClass="savedRecipeCell" customModule="CookPad" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" rowHeight="160" id="g0X-Lq-fOC" customClass="savedRecipeCell" customModule="CookPad" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g0X-Lq-fOC" id="AnU-bq-JWf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g0X-Lq-fOC" id="AnU-bq-JWf">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="159.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Una-st-Bas">
-                                            <rect key="frame" x="0.0" y="0.0" width="175" height="150"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Una-st-Bas">
+                                            <rect key="frame" x="10" y="0.0" width="175" height="79.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="lCV-lL-mNt"/>
                                                 <constraint firstAttribute="width" constant="175" id="ncl-Jd-2MK"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
-                                            <rect key="frame" x="196" y="11" width="159" height="63"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHU-1M-jem">
+                                            <rect key="frame" x="228" y="100" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrY-9K-DtT">
+                                            <rect key="frame" x="263" y="100" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cqk-iT-SQO">
+                                            <rect key="frame" x="298" y="100" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Xa-Bg-BQL">
+                                            <rect key="frame" x="332" y="100" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aaL-12-hOj">
+                                            <rect key="frame" x="193" y="100" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l4J-zx-oqn">
+                                            <rect key="frame" x="193" y="20" width="166" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="leading" secondItem="Una-st-Bas" secondAttribute="trailing" constant="20" id="2Jd-kD-8Ur"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="l4J-zx-oqn" secondAttribute="trailing" constant="5" id="2xw-rk-EVQ"/>
-                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="bottom" secondItem="AnU-bq-JWf" secondAttribute="bottomMargin" id="4qI-tj-6W5"/>
-                                        <constraint firstItem="Una-st-Bas" firstAttribute="leading" secondItem="AnU-bq-JWf" secondAttribute="leading" id="EX3-8P-gdo"/>
-                                        <constraint firstAttribute="bottom" secondItem="Una-st-Bas" secondAttribute="bottom" id="I0J-7P-Hg9"/>
-                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="leading" secondItem="Una-st-Bas" secondAttribute="trailing" constant="20" id="SH9-O4-yuT"/>
-                                        <constraint firstItem="Una-st-Bas" firstAttribute="top" secondItem="AnU-bq-JWf" secondAttribute="top" id="fni-1a-vlW"/>
-                                        <constraint firstItem="l4J-zx-oqn" firstAttribute="top" secondItem="AnU-bq-JWf" secondAttribute="topMargin" id="pqc-Xx-Dih"/>
+                                        <constraint firstItem="Una-st-Bas" firstAttribute="leading" secondItem="AnU-bq-JWf" secondAttribute="leading" constant="10" id="EX3-8P-gdo"/>
+                                        <constraint firstAttribute="bottom" secondItem="Una-st-Bas" secondAttribute="bottom" constant="10" id="I0J-7P-Hg9"/>
+                                        <constraint firstItem="Una-st-Bas" firstAttribute="top" secondItem="AnU-bq-JWf" secondAttribute="top" constant="10" id="fni-1a-vlW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="recipeImage" destination="Una-st-Bas" id="7M3-at-Hs8"/>
                                     <outlet property="recipeLabel" destination="l4J-zx-oqn" id="6Ad-2W-CKE"/>
+                                    <outlet property="star1" destination="aaL-12-hOj" id="CH1-Go-5gg"/>
+                                    <outlet property="star2" destination="tHU-1M-jem" id="AEz-NM-qUN"/>
+                                    <outlet property="star3" destination="vrY-9K-DtT" id="7li-cd-42U"/>
+                                    <outlet property="star4" destination="cqk-iT-SQO" id="vNf-P2-k2K"/>
+                                    <outlet property="star5" destination="3Xa-Bg-BQL" id="nSJ-96-N19"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
