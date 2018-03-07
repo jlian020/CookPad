@@ -139,7 +139,9 @@ class editRecipeViewController: UIViewController {
                     //success
                 }
             }
-            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
+            //navController.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
+            //self.performSegue(withIdentifier: "showMyRecipes", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
