@@ -137,7 +137,9 @@ class editRecipeViewController: UIViewController {
                     //success
                 }
             }
-            self.performSegue(withIdentifier: "showMyRecipes", sender: self)
+            //navController.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
+            //self.performSegue(withIdentifier: "showMyRecipes", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
@@ -145,6 +147,10 @@ class editRecipeViewController: UIViewController {
     
     @IBAction func shareButtonPressed(_ sender: Any) {
         //Implement share
+        let activity = UIActivityViewController(activityItems: [self.recipe?.image, self.recipe?.name, self.recipe?.ingredients, self.recipe?.directions], applicationActivities: nil)
+        activity.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activity, animated: true, completion: nil)
     }
     
     func myFirebaseNetworkDataRequest(finished: @escaping () -> Void){ // the function thats going to take a little moment

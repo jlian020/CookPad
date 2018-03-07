@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-food-and-wine-50.png",
+      "filename" : "icons8-vegetarian-food-25.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-vegetarian-food-50.png",
       "scale" : "2x"
     },
     {

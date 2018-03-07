@@ -14,7 +14,13 @@ class savedRecipeCell: UITableViewCell {
         
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
-
+    
+    @IBOutlet weak var star1: UIImageView!
+    @IBOutlet weak var star2: UIImageView!
+    @IBOutlet weak var star3: UIImageView!
+    @IBOutlet weak var star4: UIImageView!
+    @IBOutlet weak var star5: UIImageView!
+    
 }
 
 class savedRecipeTVC: UITableViewController {
@@ -28,7 +34,7 @@ class savedRecipeTVC: UITableViewController {
     var recipeImage : UIImage?
     var recipePictureURL : URL?
     var myLikedRecipeDict : NSArray?
-
+    
     let vc = ViewController(nibName: "ViewController", bundle: nil)
     
     
@@ -38,17 +44,15 @@ class savedRecipeTVC: UITableViewController {
         refresh = UIRefreshControl()
         refresh.attributedTitle = NSAttributedString(string: "Pull to load recipes")
         refresh.addTarget(self, action: #selector(savedRecipeTVC.loadSavedRecipes), for: .valueChanged)
-//        self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
+        //        self.collectionView.addSubview(refresh) //adds a refresh action to the collectionView so we can update profiles
         self.tableView.addSubview(refresh)
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 197/255, green: 42/255, blue: 53/255, alpha: 0.1) //changes the navigation bar color to light blue, divide by 255 to convert RGB
         //Status Bar White Font
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.tintColor = UIColor.white
-//        DispatchQueue.main.async {
-//            self.loadSavedRecipes()
-//        }
-         loadSavedRecipes()
+        
+        loadSavedRecipes()
     }
     
     @objc func loadSavedRecipes() -> Void {
@@ -56,7 +60,6 @@ class savedRecipeTVC: UITableViewController {
         if refresh.isRefreshing {
             refresh.endRefreshing()
         }
-        
         grabLikedRecipesFromFirebase {
             print(self.myLikedRecipeDict!)
             if self.myLikedRecipeDict!.count > 0 {
@@ -154,26 +157,32 @@ class savedRecipeTVC: UITableViewController {
         downloadPicTask.resume()
         
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedRecipes.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath) as! savedRecipeCell
         
         cell.recipeLabel?.text = savedRecipes[indexPath.row].name
         cell.recipeImage?.image = savedRecipes[indexPath.row].image
-        
+
+        cell.star1?.image = UIImage(named: "star2")
+        cell.star2?.image = UIImage(named: "star2")
+        cell.star3?.image = UIImage(named: "star2")
+        cell.star4?.image = UIImage(named: "star2")
+        cell.star5?.image = UIImage(named: "star")
+
         return cell
     }
     
@@ -186,7 +195,7 @@ class savedRecipeTVC: UITableViewController {
             let backButton = UIBarButtonItem()
             backButton.title = "" //want an empty title, rather than app name near back button
             navigationItem.backBarButtonItem = backButton //recreates bar button with empty title
-//            let indexPaths = self.collectionView!.indexPathsForSelectedItems! //get the number of selected items in our collectionView
+            //            let indexPaths = self.collectionView!.indexPathsForSelectedItems! //get the number of selected items in our collectionView
             let indexPaths = self.tableView!.indexPathsForSelectedRows!
             let indexPath = indexPaths[0] as IndexPath //start at first i
             
@@ -195,9 +204,9 @@ class savedRecipeTVC: UITableViewController {
             //set the profile view up
             let recipe = savedRecipes[indexPath.row]
             recipeVC.recipe = recipe
-
+            
         }
     }
     
-
+    
 }

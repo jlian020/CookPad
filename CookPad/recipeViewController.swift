@@ -45,8 +45,12 @@ class recipeViewController: UIViewController {
     }
     
     @IBAction func shareButtonPressed(_ sender: Any) {
-        
         //Implement share
+        
+        let activity = UIActivityViewController(activityItems: [self.recipe?.image, self.recipe?.name, self.recipe?.ingredients, self.recipe?.directions], applicationActivities: nil)
+        activity.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activity, animated: true, completion: nil)
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
