@@ -22,7 +22,7 @@ class MyProfileView: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDele
         super.viewDidLoad()
         nameLabel.text = Auth.auth().currentUser?.displayName
         
-        bioView.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
+        bioView.text = "         Tell the world about yourself here!"
         FacebookLogoutButton.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height - 150) //logout button
         FacebookLogoutButton.delegate = self
         

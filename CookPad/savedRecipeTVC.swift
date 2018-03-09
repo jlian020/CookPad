@@ -10,7 +10,8 @@ import UIKit
 import CloudKit
 import Firebase
 
-class savedRecipeCell: UITableViewCell {
+class savedRecipeCell: UITableViewCell
+{
         
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
@@ -57,7 +58,7 @@ class savedRecipeTVC: UITableViewController {
     
     @objc func loadSavedRecipes() -> Void {
         tempSavedRecipes.removeAll()
-        if refresh.isRefreshing {
+        if refresh != nil {
             refresh.endRefreshing()
         }
         grabLikedRecipesFromFirebase {
@@ -189,6 +190,28 @@ class savedRecipeTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showRecipe", sender: self)
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
+            // delete the table view row
+            let deleteSaved = savedRecipes[indexPath.row]
+            var i: Int = 0
+            for each in self.myLikedRecipeDict! {
+                let x: String = each as! String
+                if x == deleteSaved.firebaseId {
+                    print("found")
+                    self.reference?.child("Users").child(self.currentUserId!).child("LikedRecipes").child(String(i)).setValue("N/A")
+                } else {
+                    i += 1
+                }
+            }
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            loadSavedRecipes()
+        }
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRecipe" { //show the recipe that the user selected

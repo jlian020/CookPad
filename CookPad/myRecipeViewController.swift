@@ -16,6 +16,7 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var profileRecords = [CKRecord]()
     var myRecipes = [Recipe]() //array of recipes
+    var tempMyRecipes = [Recipe]() //array of recipes
     var reference: DatabaseReference!
     let storage = Storage.storage() //get reference to Google Firebase Storage
     var myRecipeIDS = [String]()
@@ -43,14 +44,14 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         navigationController?.navigationBar.tintColor = UIColor.white
         
-        
         loadMyRecipes()
-        
     }
     
     @objc func loadMyRecipes() {
-        myRecipes.removeAll()
-        refresh.endRefreshing()
+        tempMyRecipes.removeAll()
+        if refresh != nil {
+            refresh.endRefreshing()
+        }
         grabMyRecipesFromFirebase {
             if self.myRecipeDict!.count > 0 {
                 self.grabRecipes {
@@ -80,7 +81,11 @@ class myRecipeViewController: UIViewController, UICollectionViewDelegate, UIColl
                     self.recipePictureURL = URL(string: tempRecipeURL)
                     self.myFirebaseStorageImageGrab {
                         let newRecipe = Recipe.init(name: tempRecipeName, image: self.recipeImage!, ingredients: tempRecipeIngredients, directions: tempRecipeDirections, id: x)
-                        self.myRecipes.append(newRecipe)
+                        self.tempMyRecipes.append(newRecipe)
+                        self.myRecipes = self.tempMyRecipes
+                        if self.tempMyRecipes.count == 0 {
+                            self.myRecipes.removeAll()
+                        }
                         DispatchQueue.main.async(execute: {
                             //push the current info into the main thread, otherwise for loop would be asynchronous
                             if self.vc.recipeDoneSending == true {

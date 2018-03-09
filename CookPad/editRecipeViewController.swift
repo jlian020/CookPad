@@ -25,6 +25,7 @@ class editRecipeViewController: UIViewController {
     var myRecipes : NSArray?
     var userNumberOfLikedRecipes: Int! = 0
     let currentUserID = Auth.auth().currentUser?.uid
+    let MyVc = myRecipeViewController(nibName: "myRecipeViewController", bundle: nil)
     
     override func viewDidLoad()
     {
@@ -138,6 +139,7 @@ class editRecipeViewController: UIViewController {
                 }
             }
             //navController.popViewController(animated: true)
+            //self.MyVc.loadMyRecipes()
             self.navigationController?.popViewController(animated: true)
             //self.performSegue(withIdentifier: "showMyRecipes", sender: self)
         }))
