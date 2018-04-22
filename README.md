@@ -1,7 +1,8 @@
 # CS179K Senior Design Project - CookPad
-Developed by: Justin Mac, Junhao Liang, Jamie Alaniz, Brent Badhwar, Satkaran Tamber
 
-Team Name: Mac and Cheese Its
+CookPad is a social media app for recipes shared worldwide. Users are able to add recipes, save recipes, login via Facebook, comment on recipes, etc.
+
+## Getting Started
 
 Before compiling the app:
 1. Install cocoapods by opening terminal and typing `sudo gem install cocoapods` to install the dependencies for Firebase
@@ -18,4 +19,5 @@ pod 'Firebase/Messaging'
 
 CookPad is a social media app for recipes shared worldwide. Users are able to add recipes, save recipes, login via Facebook, comment on recipes, etc.
 
-
+## Authors
+Developed by: Justin Mac, Junhao Liang, Jamie Alaniz, Brent Badhwar, Satkaran Tamber
